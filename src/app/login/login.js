@@ -81,7 +81,7 @@ function LoginService( $q, $window,  clientid, OrderCloud) {
 }
 
 
-function LoginController( OrderCloud,$state, $stateParams, $exceptionHandler, LoginService, buyerid, $scope, $uibModalInstance, $rootScope ) {
+function LoginController( OrderCloud,$state, $stateParams, $exceptionHandler, LoginService, buyerid, $scope, $uibModal, $rootScope ) {
 
     var vm = this;
     vm.token = $stateParams.token;
@@ -95,7 +95,7 @@ function LoginController( OrderCloud,$state, $stateParams, $exceptionHandler, Lo
                 OrderCloud.BuyerID.Get() ? angular.noop() : OrderCloud.BuyerID.Set(buyerid);
                 OrderCloud.Auth.SetToken(data.access_token);
              // ImpersonationService.StopImpersonating();
-              $uibModalInstance.dismiss('cancel');
+              $uibModal.dismiss('cancel');
                 //$state.go('account.profile');
                 $rootScope.$broadcast('getcurrentuser');
                 LoginService.GetCurrentUser().then(function(res){
@@ -187,7 +187,7 @@ function LoginController( OrderCloud,$state, $stateParams, $exceptionHandler, Lo
     }
 
     $scope.cancel = function () {
-        $uibModalInstance.dismiss('cancel');
+        $uibModal.dismiss('cancel');
     };
     vm.create = function() {
        //vm.newUser=Users;
@@ -214,7 +214,7 @@ function LoginController( OrderCloud,$state, $stateParams, $exceptionHandler, Lo
         };
         OrderCloud.Users.Create(user).then(function(res){
             console.log(res);
-            $uibModalInstance.dismiss('cancel');
+            $uibModal.dismiss('cancel');
                // $state.go('home');
 
         },
