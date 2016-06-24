@@ -10,6 +10,7 @@ angular.module( 'orderCloud' )
 	.directive('windowHeight', windowHeightDirective)
 	.directive('contTopPadding', contTopPaddingDirective)
 	.directive('scroll', scrollDirective)
+  .directive('phoneValidation',phoneValidationDirective)
 ;
 
 function BaseConfig( $stateProvider ) {
@@ -1439,4 +1440,30 @@ function scrollDirective($window) {
 	        });
 	    }
 	};
+}
+
+function phoneValidationDirective($parse){
+
+   return {
+        restrict: 'A',
+        require: ['ngModel'],
+        link: function(scope, element, attrs, ctrls) {
+            var model=ctrls[0], form=ctrls[1];
+            
+            scope.next = function(){
+                return model.$valid
+            }
+            
+            scope.$watch(scope.next, function(newValue, oldValue){
+                if (newValue && model.$dirty)
+                {
+                    var nextinput = element.parent().next().find('input');
+                    if (nextinput.length === 1)
+                    {
+                        nextinput[0].focus();
+                    }
+                }
+            })
+        }
+    }
 }
