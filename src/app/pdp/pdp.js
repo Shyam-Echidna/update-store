@@ -61,7 +61,7 @@ function PdpService( $q, Underscore, OrderCloud, CurrentOrder, $http, $uibModal,
 
 	            }).success(function (data, status, headers, config) { 
 	                
-	                defferred.resolve(data.Items);
+	                defferred.resolve(data);
 	            }).error(function (data, status, headers, config) {
 	            });
 	            return defferred.promise;
