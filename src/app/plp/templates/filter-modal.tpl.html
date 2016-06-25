@@ -262,12 +262,12 @@
 						</svg>
 						Price
 					</uib-accordion-heading>
-					<div class="">
-					
-						<!-- <input id="price-slider" type ="range" min ="20.99" max="319.00" step ="1"/> -->		
-					<input type="hidden" class="slider-input range-slider slider" value="23" />
-
-					</div>
+					  <div class="price-slider">
+                  <!-- <input id="price-slider" type ="range" min ="20.99" max="319.00" step ="1"/> -->
+                  <p class="price-range"><span class="pull-left">$20.99</span><span class="pull-right">$319.99</span></p>	
+                  <p class="price-bar"></p>	
+                  <input type="hidden" class="slider-input range-slider slider" value="23" />
+               </div>
 					</uib-accordion-group>
 					<uib-accordion-group ng-init="status.open5 = true" is-open="status.open5">
 					<uib-accordion-heading>

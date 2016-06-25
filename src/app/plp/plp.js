@@ -350,12 +350,12 @@ function PlpController(SharedData, $state, $uibModal,$q, Underscore, $stateParam
 
 
     vm.selectionLength = vm.selection.length;
- /*      var owl2 = angular.element("#owl-carousel-selected-cat");   
+      /*var owl2 = angular.element("#owl-carousel-selected-cat");   
       owl2.owlCarousel({
         nav:true,
         autoWidth:true
-      });
-      vm.facetOwlReinitialise = function(){
+      });*/
+      /*vm.facetOwlReinitialise = function(){
         owl2.trigger('destroy.owl.carousel');
         owl2.find('.owl-stage-outer').children().unwrap();
         if(vm.selection.length > vm.selectionLength){
@@ -372,7 +372,7 @@ function PlpController(SharedData, $state, $uibModal,$q, Underscore, $stateParam
           },100);
           
         }
-      } */
+      }*/
       vm.facetScroll = function(){
         setTimeout(function(){
           /*var contToHideShow = $('#owl-carousel-selected-cat');
@@ -402,20 +402,20 @@ function PlpController(SharedData, $state, $uibModal,$q, Underscore, $stateParam
         // is currently selected
         if(isFromTopBar){
           vm.facetName[facetName] = false;
-          vm.facetScroll();
-        //  vm.facetOwlReinitialise();
+          //vm.facetScroll();
+          // vm.facetOwlReinitialise();
         }
         if (idx > -1) {
           vm.selection.splice(idx, 1);
-       //  vm.facetOwlReinitialise();
-         vm.facetScroll();
+         // vm.facetOwlReinitialise();
+          //vm.facetScroll();
 
         }
         // is newly selected
         else {
           vm.selection.push(facetName);
-       //  vm.facetOwlReinitialise();
-         vm.facetScroll();
+         // vm.facetOwlReinitialise();
+          //vm.facetScroll();
         }
       };
       (function($) {   
@@ -492,7 +492,7 @@ vm.selectColor = function($index, $event, prod){
    //console.log(prodId.imgContent);
    $($event.target).parents('.product-box').find('img')[0].src = prod.imgContent[0].contentUrl;
    $($event.target).parents('.product-box').find('.product-name-plp span').text(prod.Name);
-   $($event.target).parents('.product-box').find('.Price').text('$'+prod.StandardPriceSchedule.PriceBreaks[0].Price);
+   //$($event.target).parents('.product-box').find('.Price').text('$'+prod.StandardPriceSchedule.PriceBreaks[0].Price);
    $($event.target).parents('.product-box').find('.prodImagewrap').attr('data-sequence', prod.xp.SequenceNumber);
    $($event.target).parents('.product-box').find('.prodImagewrap').attr('data-prodid', prod.ID);
    SharedData.SelectedProductId = prod.ID;
@@ -857,7 +857,7 @@ function ProductQuickViewController ($uibModal , SharedData){
     };
 }
 
-function ProductQuickViewModalController(selectedProductID,SelectedProduct, $scope, PdpService, productImages, $uibModalInstance){
+function ProductQuickViewModalController(selectedProductID,SelectedProduct,$timeout, $scope, PdpService, productImages, $uibModalInstance){
     var vm = this;
      $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
@@ -881,13 +881,20 @@ function ProductQuickViewModalController(selectedProductID,SelectedProduct, $sco
   $scope.qty =1;
   $scope.multireceipentText = '<p>Is this for multiple receipents?</p> <button>YES</button><button>NO</button>'
   
+  vm.setQvImage = function($event){
+    $($event.target).parents('.category-pdt-carousel').find('#img-min-height img').attr('src',$($event.target).attr('src'));
+  }
+
   vm.selectVarients = function(selectedSize){
+    vm.productVarientImages = [];
     vm.sizeGroupedProducts = sizeGroupedProducts[selectedSize];
     vm.selectedColorIndex = 0;
+    vm.gotoPdp = "/pdp/"+sizeGroupedProducts[selectedSize][vm.selectedProductIndex].xp.SequenceNumber+"?prodId="+sizeGroupedProducts[selectedSize][vm.selectedProductIndex].ID ; 
     $('body').find('.detail-container .prod_title').text(vm.sizeGroupedProducts[0].Name);
     PdpService.GetProductCodeImages(sizeGroupedProducts[selectedSize][vm.selectedProductIndex].ID).then(function(res){
-    vm.productVarientImages = res;
-    var owl2 = angular.element("#owl-carousel-qv-images");   
+    $timeout(function(){
+      vm.productVarientImages = res;
+       var owl2 = angular.element("#owl-carousel-qv-images");   
     owl2.trigger('destroy.owl.carousel');
     setTimeout(function(){
         owl2.owlCarousel({
@@ -911,6 +918,8 @@ function ProductQuickViewModalController(selectedProductID,SelectedProduct, $sco
             }
           }); 
                },300);
+    },200);
+   
     });
   };
   $scope.radio = {selectedSize:null};
@@ -931,10 +940,15 @@ function ProductQuickViewModalController(selectedProductID,SelectedProduct, $sco
   vm.productVarientImages = productImages;
   console.log('testimg', vm.productVarientImages)
   vm.colorItemClicked = function ($index, $event, prod) {
+     vm.productVarientImages = [];
   vm.selectedProductIndex = $index;
+   vm.gotoPdp = "/pdp/"+sizeGroupedProducts[prod.xp.SpecsOptions.Size][vm.selectedProductIndex].xp.SequenceNumber+"?prodId="+sizeGroupedProducts[prod.xp.SpecsOptions.Size][vm.selectedProductIndex].ID ; 
+   
   $($event.target).parents('.detail-container').find('h3').text(prod.Name);
   $($event.target).parents('.product-box').find('.Price').text('$'+prod.StandardPriceSchedule.PriceBreaks[0].Price);
+  
   PdpService.GetProductCodeImages(prod.ID).then(function(res){
+    $timeout(function(){
   vm.productVarientImages =  res;
 
    // qv image min height -start
@@ -968,6 +982,7 @@ function ProductQuickViewModalController(selectedProductID,SelectedProduct, $sco
             }
           }); 
                },300);
+     },200);
  
   });
    
@@ -1035,7 +1050,7 @@ function addedToCartController($scope, $uibModalInstance,$q, alfcontenturl,Order
         var owl2 = angular.element("#owl-carousel-added-cart-frequent-pdt");   
         owl2.owlCarousel({
             //responsive: true,
-            loop:false,
+            loop:true,
             nav:true,
             //autoWidth:true,
             responsive:{

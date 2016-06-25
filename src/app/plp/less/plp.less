@@ -160,9 +160,8 @@ body.modal-open {
                     }
                 }
                 .list-items {
-                    padding: 0px 50px;
+                    
                     height: 44px;
-                    overflow-y: hidden;
                     .catRightArrow {
                         display: inline-block;
                         background-image: url('../../assets/images/arrow-big-next-active.svg');
@@ -174,10 +173,10 @@ body.modal-open {
                         position: relative;
                         top: 9px;
                         cursor: pointer;
-                        background-color:red;
+                     
                     } 
                     .catLeftArrow {
-                    background-color:red;
+                   
                         display: inline-block;
                         background-image: url('../../assets/images/arrow-big-next-active.svg');
                         background-size: initial;
@@ -192,10 +191,12 @@ body.modal-open {
                         cursor: pointer;
                     }
                     #owl-carousel-selected-cat {
+                    width:94%;
                        overflow-x: auto;
                         white-space: nowrap;
                         margin: 0 20px;
                         display:inline-block;
+
                         .p0;
                         .m0;
                         .owl-stage-outer .owl-stage .owl-item .owl-stage{
@@ -535,6 +536,46 @@ body.modal-open {
                             }
                             &:hover {
                                 border: 1px solid #cecece;
+                            }
+                        }
+                    }
+                    .price-slider{
+                        padding-top: 15px;
+                        .price-range{
+                            span{
+                                font:1em @proxima-regular;
+                                color: #666;
+                            }
+                            position: relative;
+                            top: -15px;
+                        }
+                        .price-bar{
+                            clear: both;
+                            width: 100%;
+                            height: 10px;
+                            background: @base-bg-purple-light;
+                            border-radius: 5px;
+                            &:before,&:after{
+                                   height: 25px;
+                                    width: 25px;
+                                    content: "";
+                                    background: #fff;
+                                    border-radius: 50%;
+                                    border: 1px solid @base-bg-purple-dark;
+                                    float: left;
+                                    //padding: 0px 9px;
+                                    background-position: left center;
+                                    position: relative;
+                                    top: -8px;
+                                    cursor: pointer;
+
+                            }
+                            &:before{
+                                left: 25%;
+                            }
+                            &:after{
+                                float: right;
+                                right: 15%;
                             }
                         }
                     }
@@ -2387,6 +2428,20 @@ body.modal-open {
 .added-main {
     cursor: default;
     position: relative;
+    &::-webkit-scrollbar {
+                    background: transparent;
+                    cursor: pointer;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background-color:rgba(0, 0, 0, 0.3);
+                    border: 5px solid #fbfbfb;
+                    border-radius: 10px;
+                    cursor: pointer;
+                }
+                &::-webkit-scrollbar-thumb:hover {
+                    //background-color: @base-bg-purple-light;
+                    cursor: pointer;
+                }
     .detail-block {
         padding: 30px 0px 0px 0px;
         background: @half-white;
@@ -2592,7 +2647,7 @@ body.modal-open {
                                         color: @added-font-color;
                                         font-weight: bold;
                                         cursor: pointer;
-                                        margin-top: -4px;
+                                        margin-top: -1px;
                                     }
                                     p.cat,
                                     p.qty,
@@ -2617,7 +2672,8 @@ body.modal-open {
                 }
                 &:nth-child(3) {
                     .last-part {
-                        padding-top: 20px;
+                        //padding-top: 20px;
+                         padding-top: 6%;
                         .view-cart-btn {
                             .purple-button;
                             color: @font-purple-light;
@@ -2639,7 +2695,7 @@ body.modal-open {
         }
     }
     .frequent-block {
-        padding: 0px 25px;
+        //padding: 0px 25px;
         margin: 25px 0px 50px 0px;
         h3 {
             font: 1.813em @neutraface-demi;
@@ -2649,7 +2705,7 @@ body.modal-open {
         .feature-product-block {
             margin: 25px 0px 0px 0px;
             #owl-carousel-added-cart-frequent-pdt{
-                padding: 0px 15px 0px 15px;
+                padding: 0px 30px;
                 .owl-item{
                     padding: 0px 15px;
                 }
@@ -2664,7 +2720,7 @@ body.modal-open {
                                     .p0;
                                     color: transparent;
                                     &.owl-prev {
-                                        left:5px;
+                                        left:10px;
                                         background-image: url('../../assets/images/arrow-big-next.svg');
                                         background-size: initial;
                                         width: 20px;
@@ -2679,7 +2735,7 @@ body.modal-open {
                                         }
                                     }
                                     &.owl-next {
-                                        right: -10px;
+                                        right: 0px;
                                         background-image: url('../../assets/images/arrow-big-next.svg');
                                         z-index: 1;
                                         background-size: initial;
@@ -2692,6 +2748,9 @@ body.modal-open {
                                         }
                                     }
                                 }
+                            }
+                            .owl-dots{
+                                display: none;
                             }
             }
             div {
@@ -2852,6 +2911,7 @@ body.modal-open {
                     &:nth-child(3) {
                         .last-part {
                             padding-top: 10px;
+
                             .view-cart-btn {
                                 margin-bottom: 12px;
                                 padding: 0px 10px;
@@ -3014,7 +3074,7 @@ body.modal-open {
                                 }
                             }
                             .owl-nav {
-                                display: block;
+                                display: none;
                                 div {
                                     position: absolute;
                                     top: 50%;
@@ -3935,6 +3995,47 @@ body.modal-open {
                             }
                         }
                     }
+                    .price-slider{
+                        padding-top: 15px;
+                        .price-range{
+                            span{
+                                font:1em @proxima-regular;
+                                color: #666;
+                            }
+                            position: relative;
+                            top: -15px;
+                            padding: 0px 10px;
+                        }
+                        .price-bar{
+                            clear: both;
+                            width: 100%;
+                            height: 10px;
+                            background: @base-bg-purple-light;
+                            border-radius: 5px;
+                            &:before,&:after{
+                                   height: 25px;
+                                    width: 25px;
+                                    content: "";
+                                    background: #fff;
+                                    border-radius: 50%;
+                                    border: 1px solid @base-bg-purple-dark;
+                                    float: left;
+                                    //padding: 0px 9px;
+                                    background-position: left center;
+                                    position: relative;
+                                    top: -8px;
+                                    cursor: pointer;
+
+                            }
+                            &:before{
+                                left: 25%;
+                            }
+                            &:after{
+                                float: right;
+                                right: 15%;
+                            }
+                        }
+                    }
                 }
                 &-open {
                     border-bottom: none;
@@ -4442,4 +4543,23 @@ body.modal-open {
           }  
         }
         } 
+  }
+
+
+
+  @media screen and (min-width:1600px){
+    .added-main{
+        .detail-block{
+           .cart-info{
+            div{
+                &:nth-child(3){
+                    .last-part{
+                        padding-top: 12%;
+                    }
+                }
+            }
+                
+           } 
+        }
+        }   
   }

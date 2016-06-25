@@ -22,24 +22,24 @@
                 <div class="row">
                     <div class="category-pdt-carousel">
                       <div id="img-min-height">
-            <div class="owl-carousel owl-theme" id="owl-carousel-qv-images">
-            <div class="owl-carousel-item" ng-repeat="prodImage in productQuickViewModal.productVarientImages">
+            <!-- <div class="owl-carousel owl-theme" id="owl-carousel-qv-images">
+            <div class="owl-carousel-item" ng-repeat="prodImage in productQuickViewModal.productVarientImages"> -->
                 <div class="category-prod">
-                    <img ng-src="{{prodImage}}" class="img-responsive" title="img" alt="">
+                    <img ng-src="{{productQuickViewModal.productVarientImages[0]}}"  class="img-responsive" title="img" alt="">
                   </div>
             </div>
            
             
-        </div>
-        </div>
+      <!--   </div>
+        </div> -->
             <div id="carousel-custom-dots" class="owl-dots" >
-                                <div class="owl-dot" ng-repeat="prodImage in productQuickViewModal.productVarientImages">
+                                <div class="owl-dot"  ng-repeat="prodImage in productQuickViewModal.productVarientImages track by prodImage">
                                 <span></span>
-                                <img ng-src="{{prodImage}}" class="img-responsive" title="img" alt="">
+                                <img ng-src="{{prodImage}}" ng-click="productQuickViewModal.setQvImage($event);" class="img-responsive" title="img" alt="">
                             </div>
                           
                         </div>
-    </div>
+              </div>
                 </div>
             </div>
         </div>
@@ -647,7 +647,7 @@
          </div>
       </div>
       <div class="col-md-4 col-lg-4 right">
-         <a href="pdp({ProductID:product.ID})" class="all-details" ui-sref="pdp({ProductID:product.ID})">
+         <a  class="all-details" href="{{productQuickViewModal.gotoPdp}}" ng-click="cancel();">
             Show All Details 
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                viewBox="0 0 50 90" style="enable-background:new 0 0 50 90;" xml:space="preserve">
