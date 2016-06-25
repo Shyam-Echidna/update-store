@@ -32,6 +32,7 @@ body.modal-open {
 }
 .plp-page {
     padding: 0px;
+    cursor: default;
     .row {
         .breadcrumb-box {
             position: absolute;
@@ -76,20 +77,25 @@ body.modal-open {
                                                 font: 1.000em @proxima-bold;
                                                 padding: 0 20px;
                                                 border: 1px solid @font-purple-dark;
-                                                color: @font-purple-dark;
-                                                background: transparent;
+                                                color:#fff ;
+                                                background: @font-purple-dark;
                                                 position: absolute;
                                                 margin: auto;
                                                 text-shadow: 1px 1px 20px rgba(0,0,0,.2);
                                                 bottom: 1.655em;
                                                 left: 1.655em;
                                                 right: 0;
+                                                &:hover{
+                                                    background: @base-bg-purple-light;
+                                                    
+                                                }
                                             }
                                         }
                                 .category-prod-desc {
                                     position: absolute;
                                     top: 1.875em;
                                     left: 1.875em;
+                                    cursor: default;
                                     div {
 
                                         .category-prod-desc-web {
@@ -100,55 +106,13 @@ body.modal-open {
                                                 //font-weight: bold;
                                                 max-width:80%;
                                             }
-                                            
-                                           /* &.color-wht {
-                                                p, button {
-                                                    color: @base-bg-white;
-                                                }
-                                                button {
-                                                    border: 1px solid #fff;
-                                                    &:hover {
-                                                        border: 1px solid @font-purple-dark;
-                                                    }
-                                                }
-                                            }*/
+                                          
                                         }
                                     }
                                 }
                             }
-                            &:nth-child(1) {
-                                .owl-carousel-item {
-                                    div {
-                                        .category-prod-desc-web {
-                                            button {
-                                                margin-top: 40px;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            &:nth-child(2) {
-                                .owl-carousel-item {
-                                    div {
-                                        .category-prod-desc-web {
-                                            button {
-                                                margin-top: 65px;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            &:nth-child(3) {
-                                .owl-carousel-item {
-                                    div {
-                                        .category-prod-desc-web {
-                                            button {
-                                                margin-top: 110px;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                         
+                         
                         }
                     }
                 }
@@ -174,6 +138,7 @@ body.modal-open {
                 bottom: 110px;
                 h4 {
                     font: 2.250em @neutraface-bold;
+                    text-shadow: 2px 2px 6px #000;
                 }
             }
         }
@@ -196,10 +161,10 @@ body.modal-open {
                 }
                 .list-items {
                     padding: 0px 50px;
-                    //height: 44px;
-                   // overflow-y: hidden;
+                    height: 44px;
+                    overflow-y: hidden;
                     .catRightArrow {
-                        display: block;
+                        display: inline-block;
                         background-image: url('../../assets/images/arrow-big-next-active.svg');
                         z-index: 1;
                         background-size: initial;
@@ -208,9 +173,12 @@ body.modal-open {
                         height: 25px;
                         position: relative;
                         top: 9px;
-                    }
+                        cursor: pointer;
+                        background-color:red;
+                    } 
                     .catLeftArrow {
-                        display: block;
+                    background-color:red;
+                        display: inline-block;
                         background-image: url('../../assets/images/arrow-big-next-active.svg');
                         background-size: initial;
                         width: 25px;
@@ -221,11 +189,13 @@ body.modal-open {
                         transform: translate(0%, -50%) rotate(180deg);
                         position: relative;
                         top: 22px;
+                        cursor: pointer;
                     }
                     #owl-carousel-selected-cat {
-                       //overflow-x: auto;
-                        //white-space: nowrap;
-                        //margin: 0 20px;
+                       overflow-x: auto;
+                        white-space: nowrap;
+                        margin: 0 20px;
+                        display:inline-block;
                         .p0;
                         .m0;
                         .owl-stage-outer .owl-stage .owl-item .owl-stage{
@@ -297,6 +267,7 @@ body.modal-open {
                                     -ms-transform: translate(0%, -50%) rotate(180deg);
                                     -webkit-transform: translate(0%, -50%) rotate(180deg);
                                     transform: translate(0%, -50%) rotate(180deg);
+                                    cursor: pointer;
                                     &.owl-prev.disabled {
                                         background-image: none;
                                         background-color: transparent;
@@ -310,6 +281,7 @@ body.modal-open {
                                     background-repeat: no-repeat;
                                     width: 20px;
                                     height: 25px;
+                                    cursor: pointer;
                                     &.owl-next.disabled {
                                         background-image: none;
                                         background-color: transparent;
@@ -496,6 +468,7 @@ body.modal-open {
                         ul {
                             li {
                                 padding: 0px 0px 5px 0px;
+                                margin-bottom: 5px;
                                 .cuctom-checkbox;
                                 .Checkbox {
                                     &-visible {
@@ -514,13 +487,19 @@ body.modal-open {
                                     font-weight: normal;
                                     padding: 0px 0px 0px 9px;
                                     cursor: pointer;
-                                    p{
-                                        display: initial;
-                                        vertical-align: middle;
+                                    margin: 0px;
+                                    position: relative;
+                                    top:0.125em;
+                                   
+                                        //display: initial;
+                                        //vertical-align: middle;
                                       label {
                                         padding-left: 3px;
+                                        position: static;
+                                        top: 0px;
+                                       
                                     }  
-                                    }
+                                   
                                     
                                 }
                             }
@@ -540,8 +519,8 @@ body.modal-open {
                         p {
                             position:relative;
                             border-radius: 50%;
-                            height:30px;
-                            width:30px;
+                            height:29px;
+                            width:29px;
                           border:1px solid transparent;
                           display:inline-block;
                           cursor: pointer;
@@ -634,6 +613,7 @@ body.modal-open {
                 position: relative;
                 height: 445px;
                 margin: 20px 0px 8px;
+                cursor: pointer;
                 img {
                     width: 100%;
                 }
@@ -737,6 +717,33 @@ body.modal-open {
                 margin: 5px 0px 25px 0px;
                 padding: 0px 10px;
                 .product-box {
+                    border-radius:3px;
+                    .color-circle {
+                            padding-top: 25px;
+                                p {
+                            position:relative;
+                            border-radius: 50%;
+                            height:22px;
+                            width:22px;
+                          border:1px solid transparent;
+                          display:inline-block;
+                          cursor: pointer;
+                          margin-right: 10px;
+                            a {
+                                position:absolute;
+                                border-radius: 50%;
+                                right: 3px;
+                                left: 3px;
+                                top: 3px;
+                                bottom: 3px;
+                                cursor: pointer;
+
+                            }
+                            &:hover,&.active-circle {
+                                border: 1px solid #cecece;
+                            }
+                        }
+                        }
                     background: #fff;
                     position: relative;
                     box-shadow: 0px 0px 2px 2px #e6e6e6;
@@ -779,6 +786,14 @@ body.modal-open {
                                 color: @font-purple-dark;
                             }
                         }
+                    }
+                    #color-circle-pos{
+                        position: absolute;
+                        bottom:3.125em;
+                        left: 0px;
+                        right: 0px;
+                        margin: auto;
+                        text-align: center;
                     }
                     .plus-label {
                         // background: url('../assets/images/hover-plus.png') no-repeat;
@@ -923,37 +938,13 @@ body.modal-open {
                         text-align: center;
                         padding-top: 7px;
                         height: 185px;
-                        .color-circle {
-                            padding-top: 25px;
-                                p {
-                            position:relative;
-                            border-radius: 50%;
-                            height:21px;
-                            width:21px;
-                          border:1px solid transparent;
-                          display:inline-block;
-                          cursor: pointer;
-                          margin-right: 10px;
-                            a {
-                                position:absolute;
-                                border-radius: 50%;
-                                right: 3px;
-                                left: 3px;
-                                top: 3px;
-                                bottom: 3px;
-                                cursor: pointer;
-
-                            }
-                            &:hover,&.active-circle {
-                                border: 1px solid #cecece;
-                            }
-                        }
-                        }
+                        
                         .Price {
                             font: 0.875em @proxima-regular;
                             color: #666666;
                         }
                     }
+
                     .hover-buttons {
                         //margin-top:15px;
                         position: absolute;
@@ -975,7 +966,7 @@ body.modal-open {
                                 vertical-align: middle;
                                 float: none;
                                 line-height: 40px;
-                                font-weight: bold;
+                                //font-weight: bold;
                             }
                             .grey-btn {
                                 .transparent-button;
@@ -1008,7 +999,7 @@ body.modal-open {
     }
     .sorted-products {
         background: none;
-        margin: 25px 0px 0px 0px;
+       // margin: 25px 0px 0px 0px;
     }
     .feature-products {
         padding: 0px 0px;
@@ -1458,18 +1449,19 @@ body.modal-open {
                             }
                         }
                         .price-box {
-                            height: 180px;
+                            height: 200px;
                             padding:5px 0 0; 
                             .color-circle {
+
                                     p {
                             position:relative;
                             border-radius: 50%;
-                            height:25px;
-                            width:25px;
+                            height:20px;
+                            width:20px;
                           border:1px solid transparent;
                           display:inline-block;
                           cursor: pointer;
-                          margin-right: 10px;
+                          margin-right: 5px;
                             a {
                                 position:absolute;
                                 border-radius: 50%;
@@ -1488,6 +1480,9 @@ body.modal-open {
                                 font: 0.750em @proxima-regular;
                                 padding-top: 4px;
                             }
+                        }
+                        #color-circle-pos{
+                            bottom: 5.938em;
                         }
                         .plus-label {
                             display: none !important;
@@ -1818,8 +1813,15 @@ body.modal-open {
                 .product-container {
                     .product-box {
                         .price-box {
-                            height: 195px;
+                            height: 200px;
+                            .color-circle{
+                                padding-top: 15px;
+                            }
+
                         }
+                        #color-circle-pos{
+                                //bottom: 17%;
+                            }
                     }
                 }
             }
@@ -2003,6 +2005,12 @@ body.modal-open {
                             .product-box {
                                 .price-box {
                                     height: 205px;
+                                    .color-circle{
+                                        padding-top: 15px;
+                                    }
+                                }
+                                #color-circle-pos{
+                                    bottom: 4.138em;
                                 }
                                 .hover-buttons {
                                     div {
@@ -2346,6 +2354,15 @@ body.modal-open {
                         }
                     }
                 }
+                div{
+                    form{
+                        .form-group{
+                            .select-option-block{
+                                width: 3.750em;
+                            }
+                        }
+                    }
+                    }   
                 }       
     }
 }
@@ -2389,7 +2406,7 @@ body.modal-open {
                         stroke-width: 2;
                     }
                     &:hover {
-                        fill: #666;
+                        fill: #888;
                     }
                 }
             }
@@ -2445,6 +2462,9 @@ body.modal-open {
         }
         .cart-info {
             div {
+                &:last-child{
+
+                }
                 &:nth-child(1) {
                     .left-part {
                         div {
@@ -2473,23 +2493,24 @@ body.modal-open {
                                   p.color{
                             position:relative;
                             border-radius: 50%;
-                            height:21px;
-                            width:21px;
+                            height:1.000em;
+                            width:1.000em;
                           border:1px solid transparent;
                           display:inline-block;
                           cursor: pointer;
+                          background-color: #E2699B;
                             a {
                                 position:absolute;
                                 border-radius: 50%;
-                                right: 3px;
-                                left: 3px;
-                                top: 3px;
-                                bottom: 3px;
+                                right: 0px;
+                                left: 0px;
+                                top: 0px;
+                                bottom: 0px;
                                 cursor: pointer;
-                                background-color: #E2699B;
+                                
                             }
                             &:hover {
-                                border: 1px solid #cecece;
+                                //border: 1px solid #cecece;
                             }
                         }
                             }
@@ -2506,6 +2527,14 @@ body.modal-open {
                     .middle-part {
                         /*max-height: 160px;
                         overflow-y: scroll;*/
+                        div{
+                            .row{
+                                .img-box{
+                                        padding: 0px 10px;
+                                    
+                                }
+                            }
+                        }
 
                         #owl-carousel-added-cart-pdt{
                             padding-left: 20px;
@@ -2557,7 +2586,7 @@ body.modal-open {
                                                                    
                                     div{
                                     &:first-child,&:last-child {
-                                        padding: 0px 0px 0px 5px;
+                                       //padding: 0px 0px 0px 5px;
                                     h5.iName {
                                         font: 1.00em @proxima-regular;
                                         color: @added-font-color;
@@ -2610,7 +2639,7 @@ body.modal-open {
         }
     }
     .frequent-block {
-        padding: 0px 15px;
+        padding: 0px 25px;
         margin: 25px 0px 50px 0px;
         h3 {
             font: 1.813em @neutraface-demi;
@@ -2620,7 +2649,7 @@ body.modal-open {
         .feature-product-block {
             margin: 25px 0px 0px 0px;
             #owl-carousel-added-cart-frequent-pdt{
-                padding: 0px 20px 0px 25px;
+                padding: 0px 15px 0px 15px;
                 .owl-item{
                     padding: 0px 15px;
                 }
@@ -2674,6 +2703,9 @@ body.modal-open {
                     h5 {
                         font: 1em @proxima-bold;
                         cursor: pointer;
+                        &:hover{
+                            color: @base-bg-purple-dark;
+                        }
                     }
                     p {
                         font: 0.875em @proxima-regular;
@@ -2697,7 +2729,7 @@ body.modal-open {
         -ms-transform: translateY(0%);
         transform: translateY(0%);
     }
-    .addedToCartModal + div.modal {
+    .addedToCartModal{
         //top: 35px;
        //bottom: 50px;
         .modal-dialog {
@@ -2925,6 +2957,20 @@ body.modal-open {
     padding: 20px 0px 0px 10px;
     background: #fbfbfb;
     position: relative;
+     &::-webkit-scrollbar {
+                    background: transparent;
+                    cursor: pointer;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background-color:rgba(0, 0, 0, 0.3);
+                    border: 5px solid #fbfbfb;
+                    border-radius: 10px;
+                    cursor: pointer;
+                }
+                &::-webkit-scrollbar-thumb:hover {
+                    //background-color: @base-bg-purple-light;
+                    cursor: pointer;
+                }
     .close-icon {
         position: absolute;
         top: 15px;
@@ -2987,6 +3033,7 @@ body.modal-open {
                                         -ms-transform: translate(0%, -50%) rotate(180deg);
                                         -webkit-transform: translate(0%, -50%) rotate(180deg);
                                         transform: translate(0%, -50%) rotate(180deg);
+                                        cursor: pointer;
                                         &.owl-prev.disabled {
                                             background-image: none;
                                             background-color: transparent;
@@ -3000,6 +3047,7 @@ body.modal-open {
                                         background-repeat: no-repeat;
                                         width: 23px;
                                         height: 27px;
+                                        cursor: pointer;
                                         &.owl-next.disabled {
                                             background-image: none;
                                             background-color: transparent;
@@ -3229,7 +3277,7 @@ body.modal-open {
                                         border: 1px solid #e4e4e4;
                                         border-radius: 2px;
                                         margin-bottom: 7px;
-                                        line-height: 1.013em;
+                                        line-height: 0;
                                         .category-name {
                                             font: 0.625em @proxima-regular;
                                             color: #333;
@@ -3240,7 +3288,7 @@ body.modal-open {
                                             color: #000;
                                             //padding-top:5px;
                                             font-weight: bold;
-                                            margin-top: 2px;
+                                            margin-top: 3px;
                                         }
                                     }
                                     ul {
@@ -3267,7 +3315,7 @@ body.modal-open {
                                                         }
                                                         p {
                                                             padding-top: 10px;
-                                                            font-size: 1.1em;
+                                                            font-size: 1.3em;
                                                         }
                                                     }
                                                 }
@@ -3407,13 +3455,14 @@ body.modal-open {
     }
     .product-info-block {
         padding: 7px 0px;
-        margin: 0px 25px 0px 10px;
+        margin: 0px 25px 0px 25px;
         border-top: 1px solid #ccc;
         border-bottom: 1px solid #ccc;
         background: #fff;
         cursor: default;
         .left {
             padding-right: 0px;
+            padding-left: 25px;
             .info-text {
                 font: 1.313em @neutraface-demi;
                 color: #424242;
@@ -3430,6 +3479,7 @@ body.modal-open {
                 width: 75px;
                 fill: @svg-fill;
                 cursor: default;
+                padding-top: 6px;
             }
             p {
                 font: 0.875em @neutraface-book;
@@ -3453,6 +3503,7 @@ body.modal-open {
                     vertical-align: middle;
                     margin:0px;
                         svg{
+                            padding: 0px;
                             position: absolute;
                             top: 20px;
                             left: 0;
@@ -3496,6 +3547,11 @@ body.modal-open {
                 height: 19px;
                 position: relative;
                 top: 3px;
+                polyline{
+                    stroke: #8c58b5 !important;
+                    fill: transparent;
+                    stroke-width: 8px;
+                }
                 &:last-child {
                     margin-left: -17px;
                 }
@@ -3585,6 +3641,9 @@ body.modal-open {
                 }
             }
         }
+        .right{
+            padding-right: 30px;
+        }
     }
     input[type="text"] {
         border-radius: 1px;
@@ -3611,7 +3670,7 @@ body.modal-open {
 .filterBtnModal.modal-backdrop.in {
     opacity: 0.6;
 }
-.filterBtnModal + div.modal {
+.filterBtnModal{
     .modal-dialog {
         width: 100%;
         position: absolute;
@@ -3961,59 +4020,27 @@ body.modal-open {
                     .owl-stage-outer {
                         .owl-stage {
                             .owl-item {
-                                &.active {
-                                    //padding:0px 6px;
-                                }
-                                &:nth-child(1),
-                                &:nth-child(2),
-                                &:nth-child(3) {
-                                    .owl-carousel-item {
-                                        .category-prod-desc {
-                                            /*top: 15px;
-                                            left: 10px;*/
-                                            div {
-                                                .category-prod-desc-web {
-                                                    p {
-                                                        font-size: 1.3em;
-                                                    }
-                                                }
+                            .owl-carousel-item{
+                               .category-prod{
+                                    button{
+                                        padding: 0px 10px;
+                                        font-size: 0.8em;
+                                    }
+                                } 
+                               .category-prod-desc {
+                                   
+                                    div {
+
+                                        .category-prod-desc-web {
+                                            p {
+                                                font-size: 1.1em !important;
                                             }
+                                          
                                         }
                                     }
+                                }  
                                 }
-                                &:nth-child(1) {
-                                    .owl-carousel-item {
-                                        div {
-                                            .category-prod-desc-web {
-                                                button {
-                                                    margin-top: 10px;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                &:nth-child(2) {
-                                    .owl-carousel-item {
-                                        div {
-                                            .category-prod-desc-web {
-                                                button {
-                                                    margin-top: 25px;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                &:nth-child(3) {
-                                    .owl-carousel-item {
-                                        div {
-                                            .category-prod-desc-web {
-                                                button {
-                                                    margin-top: 35px;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
+                              
                             }
                         }
                     }
@@ -4339,3 +4366,80 @@ body.modal-open {
             }
         }    
 }
+
+
+// iphone 5
+
+@media screen and (min-width:320px) and (max-width:374px) {
+    .product-block{
+        .feature-products,.sorted-products{
+          div{
+            .product-container{
+               .product-box{
+                #color-circle-pos{
+                    bottom: 6.038em !important;
+                }
+               } 
+            }
+          }  
+        }
+        }     
+}
+
+// iphone 6
+
+@media screen and (min-width:375px) and (max-width:413px) {
+    .product-block{
+        .feature-products,.sorted-products{
+          div{
+            .product-container{
+               .product-box{
+                #color-circle-pos{
+                    bottom: 5.138em !important;
+                }
+               } 
+            }
+          }  
+        }
+        }     
+}
+
+
+
+    // iphone 6+
+
+@media screen and (min-width:414px) and (max-width:736px) {
+    .product-block{
+        .feature-products,.sorted-products{
+          div{
+            .product-container{
+               .product-box{
+                #color-circle-pos{
+                    bottom: 4.838em !important;
+                }
+               } 
+            }
+          }  
+        }
+        }     
+}
+
+
+/*tab10 Portrait */
+@media 
+  (max-device-width: 800px) 
+  and (orientation: portrait) {
+        .product-block{
+        .feature-products,.sorted-products{
+          div{
+            .product-container{
+               .product-box{
+                #color-circle-pos{
+                    bottom: 4.138em;
+                }
+               } 
+            }
+          }  
+        }
+        } 
+  }

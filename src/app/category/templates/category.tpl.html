@@ -48,11 +48,8 @@
 			<ul>					
 				<li ng-repeat="categories in category.categoryList" class="sub-nav col-xs-6 col-sm-3 col-md-3 col-lg-3">
 					<div class="ctg-product-img">
-						<img ng-if="!categories.imgContent" src="assets/images/cat4.png">
-
-						<img ng-if="categories.imgContent" class="desktop-img" src="{{categories.imgContent.contentUrl}}">
-						<img ng-if="categories.imgContent" class="mobile-img" src="{{categories.imgContent.contentUrl}}">
-						<!-- <img class="mobile-img" src="assets/images/mobile/clp/cat1.png"/> -->
+						<img ng-if="!categories.imgContent" src="http://192.168.97.27:8080/share/proxy/alfresco/slingshot/node/content/workspace/SpacesStore/e24e3437-e76c-4bfc-a236-fade041e36e1/c2_c1.png">
+						<img ng-if="categories.imgContent" class="" src="{{categories.imgContent.contentUrl}}">
 		 				<div>
 							<a class="maincat_link" ui-sref="category({ID:categories.ID,childCount:categories.ChildCount})" >{{categories.Name}}</a>
 						</div>
@@ -336,8 +333,7 @@
 			<div class="events-slider owl-carousel" id="owl-carousel-events">
 				<div class="events-slider-block events-slider-block-w" ng-repeat="event in category.eventsList" >
 					<div class="p0 m0 events-promo">
-						<img class="desktop-img" src="../../assets/images/desktop/home/plant.png"/>
-						<img class="mobile-img" src="assets/images/mobile/home/plant.png" />
+						<img class="" src="http://103.227.151.31:8080/bachmans/assets/images/desktop/home/plant.png"/>
 					</div>
 					<div class="events-desc">
 						<h2>{{event.Name}}</h2>

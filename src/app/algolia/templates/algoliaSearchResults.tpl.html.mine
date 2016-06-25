@@ -1,0 +1,165 @@
+<article id="COMPONENT_AlgoliaSearchResults" class="container-fluid algolia-search-results">
+    <uib-tabset active="algoliaSearchResults.activeTab">
+        <uib-tab heading="Products ({{algoliaSearchResults.ProductResults.nbHits}})" ng-click="algoliaSearchResults.toggleTab(0)" >
+            <div class="row results-nav">
+                <div class="col-xs-10">
+                    <div class="results-selections">
+                        <span>YOUR SELECTION</span>
+                        <span class="results-selection" ng-repeat="selection in algoliaSearchResults.Selections">{{selection.value}}<a><i class="fa fa-remove" ng-click = "algoliaSearchResults.toggleFacet(selection.facetname, selection.value)"></i></a></span>
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="results-sortby" uib-dropdown keyboard-nav>
+                        <span uib-dropdown-toggle>
+                             Sort By
+                            <a href class="pull-right" id="product-sort-dropdown" ><i class="fa fa-caret-down"></i></a>
+                        </span>
+                        <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="product-sort-dropdown">
+                            <li>
+                                <a href ng-click="algoliaSearchResults.SortByProducts('products_price_desc')">Price</a>
+                            </li>
+                            <li>
+                                <a href ng-click="algoliaSearchResults.SortByProducts('products_new_desc')">New Products</a>
+                            </li>
+                            <li>
+                                <a href ng-click="algoliaSearchResults.SortByProducts('products_viewed_desc')">Most Viewed</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 algolia-facets">
+                    <div class="well well-sm algolia-facet-name"
+                         ng-repeat-start="facet in algoliaSearchResults.CustomFacetList | orderBy:'name'" ng-hide="facet.name == 'Price'"
+                         ng-init="algoliaSearchResults.facetBehavior[facet.name].close = false">
+                        {{facet.name}}
+                        <a class="pull-right" ng-click="algoliaSearchResults.facetBehavior[facet.name].close = !algoliaSearchResults.facetBehavior[facet.name].close">
+                            <i class="fa" ng-class="{'fa-caret-right': algoliaSearchResults.facetBehavior[facet.name].close, 'fa-caret-down': !algoliaSearchResults.facetBehavior[facet.name].close}"></i>
+                        </a>
+                    </div>
+                    <div class="algolia-facet-selections" ng-repeat-end uib-collapse="algoliaSearchResults.facetBehavior[facet.name].close" ng-hide="facet.name == 'Price'">
+                        <div ng-class="{'algolia-no-results': !algoliaSearchResults.ProductResults.facets[facet.name][val]}" ng-repeat="val in facet.list"><a ng-click="algoliaSearchResults.toggleFacet(facet.name, val)"><i class="fa" ng-class="{'fa-square': algoliaSearchResults.FiltersObject[facet.name] && algoliaSearchResults.FiltersObject[facet.name][val], 'fa-square-o': !algoliaSearchResults.FiltersObject[facet.name] || !algoliaSearchResults.FiltersObject[facet.name][val]}"></i></a> {{val}}</div>
+                    </div>
+                    <div class="well well-sm algolia-facet-name" ng-hide="algoliaSearchResults.ProductResults.NotEnoughForPricing">
+                        Price
+                        <a class="pull-right" ng-click="algoliaSearchResults.facetBehavior['price'].close = !algoliaSearchResults.facetBehavior['price'].close">
+                            <i class="fa" ng-class="{'fa-caret-right': algoliaSearchResults.facetBehavior['price'].close, 'fa-caret-down': !algoliaSearchResults.facetBehavior['price'].close}"></i>
+                        </a>
+                    </div>
+                    <div class="algolia-facet-selections" uib-collapse="algoliaSearchResults.facetBehavior['price'].close" ng-hide="algoliaSearchResults.ProductResults.NotEnoughForPricing">
+                        <slider ng-model="algoliaSearchResults.sliderValue"
+                                on-stop-slide="algoliaSearchResults.changePriceRange()"
+                                range="true"
+                                min="algoliaSearchResults.ProductResults.facets_stats.Price.floor || algoliaSearchResults.ProductResults.facets_stats.Price.min"
+                                step="algoliaSearchResults.step"
+                                max="algoliaSearchResults.ProductResults.facets_stats.Price.ceiling || algoliaSearchResults.ProductResults.facets_stats.Price.max"
+                                value="algoliaSearchResults.priceValue"></slider>
+                    </div>
+                </div>
+                <div class="col-xs-9">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4" ng-repeat="result in algoliaSearchResults.ProductResults.hits track by $index">
+                            <div class="thumbnail">
+                                <img ng-src="{{result.Image}}" alt="{{result.Name}}" ng-mouseover="algoliaSearchResults.activeProduct = $index">
+                                <div class="results-quick-view">
+                                    <a href="#" ng-show="algoliaSearchResults.activeProduct == $index" class="btn btn-primary btn-block" role="button">QUICK VIEW</a>
+                                </div>
+                                <div class="caption">
+                                    <h4>{{result.Name}}</h4>
+                                    <p>{{result.Price | currency}}</p>
+                                    <p><a href="#" class="btn btn-primary btn-block" role="button">ADD TO CART</a></p>
+                                    <p><a href="#" class="btn btn-default btn-block" role="button">Add to List</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pagination-container">
+                        <uib-pagination
+                                total-items="algoliaSearchResults.ProductResults.nbHits"
+                                ng-model="algoliaSearchResults.currentProductPage"
+                                ng-change="algoliaSearchResults.changePage(0)"
+                                class="pagination-sm"
+                                rotate="true"
+                                previous-text="Previous Page"
+                                next-text="Next Page"
+                                boundary-link-numbers="true"
+                                num-pages="algoliaSearchResults.ProductResults.nbPages"></uib-pagination>
+                    </div>
+                </div>
+
+            </div>
+        </uib-tab>
+        <uib-tab heading="Information ({{algoliaSearchResults.InfoResults.nbHits}})" ng-click="algoliaSearchResults.toggleTab(0)">
+            <div class="row results-nav">
+                <div class="col-xs-10">
+                    <div class="results-selections">
+                        <span>YOUR SELECTION</span>
+                        <!--<span class="results-selection" ng-repeat="selection in algoliaSearchResults.Selections">{{selection}}<a><i class="fa fa-remove"></i></a></span>-->
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="results-sortby" uib-dropdown keyboard-nav>
+                        <span uib-dropdown-toggle>
+                             Sort By
+                            <a href class="pull-right" id="info-sort-dropdown" ><i class="fa fa-caret-down"></i></a>
+                        </span>
+                        <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="info-sort-dropdown">
+                            <li>
+                                <a href ng-click="algoliaSearchResults.SortByInfo('Information_type_desc')">Article Type</a>
+                            </li>
+                            <li>
+                                <a href ng-click="algoliaSearchResults.SortByInfo('Information_author_desc')">Author</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="search-info-results container">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <h4>Title</h4>
+                    </div>
+                    <div class="col-xs-2">
+                        <h4>Article Type</h4>
+                    </div>
+                    <div class="col-xs-4">
+                        <h4>Written By</h4>
+                    </div>
+                </div>
+                <div class="column search-info-result" ng-repeat="hit in algoliaSearchResults.InfoResults.hits">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h5>{{hit.Title}}</h5>
+                        </div>
+                        <div class="col-xs-2">
+                            <h5>{{hit.Type}}</h5>
+                        </div>
+                        <div class="col-xs-4">
+                            <h5>{{hit.Author}}</h5>
+                        </div>
+                    </div>
+                    <div>
+                        <span ng-bind-html="hit._highlightResult.Content.value"></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pagination-container">
+                <uib-pagination
+                        total-items="algoliaSearchResults.InfoResults.nbHits"
+                        ng-model="algoliaSearchResults.currentInfoPage"
+                        ng-change="algoliaSearchResults.changePage(1)"
+                        class="pagination-sm"
+                        rotate="true"
+                        previous-text="Previous Page"
+                        next-text="Next Page"
+                        boundary-link-numbers="true"
+                        num-pages="algoliaSearchResults.InfoResults.nbPages"></uib-pagination>
+            </div>
+        </uib-tab>
+    </uib-tabset>
+
+</article>

@@ -2,6 +2,7 @@ angular.module('orderCloud')
 
     .config(PlpConfig)
     .factory('PlpService', PlpService)
+    .factory('SharedData', SharedData)
     .controller('PlpCtrl', PlpController)
     .controller('QuickviewCtrl',QuickviewController)
     .controller('filterBtnCtrl',filterBtnController)
@@ -42,17 +43,33 @@ function PlpConfig($stateProvider) {
                       });
                      groupedProducts = Object.keys(groupedProducts).map(function (key) {return groupedProducts[key]});
                      console.log('Sequence grouped Products',groupedProducts);
-                    //  var defaultGroupedProd = [];
-                    //  angular.forEach(groupedProducts, function(value, key){
-                    //     var data;
-                    //     $.grep(value, function(e , i){ if(e.xp.IsDefaultProduct == 'true')  data = i;});
-                    //       var b = value[data];
-                    //       value[data] = value[0];
-                    //       value[0] = b;
-                    //       defaultGroupedProd.push(value);
-                    //  });
-                    // console.log("default sequence grouped prod", defaultGroupedProd);
-                      return groupedProducts;
+                     var defaultGroupedProd = [];
+                     angular.forEach(groupedProducts, function(value, key){
+                        var data;
+                        $.grep(value, function(e , i){ if(e.xp.IsDefaultProduct == 'true'){ 
+                          data = i;
+                        }});
+                       //var maxValue = _.max(value, _.property('StandardPriceSchedule.PriceBreaks[0].Price'));
+                      // var maxDate = _(value).map('StandardPriceSchedule.PriceBreaks[0]').flatten().max(Price);
+                        var lowest = Number.POSITIVE_INFINITY;
+                        var highest = Number.NEGATIVE_INFINITY;
+                        var tmp;
+                        //console.log("@@@" ,value.StandardPriceSchedule.PriceBreaks);
+                        angular.forEach(value, function(prodValues, key){
+                            tmp = prodValues.StandardPriceSchedule.PriceBreaks[0].Price;
+                            if (tmp < lowest) lowest = tmp;
+                            if (tmp > highest) highest = tmp;
+                        });
+                        
+                        var price = "$"+lowest+" - $"+highest;
+                        value[data].priceRange = price;
+                          var b = value[data];
+                          value[data] = value[0];
+                          value[0] = b;
+                          defaultGroupedProd.push(value);
+                     });
+                    console.log("default sequence grouped prod", defaultGroupedProd);
+                      return defaultGroupedProd;
                       //test
                     })
                  }
@@ -78,7 +95,8 @@ function PlpService($q, OrderCloud, Underscore, $timeout, $http, alfcontenturl, 
         GetPlpBanner:_getPlpBanner,
         GetHybridBanner:_getHybridBanner,
         GetHelpAndPromo:_getHelpAndPromo,
-        GetPromoSvgDesign:_getPromoSvgDesign
+        GetPromoSvgDesign:_getPromoSvgDesign,
+        GetAddToCart:_getAddToCart
     }
 
 function _getProductList(res, productImages){
@@ -287,17 +305,49 @@ function _getProductList(res, productImages){
       });
       return defferred.promise;
     }
+    function _getAddToCart(ticket) {
+      var defferred = $q.defer(); 
+      $http({
+      method: 'GET',
+      dataType:"json",
+      url: alfrescourl+"ProductListing/AddToCart?alf_ticket="+ticket,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+      }).success(function (data, status, headers, config) {              
+      defferred.resolve(data);
+      }).error(function (data, status, headers, config) {
+      defferred.reject(data);
+      });
+      return defferred.promise;
+    }
+
 
     return service;
 }
 
 
-function PlpController($uibModal,$q, Underscore, $stateParams,PlpService, productList, $scope, alfcontenturl,OrderCloud,$sce) {
+function PlpController(SharedData, $state, $uibModal,$q, Underscore, $stateParams,PlpService, productList, $scope, alfcontenturl,OrderCloud,$sce) {
 
     var vm = this;
     vm.productList = productList;
         // START: function for facet selection logic
     vm.selection=[];
+
+
+    //Function for clear all facets
+    vm.clearSelection = function(){
+       vm.selection = [];
+       vm.facetName = {};
+    }
+    // Function for navigation to PDP
+    vm.detailsPage = function($event){
+      var id = $($event.target).parent().attr('data-prodid');
+      var seq= $($event.target).parent().attr('data-sequence');
+      var href= "/pdp/"+ seq + "/prodId="+id;
+      $state.go('pdp', { 'sequence':seq , 'prodId':id });
+    }
+
 
     vm.selectionLength = vm.selection.length;
       var owl2 = angular.element("#owl-carousel-selected-cat");   
@@ -323,6 +373,16 @@ function PlpController($uibModal,$q, Underscore, $stateParams,PlpService, produc
           
         }
       }
+      vm.facetScroll = function(){
+        setTimeout(function(){
+          /*var contToHideShow = $('#owl-carousel-selected-cat');
+          if(contToHideShow.scrollWidth>contToHideShow.offsetWidth){
+              $('.catLeftArrow, .catRightArrow').css('display','block');
+          }else{
+              $('.catLeftArrow, .catRightArrow').css('display','none');
+            }*/
+        },200)
+      }
   
       var fixOwl = function(){
         var $stage = $('.owl-stage'),
@@ -342,19 +402,40 @@ function PlpController($uibModal,$q, Underscore, $stateParams,PlpService, produc
         // is currently selected
         if(isFromTopBar){
           vm.facetName[facetName] = false;
+        //  vm.facetScroll();
           vm.facetOwlReinitialise();
         }
         if (idx > -1) {
           vm.selection.splice(idx, 1);
-          vm.facetOwlReinitialise();
+         vm.facetOwlReinitialise();
+         // vm.facetScroll();
 
         }
         // is newly selected
         else {
           vm.selection.push(facetName);
-          vm.facetOwlReinitialise();
+         vm.facetOwlReinitialise();
+         // vm.facetScroll();
         }
       };
+      (function($) {   
+        $.rightofscreen = function(lookIn, elements, settings) {
+          var fold = $(lookIn).width() + $(lookIn).scrollLeft();
+          return $(elements).filter(function(){
+              return fold <= $(this).offset().left - settings.threshold;
+          });
+        };
+      
+        $.leftofscreen = function(lookIn, elements, settings) {
+          var left = $(lookIn).scrollLeft();
+          return $(elements).filter(function(){
+              return left >= $(this).offset().left + $(this).width() - settings.threshold;
+          });
+       };
+      })(jQuery);
+      $.leftofscreen("#lookInMePlp", ".peekPlp", {threshold : 0}).addClass("LeftPlp");
+      $.rightofscreen("#lookInMePlp", ".peekPlp", {threshold : 0}).addClass("RightPlp");
+
       // END:function for facet selection logic
 
       // START: function for sort options selection
@@ -412,6 +493,9 @@ vm.selectColor = function($index, $event, prod){
    $($event.target).parents('.product-box').find('img')[0].src = prod.imgContent[0].contentUrl;
    $($event.target).parents('.product-box').find('.product-name-plp span').text(prod.Name);
    $($event.target).parents('.product-box').find('.Price').text('$'+prod.StandardPriceSchedule.PriceBreaks[0].Price);
+   $($event.target).parents('.product-box').find('.prodImagewrap').attr('data-sequence', prod.xp.SequenceNumber);
+   $($event.target).parents('.product-box').find('.prodImagewrap').attr('data-prodid', prod.ID);
+   SharedData.SelectedProductId = prod.ID;
    $event.stopPropagation();
  
 }
@@ -487,6 +571,7 @@ vm.selectColor = function($index, $event, prod){
         var modalInstance = $uibModal.open({
             animation: true,
             backdropClass: 'filterBtnModal',
+            windowClass: 'filterBtnModal',
             templateUrl: 'plp/templates/filter-modal.tpl.html',
              controller:'filterBtnCtrl',
              controllerAs: 'filterBtn'
@@ -503,7 +588,7 @@ vm.selectColor = function($index, $event, prod){
     }
 
 
-        setTimeout(function(){
+        /*setTimeout(function(){
         var owl2 = angular.element("#owl-carousel-selected-cat");   
         owl2.owlCarousel({
             //responsive: true,
@@ -523,7 +608,7 @@ vm.selectColor = function($index, $event, prod){
                 }
             }
         });
-        },1000)
+        },1000)*/
 
         
     //plp-hybrid carousel
@@ -553,11 +638,11 @@ vm.selectColor = function($index, $event, prod){
 
   vm.shiftSelectedCategoryRight= function(){
     var currentPos = $('#owl-carousel-selected-cat').scrollLeft();
-    $('#owl-carousel-selected-cat').scrollLeft(currentPos + 50);
+    $('#owl-carousel-selected-cat').scrollLeft(currentPos + 100);
   }
   vm.shiftSelectedCategoryLeft= function(){
     var currentPos = $('#owl-carousel-selected-cat').scrollLeft();
-    $('#owl-carousel-selected-cat').scrollLeft(currentPos - 50);
+    $('#owl-carousel-selected-cat').scrollLeft(currentPos - 100);
   }      
   /* Plp banner from alfresco */
   var ticket = localStorage.getItem("alf_ticket");
@@ -580,7 +665,7 @@ vm.selectColor = function($index, $event, prod){
   });  
 
   PlpService.GetHelpAndPromo(ticket).then(function(res){
-
+    vm.needHelp = alfcontenturl+res.items[4].contentUrl+"?alf_ticket="+ticket;
     vm.needHelpTitle = res.items[0].title;
     vm.needHelpDescription = res.items[0].description;  
 
@@ -598,6 +683,45 @@ vm.selectColor = function($index, $event, prod){
   PlpService.GetPromoSvgDesign(ticket).then(function(res){
     var plp_promo_svgDesign = alfcontenturl + res.items[6].contentUrl + "?alf_ticket=" + ticket;
     vm.plp_promo_svgDesign = $sce.trustAsResourceUrl(plp_promo_svgDesign);
+  });
+
+  $.fn.is_on_screen = function(){
+     
+    var win = $(window);
+     
+    var viewport = {
+        top : win.scrollTop(),
+        left : win.scrollLeft()
+    };
+    viewport.right = viewport.left + win.width();
+    viewport.bottom = viewport.top + win.height();
+     
+    var bounds = this.offset();
+    bounds.right = bounds.left + this.outerWidth();
+    bounds.bottom = bounds.top + this.outerHeight();
+     
+    return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
+     
+  };
+
+  if( $('.target').length > 0 ) { // if target element exists in DOM
+    if( $('.target').is_on_screen() ) { // if target element is visible on screen after DOM loaded
+          $('.selected-list ').addClass('fixThisBar');// log info   
+         
+    } else {
+          $('.selected-list ').removeClass('fixThisBar');// log info
+    }
+  }
+  $(window).scroll(function(){ // bind window scroll event
+    if( $('.target').length > 0 ) { // if target element exists in DOM
+      if( $('.target').is_on_screen() ) { // if target element is visible on screen after DOM loaded
+        $('.selected-list').addClass('fixThisBar');// log info
+       
+      } else {
+       $('.selected-list').removeClass('fixThisBar'); // log info
+        
+      }
+    }
   });
 
 }
@@ -646,7 +770,7 @@ function filterBtnController($scope, $uibModalInstance) {
     };
 
     // selected cat-mobile
-     setTimeout(function(){
+     /*setTimeout(function(){
         var owl2 = angular.element("#owl-carousel-selected-cat-mobile");   
         owl2.owlCarousel({
             //responsive: true,
@@ -666,7 +790,7 @@ function filterBtnController($scope, $uibModalInstance) {
                 }
             }
         });
-        },1000)
+        },300)*/
 }
 
 function ColorFilter(){
@@ -678,12 +802,14 @@ function ColorFilter(){
       var distinct = [];
       var distinctObj = [];
       for( var i in colors ){
+      if(typeof(colors[i].xp) !== 'undefined'){
        if( typeof(unique[colors[i].xp.SpecsOptions.Color]) == "undefined"){
         distinct.push(colors[i].xp.SpecsOptions.Color);
         distinctObj.push(colors[i]);
        }
        unique[colors[i].xp.SpecsOptions.Color] = 0;
       }
+    }
       return distinctObj
     }
 
@@ -702,15 +828,13 @@ function ordercloudProductQuickViewDirective(){
     }
 }
 
-function ProductQuickViewController ($uibModal){
+function ProductQuickViewController ($uibModal , SharedData){
     var vm = this;
-   // console.log(product);
-
+    
     vm.open = function (product){
      console.log(product);
         $uibModal.open({
             animation:true,
-            //size:'lg',
             windowClass:'quickViewModal',
             templateUrl: 'plp/templates/quick-view-model.tpl.html',
             controller: 'ProductQuickViewModalCtrl',
@@ -724,21 +848,34 @@ function ProductQuickViewController ($uibModal){
                 },
                 productImages : function(PdpService, $stateParams, $q, $http){
                   return PdpService.GetProductCodeImages(product[0].ID);
+                },
+                selectedProductID : function(){
+                  return SharedData.SelectedProductId;
                 }
             }
         });
     };
 }
 
-function ProductQuickViewModalController(SelectedProduct, $scope, PdpService, productImages, $uibModalInstance){
+function ProductQuickViewModalController(selectedProductID,SelectedProduct, $scope, PdpService, productImages, $uibModalInstance){
     var vm = this;
      $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
-
-  vm.sizeGroupedProducts = [];
-  var sizeGroupedProducts = SelectedProduct;
-  vm.productDetails = Object.keys(sizeGroupedProducts).map(function (key) {return sizeGroupedProducts[key]});;
+    vm.selectedSizeIndex = 0;  // stores selected size index from vm.productDetails
+    vm.selectedProductIndex = 0; // stores selected product index under size array from vm.productDetails       
+    vm.defaultSizeIndex =0; 
+    vm.sizeGroupedProducts = [];
+    var sizeGroupedProducts = SelectedProduct;
+    vm.productDetails = Object.keys(sizeGroupedProducts).map(function (key) {return sizeGroupedProducts[key]});;
+    angular.forEach(vm.productDetails, function(value, key){
+    $.grep(value, function(e , i){ 
+      if(e.ID == selectedProductID) {
+       vm.selectedSizeIndex = key;
+       vm.selectedProductIndex = i;
+      }
+    });
+  });
   console.log('Size grouped QV products  ', vm.productDetails);
   vm.isSizeAvailable = vm.productDetails[0][0].length;
   $scope.qty =1;
@@ -747,8 +884,8 @@ function ProductQuickViewModalController(SelectedProduct, $scope, PdpService, pr
   vm.selectVarients = function(selectedSize){
     vm.sizeGroupedProducts = sizeGroupedProducts[selectedSize];
     vm.selectedColorIndex = 0;
-
-    PdpService.GetProductCodeImages(sizeGroupedProducts[selectedSize][0].ID).then(function(res){
+    $('body').find('.detail-container .prod_title').text(vm.sizeGroupedProducts[0].Name);
+    PdpService.GetProductCodeImages(sizeGroupedProducts[selectedSize][vm.selectedProductIndex].ID).then(function(res){
     vm.productVarientImages = res;
     var owl2 = angular.element("#owl-carousel-qv-images");   
     owl2.trigger('destroy.owl.carousel');
@@ -757,6 +894,8 @@ function ProductQuickViewModalController(SelectedProduct, $scope, PdpService, pr
             loop:true,
             nav:false,
             dots:true,
+            //dotsContainer:'#carousel-custom-dots',
+            //dotsEach:true,
             //autoWidth:true
                responsive:{
                 0:{ items:1 },
@@ -778,18 +917,33 @@ function ProductQuickViewModalController(SelectedProduct, $scope, PdpService, pr
   
   vm.selectedSizeBoxIndex = 0;
   vm.sizeBoxItemClicked = function ($index) {
-    vm.selectedSizeBoxIndex = $index;
+    vm.selectedSizeIndex = $index;
+
+    // qv image min height -start
+    var imgMinHeight = parseInt($('.owl-stage-outer').height())+20+'px';
+     // alert(pdpDetailBoxHt);
+      $('#img-min-height').css('min-height',imgMinHeight);
+
+      // qv image min height -end
   }
 
   vm.selectedColorIndex = 0;
   vm.productVarientImages = productImages;
   console.log('testimg', vm.productVarientImages)
   vm.colorItemClicked = function ($index, $event, prod) {
-  vm.selectedColorIndex = $index;
+  vm.selectedProductIndex = $index;
   $($event.target).parents('.detail-container').find('h3').text(prod.Name);
   $($event.target).parents('.product-box').find('.Price').text('$'+prod.StandardPriceSchedule.PriceBreaks[0].Price);
   PdpService.GetProductCodeImages(prod.ID).then(function(res){
   vm.productVarientImages =  res;
+
+   // qv image min height -start
+    var imgMinHeight = parseInt($('.owl-stage-outer').height())+20+'px';
+     // alert(pdpDetailBoxHt);
+      $('#img-min-height').css('min-height',imgMinHeight);
+
+      // qv image min height -end
+
   var owl2 = angular.element("#owl-carousel-qv-images");   
     owl2.trigger('destroy.owl.carousel');
     setTimeout(function(){
@@ -797,6 +951,8 @@ function ProductQuickViewModalController(SelectedProduct, $scope, PdpService, pr
             loop:true,
             nav:false,
             dots:true,
+            //dotsContainer:'#carousel-custom-dots',
+           //dotsEach:true,
             //autoWidth:true
                responsive:{
                 0:{ items:1 },
@@ -845,8 +1001,7 @@ function ProductQuickViewModalController(SelectedProduct, $scope, PdpService, pr
 }
 
 
-
-function addedToCartController($scope, $uibModalInstance) {
+function addedToCartController($scope, $uibModalInstance,$q, alfcontenturl,OrderCloud,PlpService) {
     var vm = this;
       $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
@@ -897,5 +1052,24 @@ function addedToCartController($scope, $uibModalInstance) {
             }
         });
         },1000)
+    var ticket = localStorage.getItem("alf_ticket");
+    PlpService.GetAddToCart(ticket).then(function(res){
+      vm.pdt1 = alfcontenturl+res.items[0].contentUrl+"?alf_ticket="+ticket;
+      vm.pdt2 = alfcontenturl+res.items[1].contentUrl+"?alf_ticket="+ticket;
+      vm.pdt3 = alfcontenturl+res.items[2].contentUrl+"?alf_ticket="+ticket;
+      vm.pdt4 = alfcontenturl+res.items[3].contentUrl+"?alf_ticket="+ticket;
+      vm.pdt5 = alfcontenturl+res.items[4].contentUrl+"?alf_ticket="+ticket;
+      vm.pdt6 = alfcontenturl+res.items[5].contentUrl+"?alf_ticket="+ticket;
+      vm.pdt7 = alfcontenturl+res.items[6].contentUrl+"?alf_ticket="+ticket;
+      vm.pdt8 = alfcontenturl+res.items[7].contentUrl+"?alf_ticket="+ticket;
+      vm.pdt9 = alfcontenturl+res.items[8].contentUrl+"?alf_ticket="+ticket;
+    });
+  }
 
+  function SharedData() {
+
+    var service = {
+        
+    }
+  return service;    
   }

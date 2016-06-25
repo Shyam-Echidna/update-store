@@ -1,0 +1,111 @@
+.my-account-email-subscription {
+    .Email-Preferences-container {
+        .email-subscription-container {
+            padding: 0 20%;
+            .email-header {
+                color: #424242;
+                font: 1.063em @proxima-bold;
+            }
+            .email-lists {
+                margin: 26px 0 50px 0px;
+                .cuctom-checkbox;
+                .checkboxopacity {
+                    opacity: 0.2;
+                }
+                .Checkbox {
+                    display: block;
+                    width: auto;
+                    height: 40px;
+                    position: relative;
+                    input {
+                        z-index: 1;
+                        opacity: 0;
+                        left: 50%;
+                        top: 50%;
+                        transform: translatex(-50%) translatey(-50%);
+                        display: block;
+                        cursor: pointer;
+                        width: 14px;
+                        height: 14px;
+                        margin-top: 0;
+                    }
+                    &-visible {
+                        width: 17px;
+                        height: 17px;
+                        border: 1px solid #dedede
+                    }
+                    > input:checked + .Checkbox-visible {
+                        background-position: 15px;
+                    }
+                }
+                label {
+                    color: #000000;
+                    font: 1em @proxima-regular;
+                    vertical-align: middle;
+                    margin-bottom: 0px;
+                    margin-left: 30px;
+                }
+            }
+            .save-button {
+                button {
+                    .purple-button;
+                    background: #8c58b5;
+                    width: 38%;
+                    text-transform: uppercase;
+                    font: 1em @proxima-bold;
+                    padding: 13px 0;
+                }
+            }
+        }
+    }
+}
+
+
+/* media queries -- all mobiles & ipad portrait */
+
+@media only screen and (min-width:320px) and (max-width:810px) {
+    .my-account-email-subscription {
+        .Email-Preferences-container {
+            .email-subscription-container {
+                border-top: 1px solid #d6d6d6;
+                padding: 15px 0px 0px 10px;
+                .email-header {
+                    font: 0.938em @proxima-bold;
+                }
+                .email-lists {
+                    margin: 20px 0px;
+                    label {
+                        font: 0.875em @proxima-regular;
+                    }
+                }
+                .save-button {
+                    button {
+                        width: 55%;
+                        padding: 11px 0px;
+                        font: 0.875em @proxima-bold;
+                    }
+                }
+            }
+        }
+    }
+    .account-landing-container {
+        .my-account-menu-content {
+            .my-account-menu-content-inner {
+                border: none !important;
+            }
+            .my-account-content-title {
+                margin: 15px 0;
+            }
+        }
+    }
+}
+
+
+/* media queries for Tablets & Ipad -- landscape*/
+
+@media screen and (min-width:768px) and (max-width:1110px) and (orientation: landscape) {}
+
+
+/*Samsung Tab 4 7 inches */
+
+@media screen and (max-width:962px) and (min-width:900px) {}

@@ -1,4 +1,4 @@
-    <div class="added-main" window-height ng-style="{'max-height':windowHeight, 'overflow-y':'auto', 'overflow-x':'hidden'}">
+    <div class="added-main" window-height ng-style="{'max-height':windowHeight, 'overflow-y':'auto'}">
     <div class="detail-block">
         <p class="close-icon" ng-click="cancel()">
             <a>
@@ -11,7 +11,7 @@
                         <rect x="-738.8" y="499.8" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 -866.6214 1361.5663)" width="48" height="5"></rect>
                      </g>
                   </g>
-               </svg>
+               </svg>   
 
             </a>
 
@@ -42,9 +42,11 @@
         <div class="row cart-info">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <div class="row left-part">
-            <div class="col-xs-6 col-sm-6 col-md-6 ">
-                <img class="img-responsive desktop-img hidden-xs hidden-sm" src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/1.png">
-                <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/1.png">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <!-- <img class="img-responsive desktop-img hidden-xs hidden-sm" src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/1.png">
+                <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/1.png"> -->
+                <img class="img-responsive desktop-img hidden-xs hidden-sm" src="{{addedToCart.pdt1}}">
+                <img class="img-responsive mobile-img visible-xs visible-sm" src="{{addedToCart.pdt1}}">
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6">
                 <h5 class="iName">Stargazer</h5>
@@ -57,68 +59,64 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <div class="row middle-part">
-                <div class="owl-carousel owl-theme" id="owl-carousel-added-cart-pdt">
-                   <div class="owl-carousel-item">
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-md-12 ">
-                                <div class="row">
-                                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 img-holder">
-                                <img class="img-responsive desktop-img hidden-xs hidden-sm" src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/2.png">
-                                <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/2.png">
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-8 col-lg-8">
-                                <h5 class="iName">Box Of Chocolates</h5>
-                                <p class="qty">Qty : <span>1</span></p>
-                                <p class="price">$10.00</p>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-12">
-                            <div class="row">
-                                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 img-holder">
-                                <img class="img-responsive desktop-img hidden-xs hidden-sm" src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/3.png">
-                                <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/3.png">
-                            </div>
-                                <div class="col-xs-6 col-sm-6 col-md-8">
-                                    <h5 class="iName">Teddy Bear</h5>
-                                    <p class="qty">Qty : <span>1</span></p>
-                                    <p class="price">$8.50</p>
-                                </div>
-                            </div>  
-                        </div>
-                        </div>
-                   </div>
-                  <div class="owl-carousel-item">
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-md-12">
-                                <div class="row">
-                                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 img-holder">
-                                <img class="img-responsive desktop-img hidden-xs hidden-sm" src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/2.png">
-                                <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/2.png">
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-8 col-lg-8">
-                                <h5 class="iName">Box Of Chocolates</h5>
-                                <p class="qty">Qty : <span>1</span></p>
-                                <p class="price">$10.00</p>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-12">
-                            <div class="row">
-                                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 img-holder">
-                                <img class="img-responsive desktop-img hidden-xs hidden-sm" src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/3.png">
-                                <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/3.png">
-                            </div>
-                                <div class="col-xs-6 col-sm-6 col-md-8 col-lg-8">
-                                    <h5 class="iName">Teddy Bear</h5>
-                                    <p class="qty">Qty : <span>1</span></p>
-                                    <p class="price">$8.50</p>
-                                </div>
-                            </div>  
-                        </div>
-                        </div>
-                   </div>
-                </div>
+                <div class="col-xs-6 col-sm-6 col-md-12">
+                <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-4 img-box">
+                <!-- <img class="img-responsive desktop-img hidden-xs hidden-sm" src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/2.png">
+                <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/2.png"> -->
+                <img class="img-responsive desktop-img hidden-xs hidden-sm" src="{{addedToCart.pdt2}}">
+                <img class="img-responsive mobile-img visible-xs visible-sm" src="{{addedToCart.pdt2}}">
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-8">
+                <h5 class="iName">Box Of Chocolates</h5>
+                <p class="qty">Qty : <span>1</span></p>
+                <p class="price">$10.00</p>
+            </div>
+        </div>
+    </div>
+            <div class="col-xs-6 col-sm-6 col-md-12">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-4 img-box">
+               <!--  <img class="img-responsive desktop-img hidden-xs hidden-sm" src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/3.png">
+                <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/3.png"> -->
+                <img class="img-responsive desktop-img hidden-xs hidden-sm" src="{{addedToCart.pdt3}}">
+                <img class="img-responsive mobile-img visible-xs visible-sm" src="{{addedToCart.pdt3}}">
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-8">
+                <h5 class="iName">Teddy Bear</h5>
+                <p class="qty">Qty : <span>1</span></p>
+                <p class="price">$8.50</p>
+            </div>
+        </div>
+                
+            </div>
+                    <!-- <div class="col-xs-6 col-sm-6 col-md-12">
+                <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-4">
+                <img class="img-responsive desktop-img hidden-xs hidden-sm" src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/2.png">
+                <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/2.png">
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-8">
+                <h5 class="iName">Box Of Chocolates</h5>
+                <p class="qty">Qty : <span>1</span></p>
+                <p class="price">$10.00</p>
+            </div>
+        </div>
+    </div> -->
+      <!-- <div class="col-xs-6 col-sm-6 col-md-12">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-4">
+                <img class="img-responsive desktop-img hidden-xs hidden-sm" src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/3.png">
+                <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/3.png">
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-8">
+                <h5 class="iName">Teddy Bear</h5>
+                <p class="qty">Qty : <span>1</span></p>
+                <p class="price">$8.50</p>
+            </div>
+        </div>
+                
+            </div> -->
         </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
@@ -137,70 +135,69 @@
 <div class="frequent-block">
     <h3>Frequently Bought with Stargazer</h3>
     <div class="row feature-product-block">
-        <div class="owl-carousel owl-theme" id="owl-carousel-added-cart-frequent-pdt">
-                   <div class="owl-carousel-item">
-                        <div class="">
-                            <img src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/4.png" title="prod1" alt="" class="img-responsive desktop-img hidden-xs hidden-sm">
-                            <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/4.png">
-                            <div class="desc">
-                                <h5>Keys of Heaven</h5>
-                                <p>$65.00-$90.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-carousel-item">         
-                        <div class="">
-                            <img src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/5.png" title="prod1" alt="" class="img-responsive desktop-img hidden-xs hidden-sm">
-                            <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/5.png">
-                            <div class="desc">
-                                <h5>Keys of Heaven</h5>
-                                <p>$65.00-$90.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-carousel-item">
-                        <div class="">
-                            <img src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/6.png" title="prod1" alt="" class="img-responsive desktop-img hidden-xs hidden-sm">
-                            <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/6.png">
-                            <div class="desc">
-                                <h5>Keys of Heaven</h5>
-                                <p>$65.00-$90.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-carousel-item">
-                        <div class="">
-                            <img src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/7.png" title="prod1" alt="" class="img-responsive desktop-img hidden-xs hidden-sm">
-                            <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/7.png">
-                            <div class="desc">
-                                <h5>Keys of Heaven</h5>
-                                <p>$65.00-$90.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-carousel-item">
-                        <div class="">
-                            <img src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/8.png" title="prod1" alt="" class="img-responsive desktop-img hidden-xs hidden-sm">
-                            <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/8.png">
-                            <div class="desc">
-                                <h5>Keys of Heaven</h5>
-                                <p>$65.00-$90.00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-carousel-item">
-                        <div class="">
-                            <img src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/9.png" title="prod1" alt="" class="img-responsive desktop-img hidden-xs hidden-sm">
-                            <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/9.png">
-                            <div class="desc">
-                                <h5>Keys of Heaven</h5>
-                                <p>$65.00-$90.00</p>
-                            </div>
-                        </div>
-                    </div>
+        <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+           <!--  <img src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/4.png" title="prod1" alt="" class="img-responsive desktop-img hidden-xs hidden-sm">
+            <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/4.png"> -->
+            <img src="{{addedToCart.pdt4}}" title="prod1" alt="" class="img-responsive desktop-img hidden-xs hidden-sm">
+            <img class="img-responsive mobile-img visible-xs visible-sm" src="{{addedToCart.pdt4}}">
+            <div class="desc">
+                <h5>Keys of Heaven</h5>
+                <p>$65.00-$90.00</p>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+
+            <!-- <img src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/5.png" title="prod1" alt="" class="img-responsive desktop-img hidden-xs hidden-sm">
+            <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/5.png"> -->
+            <img src="{{addedToCart.pdt5}}" title="prod1" alt="" class="img-responsive desktop-img hidden-xs hidden-sm">
+            <img class="img-responsive mobile-img visible-xs visible-sm" src="{{addedToCart.pdt5}}">
+            <div class="desc">
+                <h5>Keys of Heaven</h5>
+                <p>$65.00-$90.00</p>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+      <!--       <img src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/6.png" title="prod1" alt="" class="img-responsive desktop-img hidden-xs hidden-sm">
+            <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/6.png"> -->
+            <img src="{{addedToCart.pdt6}}" class="img-responsive desktop-img hidden-xs hidden-sm">
+            <img class="img-responsive mobile-img visible-xs visible-sm" src="{{addedToCart.pdt6}}">
+            <div class="desc">
+                <h5>Keys of Heaven</h5>
+                <p>$65.00-$90.00</p>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+            <!-- <img src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/7.png" title="prod1" alt="" class="img-responsive desktop-img hidden-xs hidden-sm">
+            <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/7.png"> -->
+            <img src="{{addedToCart.pdt7}}" title="prod1" alt="" class="img-responsive desktop-img hidden-xs hidden-sm">
+            <img class="img-responsive mobile-img visible-xs visible-sm" src="{{addedToCart.pdt7}}">
+            <div class="desc">
+                <h5>Keys of Heaven</h5>
+                <p>$65.00-$90.00</p>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+            <!-- <img src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/8.png" title="prod1" alt="" class="img-responsive desktop-img hidden-xs hidden-sm">
+            <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/8.png"> -->
+            <img src="{{addedToCart.pdt8}}" title="prod1" alt="" class="img-responsive desktop-img hidden-xs hidden-sm">
+            <img class="img-responsive mobile-img visible-xs visible-sm" src="{{addedToCart.pdt8}}">
+            <div class="desc">
+                <h5>Keys of Heaven</h5>
+                <p>$65.00-$90.00</p>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+            <!-- <img src="assets/images/Batch_2_Web_Images/06Bachmans_AddedtoCart_Confirmation/9.png" title="prod1" alt="" class="img-responsive desktop-img hidden-xs hidden-sm">
+            <img class="img-responsive mobile-img visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/06Bachmans_AddedtoCart_Confirmation/9.png"> -->
+            <img src="{{addedToCart.pdt9}}" title="prod1" alt="" class="img-responsive desktop-img hidden-xs hidden-sm">
+            <img class="img-responsive mobile-img visible-xs visible-sm" src="{{addedToCart.pdt9}}">
+            <div class="desc">
+                <h5>Keys of Heaven</h5>
+                <p>$65.00-$90.00</p>
+            </div>
+        </div>
     </div>
 
 </div>
 
-</div>
 </div>

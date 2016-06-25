@@ -20,19 +20,8 @@
         <div class="col-md-5 col-xs-5">
             <div class="img-container">
                 <div class="row">
-                    <!-- <div class="col-md-3 col-xs-3">
-                        <img src="assets/images/cat4.png" class="img-responsive" title="img" alt="">
-                    </div>
-                    <div class="col-md-3 col-xs-3">
-                        <img src="assets/images/cat4.png" class="img-responsive" title="img" alt="">
-                    </div>
-                    <div class="col-md-3 col-xs-3">
-                        <img src="assets/images/cat4.png" class="img-responsive" title="img" alt="">
-                    </div>
-                    <div class="col-md-3 col-xs-3">
-                        <img src="assets/images/cat4.png" class="img-responsive" title="img" alt="">
-                    </div> -->
                     <div class="category-pdt-carousel">
+                      <div id="img-min-height">
             <div class="owl-carousel owl-theme" id="owl-carousel-qv-images">
             <div class="owl-carousel-item" ng-repeat="prodImage in productQuickViewModal.productVarientImages">
                 <div class="category-prod">
@@ -41,6 +30,7 @@
             </div>
            
             
+        </div>
         </div>
             <div id="carousel-custom-dots" class="owl-dots" >
                                 <div class="owl-dot" ng-repeat="prodImage in productQuickViewModal.productVarientImages">
@@ -55,23 +45,23 @@
         </div>
         <div class="col-md-7 col-xs-7">
         <div class="detail-container">
-            <h3>{{productQuickViewModal.productDetails[0][0].Name | lowercase}}</h3>
+            <h3 class="prod_title">{{productQuickViewModal.productDetails[productQuickViewModal.selectedSizeIndex][productQuickViewModal.selectedProductIndex].Name | lowercase}}</h3>
             <h5 ng-if="productQuickViewModal.productDetails.length > 1">Select Size</h5>
             <div class="row radio-btn-container" ng-if="productQuickViewModal.productDetails.length > 1">
                 <div class="col-md-4 col-lg-4" ng-repeat="opt in productQuickViewModal.productDetails" >
                     
-                    <div class="size-box" for="{{opt[0].xp.SpecsOptions.Size}}"   ng-class="{ 'active-box': $index == productQuickViewModal.selectedSizeBoxIndex }"
-                         ng-click="productQuickViewModal.sizeBoxItemClicked($index);">
+                    <div class="size-box" for="{{opt[productQuickViewModal.defaultSizeIndex].xp.SpecsOptions.Size}}"   ng-class="{ 'active-box': $index == productQuickViewModal.selectedSizeIndex }"
+                         ng-click="productQuickViewModal.selectedProductIndex=0;productQuickViewModal.sizeBoxItemClicked($index);">
 
-                        <input type="radio" id="{{opt[0].xp.SpecsOptions.Size}}" name="sizeopt" ng-model="radio.selectedSize" value="{{opt[0].xp.SpecsOptions.Size}}"
-                         ng-init="$index==0?(radio.selectedSize=opt[0].xp.SpecsOptions.Size):'';$index==0?productQuickViewModal.selectVarients(radio.selectedSize):''" ng-change="productQuickViewModal.selectVarients(radio.selectedSize)"/>
-                         <label  for="{{opt[0].xp.SpecsOptions.Size}}">
+                        <input type="radio" id="{{opt[productQuickViewModal.defaultSizeIndex].xp.SpecsOptions.Size}}" name="sizeopt" ng-model="radio.selectedSize" value="{{opt[productQuickViewModal.defaultSizeIndex].xp.SpecsOptions.Size}}"
+                         ng-init="$index== productQuickViewModal.selectedSizeIndex?(radio.selectedSize=opt[productQuickViewModal.defaultSizeIndex].xp.SpecsOptions.Size):'';$index==productQuickViewModal.selectedSizeIndex?productQuickViewModal.selectVarients(radio.selectedSize):''" ng-change="productQuickViewModal.selectVarients(radio.selectedSize)"/>
+                         <label  for="{{opt[productQuickViewModal.defaultSizeIndex].xp.SpecsOptions.Size}}">
                              <span class="radioOutline"><span class="radioInside"></span></span>
                             <span class="visible-xs visible-sm horizontal-label">
-                                <span class="productQuickViewModal-name">{{opt[0].xp.SpecsOptions.Size}}</span>
+                                <span class="productQuickViewModal-name">{{opt[productQuickViewModal.defaultSizeIndex].xp.SpecsOptions.Size}}</span>
                                 <span class="productQuickViewModal-price"><!-- <span class="old-price">$65.00</span> -->
                                  <!-- <span class="new-price">{{pdp.productDetails.prodPrice | currency}}</pan> -->
-                                 <span ng-repeat="priceItem in opt[0].StandardPriceSchedule.PriceBreaks">
+                                 <span ng-repeat="priceItem in opt[productQuickViewModal.defaultSizeIndex].StandardPriceSchedule.PriceBreaks">
                                  <span class="new-price">{{priceItem.Price | currency}}</span>
                                  </span>
                                 </span>
@@ -79,7 +69,7 @@
                          
                         <h5>{{opt[0].xp.SpecsOptions.Size}}</h5>
                         <p>
-                            <span ng-repeat="priceItem in opt[0].StandardPriceSchedule.PriceBreaks">
+                            <span ng-repeat="priceItem in opt[productQuickViewModal.defaultSizeIndex].StandardPriceSchedule.PriceBreaks">
                                 <span class="new-price">{{priceItem.Price | currency}}</span>
                             </span>
                         </p>
@@ -94,7 +84,7 @@
                 <div class="color-circle">
                    
                         <p ng-repeat="coloropt in productQuickViewModal.sizeGroupedProducts"
-                         ng-click="productQuickViewModal.colorItemClicked($index,$event, coloropt)" ng-class="{ 'active-circle': $index == productQuickViewModal.selectedColorIndex }">
+                         ng-click="productQuickViewModal.colorItemClicked($index,$event, coloropt)" ng-class="{ 'active-circle': $index == productQuickViewModal.selectedProductIndex }">
                             <a href="" class="" id="{{coloropt.xp.SpecsOptions.Color}}" name="{{coloropt.xp.SpecsOptions.Color}}"  value="{{coloropt.xp.SpecsOptions.Color}}"  ng-style="{'background-color': coloropt.xp.SpecsOptions.Color}"></a>
                        </p>
                 </div>

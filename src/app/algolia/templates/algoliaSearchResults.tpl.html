@@ -8,6 +8,10 @@
             <div class="row results-nav hidden-xs hidden-sm">
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                     <div class="results-selections">
+<<<<<<< .mine
+                        <span>YOUR SELECTION</span>
+                        <span class="results-selection" ng-repeat="selection in algoliaSearchResults.Selections">{{selection.value}}<a><i class="fa fa-remove" ng-click = "algoliaSearchResults.toggleFacet(selection.facetname, selection.value)"></i></a></span>
+=======
                         <span>Your Selection</span>
                         <span class="results-selection" ng-repeat="selection in algoliaSearchResults.Selections">{{selection}}
                             <a>
@@ -26,6 +30,7 @@
                         <div class=" col-sm-3 col-md-2 col-lg-2 clear-button-block fr">
                            <button class="clearAll">Clear All</button>
                         </div>
+>>>>>>> .r1687
                     </div>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">

@@ -24,17 +24,19 @@ padding:0px;
 		overflow: hidden;
 		.owl-item{
 			img{
-				width: 60%;
-				padding-right: 30px;
+				//width: 60%;
+				//padding-right: 30px;
 			}
 		}
 	.owl-dots{
 	    position: absolute;
 		bottom: 30px;
-		text-align: left;
+		text-align: center;
 		width: 100%;
 		box-sizing: border-box;
-		left:355px;
+		left:0;
+		right:0;
+
 		.owl-dot{
 			width:14px;
 			height:14px;
@@ -75,13 +77,15 @@ padding:0px;
 	
 }
 .owl-carousel-pdp-bannerCont{
-	padding-top:2.6em;
+	//padding-top:2.6em;
+	    padding-top: 65px;
+	    position:relative;
 }
 .detail-overlay-box{
 
 		
 		position: absolute;
-	    right:0px;
+	    right:15px;
 	    z-index: 1;
 	    bottom:0;
 	   // width: 570px;
@@ -99,9 +103,10 @@ padding:0px;
 	    				padding:10px 15px 0px 20px;
 	    				.detail-container{
 	    					h3{
-	    						font:2em @neutraface-bold;
+	    						font:2em/1.2em @neutraface-bold;
 	    						padding-bottom: 15px;
 	    						text-transform: lowercase;
+	    						
 	    						&:first-letter{
 	    							text-transform: uppercase;
 	    						}
@@ -109,15 +114,15 @@ padding:0px;
 	    					}
 
 	    					.color-selection{
-	    						margin-bottom:20px;
+	    						margin-bottom:15px;
 	    						.color-circle{
 	    							margin:0px;
 	    							padding-left: 5px;
 	    							li{
 	    								 position:relative;
                             border-radius: 50%;
-                            height:21px;
-                            width:21px;
+                            height:22px;
+                            width:22px;
                           border:1px solid transparent;
                           display:inline-block;
                           margin-right: 12px;
@@ -239,6 +244,7 @@ padding:0px;
 .share-icons-block{
 	//padding:70px 0px 40px 0px;
 	padding:25px 0px 40px 0px;
+	padding-bottom:0;
 	.share-block{
 		padding-left:30px;
 		div{
@@ -247,17 +253,32 @@ padding:0px;
 					&:first-child{
 
 						padding: 0px;
+						display:inline-block;
 					}
 					&:last-child{
 						margin: 0px;
+						display:inline-block;
 					}
 				}
 			}
+		
 		}
+		.left{
+				.addthis_toolbox{
+				a{
+					margin:5px 0 0 0;
+				}
+			.custom_images{
+				padding-left: 15px;
+			}
+		}
+		}
+
 		p{
 			font:1.188em @proxima-regular;
 			color:#000;
-			padding-top: 5px;
+		    padding: 0;
+			line-height: 35px;
 		}
 		a.all-details{
 			font:1.00em @proxima-bold;
@@ -266,6 +287,9 @@ padding:0px;
 		}
 
 		.share-icons{
+			.pin_it_iframe_widget{
+				display: none !important;
+			}
 			a {
 			display: inline-block;
 			.p0;
@@ -280,6 +304,11 @@ padding:0px;
 				&.instagram-svg,
 				&.pinterest-svg, &.blogger-svg, &.houzz-svg,&.print-icon-svg {
 					display: block;
+				}
+				&.instagram-svg{
+					.st0{
+						stroke:#8c8c8c;
+					}
 				}
 				&.houzz-svg{
 					margin:5px -3px;
@@ -323,6 +352,11 @@ padding:0px;
 					&.pinterest-svg-hover path {
 						stroke: @font-purple-dark;
 					}
+					&.instagram-svg-hover{
+					.st0{
+						stroke:@font-purple-dark;
+					}
+				}
 				}
 			}
 			&.print-icon {
@@ -333,6 +367,13 @@ padding:0px;
 					width: 28px;
 				}
 			}
+			&.instagram-icon{
+				&:hover{
+					.st0{
+						stroke:@font-purple-dark;
+					}
+				}
+			}
 		}
 		}
 		.left{
@@ -340,13 +381,23 @@ padding:0px;
 				.addthis_sharing_toolbox{
 					#atstbx{
 						a{
+							margin-right: 10px;
 							.at-icon-wrapper{
 								background-color: transparent !important;
+								height: 50px;
+								width: 50px;
+								position: relative;
 								svg{
-									height: 25px;
-									width: 25px;
-									margin: 5px;
+									height: 40px;
+									width: 40px;
+									//margin: 5px;
 									fill: #fff;
+									position: absolute;
+									top: 0;
+									bottom: 0px;
+									left:0px;
+									right: 0px;
+									margin:auto;
 									path{
 										stroke:#8c8c8c;
 									}
@@ -490,23 +541,24 @@ padding:0px;
 				li{
 				    background: #fafafa;
 				    border: 2px solid #c2c2c2;
-				    height: 45px;
+				   // height: 45px;
 				    padding: 0px 40px;
 				    margin-right: 10px;
 				    line-height: normal;
 				    	a{
 				    		font:1em @proxima-regular;
 				    		color:#b4b4b4;
+				    		//padding-top: 1px;
 				    		//padding:8px 15px;
 				    	}
 					   &.active{
 					   		background:#666666;
 					   		color:#fff;
-					   		border:none;
+					   		border: 2px solid #666666;
 					   		a{
 					   			background:none;
 					   			color:#fff;
-					   			padding: 11px 15px;
+					   			//padding: 11px 15px;
 					   			//padding: 9px 15px;
 					   		}
 					   }
@@ -891,19 +943,25 @@ padding:0px;
 
 /* media queries -- all mobiles portrait */
 
-@media only screen and (min-width:320px) and (max-width: 768px) {
+@media only screen and (min-width:320px) and (max-width: 801px) {
 	.slider-banner-container{
 		   // padding-top: 70px;
 		   padding: 0px;
 		    //padding-top: 28px;
 	.pdp-banner-top{
 		    margin-top: 0px;
+		    min-height: initial !important;
 		#owl-carousel-pdp-banner {
 	.owl-dots{
 		bottom:5px;
 		text-align: center;
 		left:0px;
 	}
+	.owl-item{
+		img{
+			padding-top: 0px !important;
+		}
+		} 
 }
 	.breadcrumb-box{
 	    top: 0px;
@@ -1058,6 +1116,7 @@ padding:0px;
 	    						}
 	    					}
 	    					.cart-block{
+	    						margin-bottom: 0px;
 	    						div{
 	    							input[type="text"],button{
 	    								height:40px;
@@ -1138,7 +1197,7 @@ padding:0px;
 	    	}
 	}
 	.share-icons-block{
-		padding:0px 0px 15px 0px;
+		padding:0px 0px 5px 0px;
 		.share-block{
 			padding-left: 10px;
 			p{
@@ -1596,15 +1655,26 @@ padding:0px;
 
 /* media queries for Tablets & Ipad -- landscape*/
 @media screen and (max-width:1110px) and (min-width:767px) {
-	.owl-carousel-pdp-bannerCont .owl-item img{
-		margin-top:6px;	
+	.breadcrumb-box{
+		&.hidden-md{
+			margin-top: 0px;
+		}
+		
 	}
-	.slider-banner-container {
+	.owl-carousel-pdp-bannerCont .owl-item img{
+		//margin-top:6px;	
+	}
+  
+	.slider-banner-container{
 	.detail-overlay-box{
 	    left:initial;
-	    width: 53%;
-	    right: 8px;
+	    //width: 53%;
+	    right: 0px;
+	    padding-left: 0;
+	    //margin-top: 16px;
 	    .qv-page{
+	    	//padding-top: 0px;
+	    	//padding-left: 0px;
 	    	.row{
 	    		.overlay-content{
 	    			padding-right: 5px;
@@ -1614,6 +1684,16 @@ padding:0px;
 	    }
 	    .share-icons-block{
 	    	//padding-bottom:200px;
+	    }
+	    .pdp-banner-top{
+	    	#owl-carousel-pdp-banner{
+	    		.owl-item{
+	    			img{
+	    				    //padding-top: 148px;
+	    				padding-right: 0px !important;
+	    			}
+	    			} 
+	    	}
 	    }
 	}
 	.pdp-detail-block {
@@ -1633,7 +1713,7 @@ padding:0px;
 			 .detail-tabs{
 			 	ul.nav{
 			 		li{
-			 			padding:0px 10px;
+			 			padding:0px;
 			 		}
 			 	}
 			 }
@@ -1853,6 +1933,9 @@ padding:0px;
 									}
 								}
 							}
+							img{
+								width: 70%;
+							}
 						}
 					}
 				}
@@ -1874,6 +1957,15 @@ padding:0px;
 						width: 41.66666667%;
 					}
 					.detail-container{
+						.radio-btn-container {
+							div{
+								div{
+									&.col-sm-12{
+										    width: 33.33333333%;
+									}
+								}
+							}
+						}
 						.dropdown-box{
 							div{
 								&.col-sm-12{
@@ -1946,8 +2038,9 @@ padding:0px;
 		//padding-bottom: 260px;
 		.share-block{
 			p{
+				font-size: 1.1em;
 				.hidden-sm {
-				    display: block !important;
+				    display: inline-block !important;
 				}
 			}
 			} 
@@ -1964,7 +2057,7 @@ padding:0px;
 			.detail-tabs{
 				ul.nav{
 					li{
-						padding: 0px 5px;
+						padding: 0px;
 					}
 					}
 					.tab-content{
@@ -2314,7 +2407,7 @@ span.ng-isolate-scope:active{
 }
 
 /* Media Querties */
-@media only screen and (min-width:320px) and (max-width: 768px) {
+@media only screen and (min-width:320px) and (max-width: 810px) {
 	.modal-close{
 		.close-icon{
 			position: absolute;
@@ -2871,3 +2964,52 @@ span.ng-isolate-scope:active{
 		}
 	}
 	}
+
+
+
+
+/*tab10 Portrait */
+@media 
+  (max-device-width: 800px) 
+  and (orientation: portrait) { 
+  	.slider-banner-container{
+  		.owl-carousel-pdp-bannerCont{
+  			padding-top: 0px;
+  		}
+  		.pdp-banner-top{
+  			 #owl-carousel-pdp-banner{
+  			 	.owl-item{
+  			 		img{
+  			 			    width: 100%;
+    						padding-right: 0;
+    						margin: 0;
+  			 		}
+  			 	}
+  			 }
+  			}  
+  		.detail-overlay-box{
+  			width: 100%;
+  			.qv-page {
+  				.row{
+  					.overlay-content{
+  						.detail-container{
+  							.radio-btn-container{
+  								div{
+  									&.size-box{
+  										label{
+  											.horizontal-label,.radioOutline{
+  												    display: inline-block !important;
+    												vertical-align: middle;
+
+  											}
+  										}
+  									}
+  								}
+  							}
+  						}
+  					}
+  				}
+  			}
+  		}
+  		} 
+} 
