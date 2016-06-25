@@ -48,7 +48,7 @@ function PdpService( $q, Underscore, OrderCloud, CurrentOrder, $http, $uibModal,
 		 GetSeqProd:_getSeqProd
 	};
 	function _getSeqProd(sequence){
-
+		 var defferred = $q.defer(); 
 		$http({
                 method: 'GET',
                 dataType:"json",
