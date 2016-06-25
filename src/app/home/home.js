@@ -560,7 +560,7 @@ function HomeFact($http, $q, $exceptionHandler, alfrescourl, OrderCloud){
 		
 		return defferred.promise;*/
 
-		
+		 var defferred = $q.defer(); 
 
 		$http({
                 method: 'GET',
