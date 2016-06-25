@@ -549,7 +549,7 @@ function HomeFact($http, $q, $exceptionHandler, alfrescourl, OrderCloud){
 	}
   function _getFeaturedProducts(){
   	//var filters = {xp:{Featured : true}};
-  	var filter ={
+  /*	var filter ={
         "xp.Featured":true
     };
      var defferred = $q.defer(); 
@@ -558,7 +558,26 @@ function HomeFact($http, $q, $exceptionHandler, alfrescourl, OrderCloud){
      	defferred.resolve(res.Items);
      })
 		
-		return defferred.promise;
+		return defferred.promise;*/
+
+		
+
+		$http({
+                method: 'GET',
+                dataType:"json",
+                url:"https://api.ordercloud.io/v1/me/products?xp.Featured=true",
+               
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + OrderCloud.Auth.ReadToken()
+                }
+
+	            }).success(function (data, status, headers, config) { 
+	                
+	                defferred.resolve(data.Items);
+	            }).error(function (data, status, headers, config) {
+	            });
+	            return defferred.promise;
 }
 	function _getPromotions(ticket) {
 		var defferred = $q.defer(); 

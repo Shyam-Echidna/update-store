@@ -16,10 +16,13 @@ function PdpConfig( $stateProvider ) {
 			templateUrl:'pdp/templates/pdp.tpl.html',
 			resolve: {
 				productDetail: function(PlpService, PdpService, $q, $stateParams, $http, OrderCloud){
-						var filter ={"xp.sequencenumber":$stateParams.sequence};
+					/*	var filter ={"xp.sequencenumber":$stateParams.sequence};
 					    return OrderCloud.Me.ListProducts(null, 1, 100, null, null, filter, null).then(function(res){
-				     	console.log('Product response data',res);
-				     	return res;
+				     	console.log('Product response data',res);*/
+				     	return PdpService.GetSeqProd($stateParams.sequence).then(function(res){
+				     		return res;
+				     	});
+				     	
 				     })
 				},
 				productImages : function(PdpService, $stateParams, $q, $http){
@@ -41,9 +44,29 @@ function PdpService( $q, Underscore, OrderCloud, CurrentOrder, $http, $uibModal,
 		 CreateOrder: _createOrder,
 		 addressValidation: _addressValidation,
 		 GetProductCodeImages: _getProductCodeImages,
-		 GetHelpAndPromo:_getHelpAndPromo
+		 GetHelpAndPromo:_getHelpAndPromo,
+		 GetSeqProd:_getSeqProd
 	};
+	function _getSeqProd(sequence){
 
+		$http({
+                method: 'GET',
+                dataType:"json",
+                url:"https://api.ordercloud.io/v1/me/products?xp.sequencenumber="+sequence,
+               
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + OrderCloud.Auth.ReadToken()
+                }
+
+	            }).success(function (data, status, headers, config) { 
+	                
+	                defferred.resolve(data.Items);
+	            }).error(function (data, status, headers, config) {
+	            });
+	            return defferred.promise;
+
+	}
 	function _getProductCodeImages(prodCode){
 		var deferred = $q.defer();
 		var ticket = localStorage.getItem("alf_ticket");
