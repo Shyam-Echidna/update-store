@@ -95,8 +95,8 @@ function getConstants() {
             result.apiurl = 'https://qaapi.ordercloud.io';
             break;
         default:
-            result.authurl = 'http://auth.ordercloud.io/oauth/token';
-            result.apiurl = 'http://api.ordercloud.io';
+            result.authurl = 'https://auth.ordercloud.io/oauth/token';
+            result.apiurl = 'https://api.ordercloud.io';
             break;
     }
     if (process.env.apiurl && process.env.authurl) {
@@ -104,8 +104,8 @@ function getConstants() {
         result.apiurl = process.env.apiurl;
     }
     else if (!environment && !process.env.apiurl && !process.env.authurl) {
-        result.authurl = 'http://auth.ordercloud.io/oauth/token';
-        result.apiurl = 'http://api.ordercloud.io';
+        result.authurl = 'https://auth.ordercloud.io/oauth/token';
+        result.apiurl = 'https://api.ordercloud.io';
     }
     if (process.env.clientid) result.clientid = process.env.clientid;
     if (process.env.appname) result.appname = process.env.appname;
