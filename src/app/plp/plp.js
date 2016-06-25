@@ -350,7 +350,7 @@ function PlpController(SharedData, $state, $uibModal,$q, Underscore, $stateParam
 
 
     vm.selectionLength = vm.selection.length;
-      var owl2 = angular.element("#owl-carousel-selected-cat");   
+ /*      var owl2 = angular.element("#owl-carousel-selected-cat");   
       owl2.owlCarousel({
         nav:true,
         autoWidth:true
@@ -372,7 +372,7 @@ function PlpController(SharedData, $state, $uibModal,$q, Underscore, $stateParam
           },100);
           
         }
-      }
+      } */
       vm.facetScroll = function(){
         setTimeout(function(){
           /*var contToHideShow = $('#owl-carousel-selected-cat');
@@ -402,20 +402,20 @@ function PlpController(SharedData, $state, $uibModal,$q, Underscore, $stateParam
         // is currently selected
         if(isFromTopBar){
           vm.facetName[facetName] = false;
-        //  vm.facetScroll();
-          vm.facetOwlReinitialise();
+          vm.facetScroll();
+        //  vm.facetOwlReinitialise();
         }
         if (idx > -1) {
           vm.selection.splice(idx, 1);
-         vm.facetOwlReinitialise();
-         // vm.facetScroll();
+       //  vm.facetOwlReinitialise();
+         vm.facetScroll();
 
         }
         // is newly selected
         else {
           vm.selection.push(facetName);
-         vm.facetOwlReinitialise();
-         // vm.facetScroll();
+       //  vm.facetOwlReinitialise();
+         vm.facetScroll();
         }
       };
       (function($) {   
