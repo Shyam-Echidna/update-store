@@ -38,7 +38,7 @@ function PdpConfig( $stateProvider ) {
 }
 
 
-function PdpService( $q, Underscore, OrderCloud, CurrentOrder, $http, $uibModal, x2js, alfrescourl) {
+function PdpService( $q, Underscore, OrderCloud, CurrentOrder, $http, $uibModal, x2js, alfrescourl, alfcontenturl) {
 	var service = {
 		 AddToWishList : _addToWishList,
 		 CreateOrder: _createOrder,
@@ -71,7 +71,7 @@ function PdpService( $q, Underscore, OrderCloud, CurrentOrder, $http, $uibModal,
 		var deferred = $q.defer();
 		var ticket = localStorage.getItem("alf_ticket");
 		var productVarientImages = [];
-		 $http.get("http://192.168.97.27:8080/alfresco/service/api/search/keyword.atom?q="+prodCode+"&alf_ticket="+ticket).then(function(res){
+		 $http.get(alfcontenturl+"api/search/keyword.atom?q="+prodCode+"&alf_ticket="+ticket).then(function(res){
 			var x2js = new X2JS();
 			var data = x2js.xml_str2json(res.data);
 			angular.forEach(data.feed.entry, function(value, key){
