@@ -10,7 +10,6 @@ angular.module( 'orderCloud' )
 	.directive('windowHeight', windowHeightDirective)
 	.directive('contTopPadding', contTopPaddingDirective)
 	.directive('scroll', scrollDirective)
-  .directive('phoneValidation',phoneValidationDirective)
 ;
 
 function BaseConfig( $stateProvider ) {
@@ -59,14 +58,14 @@ function BaseConfig( $stateProvider ) {
                      localStorage.setItem("alf_ticket",ticket);
                         return ticket;
                 })
-                },/*ticketTemp: function(LoginFact){
+                },ticketTemp: function(LoginFact){
                     return LoginFact.GetTemp().then(function(data){
                     console.log(data);           
                     var ticket = data.data.ticket;
                      localStorage.setItem("alfTemp_ticket",ticket);
                         return ticket;
                 })
-                }*/
+                },
             categoryImages: function(CategoryService, ticket){
            // var ticket = localStorage.getItem("alf_ticket");
             return CategoryService.GetCategoryImages(ticket).then(function(res){
@@ -217,7 +216,6 @@ function BaseController($scope, $timeout, $window, BaseService, $state, LoginSer
 	$scope.is = function(name){
 	   return $state.is(name);
 	}
-vm.alf_ticket = ticket;
 
 	//console.log('asdfghj',minicartData);
 	vm.currentOrder = BaseService.MinicartData();
@@ -314,7 +312,7 @@ vm.alf_ticket = ticket;
           window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
           window.ontouchmove  = preventDefault; // mobile
           document.onkeydown  = preventDefaultForScrollKeys;
-			//angular.element('.breadcrumb-box').css('display','none');
+			angular.element('.breadcrumb-box').css('display','none');
         }
 
         function enableScroll() {
@@ -324,7 +322,7 @@ vm.alf_ticket = ticket;
             window.onwheel = null; 
             window.ontouchmove = null;  
             document.onkeydown = null;  
-			//angular.element('.breadcrumb-box').css('display','block');
+			angular.element('.breadcrumb-box').css('display','block');
         }
 
         function bodyScrollHide() {
@@ -1011,7 +1009,6 @@ LoginFact.GetContactInfo(ticket).then(function(res){
 	vm.hideShowMenuArrow = function(){
 		setTimeout(function(){
 			var contToHideShow=$('.menu-hover-cont3-inner');
-      $('.menu-hover-cont2.menu-container').addClass('thisIsHovered');
 			if(contToHideShow.scrollWidth>contToHideShow.offsetWidth){
 			    $('.menuScrollCont-arrow').css('display','block');
 			}else{
@@ -1019,12 +1016,6 @@ LoginFact.GetContactInfo(ticket).then(function(res){
 	    	}
 		},200)
 	}
-
-  vm.thisHoveredOut = function(){
-    setTimeout(function(){
-      $('.menu-hover-cont2.menu-container').removeClass('thisIsHovered');
-    },200)
-  }
 
 }
 
@@ -1359,8 +1350,8 @@ function LoginFact($http, $q, alfrescourl, alflogin, alfrescofoldersurl) {
 		$http({
 			method: 'GET',
 			dataType:"json",
-			url: alfrescofoldersurl+"StaticTemplate/StaticPageCategories?alf_ticket="+ticket,
-		//	url: "http://192.168.101.49:8080/alfresco/service/slingshot/doclib/doclist/folders/site/testsite/documentLibrary/Alfresco Quick Start/Bachmans Editorial/root?alf_ticket="+localStorage.getItem('alfTemp_ticket'),
+			//url: alfrescofoldersurl+"StaticTemplate/StaticPageCategories?alf_ticket="+ticket,
+			url: "http://192.168.101.49:8080/alfresco/service/slingshot/doclib/doclist/folders/site/testsite/documentLibrary/Alfresco Quick Start/Bachmans Editorial/root?alf_ticket="+localStorage.getItem('alfTemp_ticket'),
 			headers: {
 				'Content-Type': 'application/json'
 			}
@@ -1378,7 +1369,7 @@ function LoginFact($http, $q, alfrescourl, alflogin, alfrescofoldersurl) {
 			method: 'GET',
 			dataType:"json",
 			url: alfrescofoldersurl+"StaticTemplate/StaticPageCategories/"+subfolder+"?alf_ticket="+ticket,
-		//	url: "http://192.168.101.49:8080/alfresco/service/slingshot/doclib/doclist/folders/site/testsite/documentLibrary/Alfresco Quick Start/Bachmans Editorial/root/"+subfolder+"?alf_ticket="+localStorage.getItem('alfTemp_ticket'),
+			url: "http://192.168.101.49:8080/alfresco/service/slingshot/doclib/doclist/folders/site/testsite/documentLibrary/Alfresco Quick Start/Bachmans Editorial/root/"+subfolder+"?alf_ticket="+localStorage.getItem('alfTemp_ticket'),
 			headers: {
 				'Content-Type': 'application/json'
 			}
@@ -1395,8 +1386,8 @@ function LoginFact($http, $q, alfrescourl, alflogin, alfrescofoldersurl) {
 		$http({
 			method: 'GET',
 			dataType:"json",
-			url: alfrescofoldersurl+"StaticTemplate/StaticPageCategories/"+route+"?alf_ticket="+ticket,
-        //    url: "http://192.168.101.49:8080/alfresco/service/slingshot/doclib/doclist/folders/site/testsite/documentLibrary/Alfresco Quick Start/Bachmans Editorial/root/"+route+"?alf_ticket="+localStorage.getItem('alfTemp_ticket'),
+			//url: alfrescofoldersurl+"StaticTemplate/StaticPageCategories/"+route+"?alf_ticket="+ticket,
+            url: "http://192.168.101.49:8080/alfresco/service/slingshot/doclib/doclist/folders/site/testsite/documentLibrary/Alfresco Quick Start/Bachmans Editorial/root/"+route+"?alf_ticket="+localStorage.getItem('alfTemp_ticket'),
 			headers: {
 				'Content-Type': 'application/json'
 			}
@@ -1448,31 +1439,4 @@ function scrollDirective($window) {
 	        });
 	    }
 	};
-}
-
-
-function phoneValidationDirective($parse){
-
-   return {
-        restrict: 'A',
-        require: ['ngModel'],
-        link: function(scope, element, attrs, ctrls) {
-            var model=ctrls[0], form=ctrls[1];
-            
-            scope.next = function(){
-                return model.$valid
-            }
-            
-            scope.$watch(scope.next, function(newValue, oldValue){
-                if (newValue && model.$dirty)
-                {
-                    var nextinput = element.parent().next().find('input');
-                    if (nextinput.length === 1)
-                    {
-                        nextinput[0].focus();
-                    }
-                }
-            })
-        }
-    }
 }

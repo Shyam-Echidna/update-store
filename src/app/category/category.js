@@ -289,7 +289,7 @@ function EventsList(){
 		   });
        });
 		   }
-//Keep this in resolve
+
 	function EventsList1(){
 
 			 var ajaxarr = [];

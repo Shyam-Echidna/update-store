@@ -393,17 +393,17 @@ function PlpController(SharedData, $state, $uibModal,$q, Underscore, $stateParam
         // is currently selected
         if(isFromTopBar){
           vm.facetName[facetName] = false;
-           //vm.facetOwlReinitialise();
+           vm.facetOwlReinitialise();
         }
         if (idx > -1) {
           vm.selection.splice(idx, 1);
-         //vm.facetOwlReinitialise();
+         vm.facetOwlReinitialise();
 
         }
         // is newly selected
         else {
           vm.selection.push(facetName);
-         //vm.facetOwlReinitialise();
+         vm.facetOwlReinitialise();
         }
       };
 

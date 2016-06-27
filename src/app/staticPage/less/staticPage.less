@@ -20,18 +20,6 @@
 	padding: 0;
 }
 
-.m0{
-	margin:0;
-}
-
-.mt60{
-	margin-top: 60px;
-}
-
-.plr40{
-	padding:0 40px;
-}
-
 .clearfix{
 	clear: both;
 }
@@ -120,35 +108,6 @@
 		padding-right: 10px;
 	}
 }
-
-
-/*For HOW To page Starts*/
-.general-static-block.howToWrapper{
-    .container-fluid.how-to-nav{
-        .breadcrumb-box.howToBreadcrumbs-Section{
-            margin-top:0;
-            display: inline-block;
-            .breadcrumb{  
-                font: 0.6875em @proxima-bold;
-                li{
-                    &:before{
-                        color: #838383;
-                    }
-                    a{
-                        color: #333;      
-                    }
-                }    
-            }
-        }
-    }
-    .how-to-content{
-        margin-top:60px; 
-        .table.table-first{
-        	margin-bottom:40px;
-        }    
-    }    
-}
-/*For HOW To page Ends*/
 
 
 /*Aside Bar */
@@ -243,21 +202,10 @@ sans-serif;
 }
 
 .table-first {
-    /*border-collapse: separate;*/
 	tbody {
 		tr:nth-of-type(odd) {
 			background: #f7f7f7;
 		}
-        /*tr{
-            &:first-child{
-                td{
-                    border: solid 1px #000;
-                    &:first-child{
-                        border-top-left-radius: 10px; 
-                    }
-                }
-            }
-        }*/
 	}
 }
 
@@ -375,6 +323,7 @@ h3.accordion {
 		}
 	}
 }
+
 
 /* History Page */
 
@@ -751,8 +700,9 @@ h3.accordion {
 	.related-articles {
 		.first-head {
 			padding: 22px 0 15px 25px;
-			background: #e7e7e7;  
+			background: #e7e7e7;
 			font: 1.063em @proxima-bold;
+			//	font: 17px @proxima-bold;
 			border-top-left-radius: 2px;
 			border-top-right-radius: 2px;
 		}
@@ -1282,8 +1232,7 @@ h3.accordion {
 			span {
 				span {
 					/*font: 14px/18px @proxima-bold;*/
-					font: 0.938em @proxima-light;
-                    font-weight: bold;
+					font: 0.938em @proxima-bold;
 				}
 				i {
 					font: 14px/18px "Proxima Regular", Arial, sans-serif;
@@ -1322,8 +1271,7 @@ h3.accordion {
 					display: none;
 				}
 				span {
-					font: 0.938em @proxima-light;
-                    font-weight:bold;
+					font: 0.938em @proxima-bold;
 					color: @font-purple-dark;
 				}
 			}
@@ -1704,17 +1652,10 @@ h3.accordion {
 
 /* PlantZone */
 
-/*.plantZone-content,
+.plantZone-content,
 .how-to-content {
 	margin-top: 30px;
-	padding: 0 40px;*/
-	.staticPage-Main-Container{
-		.mt60;
-		.plr40;
-	}
-	.right-content{
-		width:100%;
-	}
+	padding: 0 40px;
 	.related-articles {
 		margin-top: 37px;
 		background: @wht-color;
@@ -1754,12 +1695,11 @@ h3.accordion {
 						position: absolute;
 						/*	left: 5px;
 								top: 5px;*/
-						left: 1.5%;
-						top: 3.5%;
+						left: .7%;
+						top: 2%;
 						display: inline-block;
-						font: 0.6875em @proxima-light;
-                        font-weight:bold;
-						padding: 8px;
+						font: 0.875em @proxima-bold;
+						padding: 12px;
 						text-align: center;
 						color: @base-bg-white;
 						background: @font-purple-dark;
@@ -1784,8 +1724,6 @@ h3.accordion {
 						a {
 							display: inline-block;
 							span {
-								font-size: 30px;
-    							margin-right: 8px;
 								&.print-icon {
 									background: #8c58b5;
 									display: inline-block;
@@ -1838,21 +1776,6 @@ h3.accordion {
 									}
 								}
 							}
-
-							/*span.icon-Bolgger{
-								font-family: 'icomoon' !important;
-							    speak: none;
-							    font-style: normal;
-							    font-weight: normal;
-							    font-variant: normal;
-							    text-transform: none;
-							    line-height: 1;
-							    -webkit-font-smoothing: antialiased;
-							    -moz-osx-font-smoothing: grayscale;
-							    &:before{
-							    	content: "\e900";
-							    }
-							}*/
 							/*						span svg {
 						
 							display: inline-block;
@@ -1867,40 +1790,6 @@ h3.accordion {
 								opacity: .7;
 							}
 						}*/
-
-
-						span.icon-fb{
-							color: #3B5A9D;
-						}
-						span.icon-pintrest{
-							color: #ce1c21;
-						}
-						span.icon-twitter2{
-							color:#20a9e4;
-						}
-						span.icon-youtube3{
-							color:#ff3027;
-						}
-						span.icon-wp{
-							color:#444442;
-						}
-						span.icon-Bolgger{
-							color:#ff6500;
-						}
-						span.icon-linkedin3{
-							color:#0071b4;
-						}
-						span.icon-mail5,span.icon-print{
-							background-color:#8c58b5;
-							color:#fff;
-						}
-						span{
-							&:hover{
-								opacity: 0.5;
-							}
-						}
-
-
 						}
 						.fbook {
 							background: #3b5998;
@@ -1946,7 +1835,7 @@ h3.accordion {
 					}
 					h5 {
 						font: 1em @proxima-bold;
-						margin-bottom: 10px;  
+						margin-bottom: 10px
 					}
 					h6 {
 						font: 1em @proxima-bold;
@@ -1962,9 +1851,7 @@ h3.accordion {
 							}
 							tr td {
 								&:first-child {
-									font: 0.875em @proxima-light;
-                                    font-weight:bold;
-                                    color:#333;
+									font: 0.875em @proxima-bold;
 									padding: 20px 0 0 25px;
 									width: 25%;
 								}
@@ -1973,7 +1860,6 @@ h3.accordion {
 									line-height: 1.5em;
 									ul li {
 										margin-left: 15px;
-                                        padding-right:10px;
 									}
 								}
 							}
@@ -2011,7 +1897,7 @@ h3.accordion {
 			}
 		}
 	}
-/*}*/
+}
 
 .related-products-block {
 	padding: 0;
@@ -3643,7 +3529,7 @@ div.store {
 										}
 										.template2-table {
 											padding: 0;
-											.table.table-first {
+											.table-first {
 												margin-bottom: 25px;
 												tr td:first-child {
 													padding: 10px 0 0 3%;
@@ -4113,6 +3999,7 @@ div.store {
 }
 
 @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+	body {}
 	main {
 		.general-static-block {
 			.history-banner h4 {
@@ -4132,6 +4019,7 @@ div.store {
 }
 
 @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+	body {}
 	.history-banner h4 {
 		top: 185px;
 	}
@@ -4341,8 +4229,7 @@ div.store {
 	.related-products-block .category-pdt-carousel .owl-carousel {
 		padding: 0 30px 0px;
 	}
-	.related-products-block .category-pdt-carousel .owl-carousel .owl-item .owl-carousel-item 
-    .category-prod-desc div .category-prod-desc-web {
+	.related-products-block .category-pdt-carousel .owl-carousel .owl-item .owl-carousel-item .category-prod-desc div .category-prod-desc-web {
 		height: 40px;
 		p {
 			line-height: initial;
@@ -4365,15 +4252,6 @@ div.store {
 			display: block !important;
 		}
 	}
-	/*For static page HOW TO and other static pages global less changes START*/
-	.right-content-Wrap{
-		.p0;
-	}
-	.staticPage-Main-Container{
-		.p0;
-		.m0;
-	}
-	/*For static page HOW TO and other static pages global less changes ENDS*/
 }
 
 @media only screen and (max-width: 809px) and (min-width: 768px) {
