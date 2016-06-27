@@ -1,5 +1,5 @@
 <div class="container-fluid plp-page" id="plpPage">
-	<div class="row">
+	<div class="row plpBannerPlusHybrid">
       <!-- <div class="breadcrumb-box hidden-lg hidden-md">
          <ul class="breadcrumb">
             <li><a href="index.html">HOME</a> </li>
@@ -35,55 +35,6 @@
                </div>
             </div>
 
-            <!-- <div class="owl-carousel-item">
-               <div class="category-prod">
-                  <img class="hidden-xs hidden-sm" src="assets/images/Batch_2_Web_Images/05Bachmans_PLP_Hybrid/2.jpg" />
-                  <img class="visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/05Bachmans_PLP_Hybrid/1.png" />
-                  <button class="promo-button">SHOP POTTING SOIL</button>
-               </div>
-               <div class="category-prod-desc">
-                  <div class="">
-                     <div class="category-prod-desc-web"><p>Find the Right Soil for
-                                    <br>the Job!</p>
-                     
-                     </div>
-                  </div>
-               </div>
-               
-            </div>
-         
-            <div class="owl-carousel-item">
-               <div class="category-prod">
-                  <img class="hidden-xs hidden-sm" src="assets/images/Batch_2_Web_Images/05Bachmans_PLP_Hybrid/3.jpg" />
-                  <img class="visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/05Bachmans_PLP_Hybrid/2.png" />
-                   <button class="promo-button">SHOP POTS AND PLANTERS</button>
-               </div>
-               <div class="category-prod-desc">
-                  <div class="">
-                     <div class="category-prod-desc-web"><p>Find the Perfect Pot or
-                           <br>Planter!</p>
-                     
-                     </div>
-                  </div>
-               </div>
-              
-            </div>
-            <div class="owl-carousel-item">
-               <div class="category-prod">
-                  <img class="hidden-xs hidden-sm" src="assets/images/Batch_2_Web_Images/05Bachmans_PLP_Hybrid/2.png" />
-                  <img class="visible-xs visible-sm" src="assets/images/Batch_2_Mobile_Images/05Bachmans_PLP_Hybrid/2.png" />
-                  <button class="promo-button">SHOP GARDENING GLOVES</button>
-               </div>
-               <div class="category-prod-desc">
-                  <div class="">
-                     <div class="category-prod-desc-web color-wht"><p>Gardening Gloves to Make the
-                           <br>Dirty Jobs Less Dirty</p>
-                     
-                     </div>
-                  </div>
-               </div>
-               
-            </div> -->
          </div>
          </div>
    </div>
@@ -94,10 +45,9 @@
                <h4>Your Selections</h4>
             </div>
             <div class="col-sm-6 col-md-7 col-lg-8 list-items">
-               <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1 catLeftArrow" ng-click="plp.shiftSelectedCategoryLeft()"></span>			
-               <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 owl-carousel owl-loaded" id="owl-carousel-selected-cat" id="lookInMePlp" onscroll="$.leftofscreen('#lookInMePlp', '.peekPlp', {threshold :-100}).removeClass('RightPlp').addClass('LeftPlp');
-$.rightofscreen('#lookInMePlp', '.peekPlp', {threshold : 0}).removeClass('LeftPlp').addClass('RightPlp');">
-                  <div class="owl-carousel-item peekPlp" ng-repeat="selectedFacet in plp.selection" style="display:inline-block">
+              <!--  <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1 catLeftArrow" ng-click="plp.shiftSelectedCategoryLeft()"></span>	 -->	
+               <div class="col-xs-10 col-sm-10 col-md-12 col-lg-12 owl-carousel " id="owl-carousel-selected-cat">
+                  <div class="owl-carousel-item" ng-repeat="selectedFacet in plp.selection" style="display:inline-block">
                      <p>
                         <span>{{selectedFacet}}</span>
                         <svg version="1.1" ng-click="plp.togglFaceteSelection(selectedFacet,true)" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-26.2 -77.7 33.4 33.4" style="enable-background:new -26.2 -77.7 33.4 33.4;width:10px;height:10px;color:purple" xml:space="preserve">
@@ -130,7 +80,7 @@ $.rightofscreen('#lookInMePlp', '.peekPlp', {threshold : 0}).removeClass('LeftPl
                      	</p>
                      </div> -->
                </div>
-               <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1 catRightArrow" ng-click="plp.shiftSelectedCategoryRight()"></span>
+               <!-- <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1 catRightArrow" ng-click="plp.shiftSelectedCategoryRight()"></span> -->
             </div>
             <div class="col-sm-2 col-md-2 col-lg-2 clear-button-block"  ng-if="plp.selection.length > 0">
                <button class="clearAll"  ng-click="plp.clearSelection()">Clear All</button>
@@ -139,6 +89,52 @@ $.rightofscreen('#lookInMePlp', '.peekPlp', {threshold : 0}).removeClass('LeftPl
       </div>
       <div class="col-sm-3 col-md-2 right-part " style="float:right">
          <!-- <h4>SORT BY<span>+</span></h4> -->
+         <span class="col-lg-12 col-md-12 col-sm-12" uib-dropdown >
+            <a href id="sort-dropdown" uib-dropdown-toggle>
+            SORT BY
+            </a>
+            <p class="sort-active-show">{{plp.selectedItem}}</p>
+            <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="sort-dropdown">
+               <li role="menuitem" ng-repeat="item in plp.sortItems" ng-click="plp.changeSortSelection(item.label,$index);" ng-class="{active: $index == plp.selectedMenu}">
+                  <a data-value="{{item.value}}" href="">{{item.label}}</a>
+               </li>
+            </ul>
+         </span>
+      </div>
+   </div>
+   <div class="row selected-list hidden-xs hidden-sm fixThisBar">
+      <div class="col-sm-9 col-md-10 col-lg-10 left-part">
+         <div class="row">
+            <div class="col-sm-4 col-md-3 col-lg-2">
+               <h4>Your Selections</h4>
+            </div>
+            <div class="col-sm-6 col-md-7 col-lg-8 list-items">
+              <!--  <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1 catLeftArrow" ng-click="plp.shiftSelectedCategoryLeft()"></span>   -->  
+               <div class="col-xs-10 col-sm-10 col-md-12 col-lg-12 owl-carousel " id="owl-carousel-selected-cat">
+                  <div class="owl-carousel-item" ng-repeat="selectedFacet in plp.selection" style="display:inline-block">
+                     <p>
+                        <span>{{selectedFacet}}</span>
+                        <svg version="1.1" ng-click="plp.togglFaceteSelection(selectedFacet,true)" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-26.2 -77.7 33.4 33.4" style="enable-background:new -26.2 -77.7 33.4 33.4;width:10px;height:10px;color:purple" xml:space="preserve">
+                           <g>
+                              <g>
+                                 <rect x="-32.3" y="-61.8" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 26.916 -110.851)" class="" width="45.6" height="1.6"></rect>
+                              </g>
+                              <g>
+                                 <rect x="-32.3" y="-61.8" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 -59.351 -97.416)" class="" width="45.6" height="1.6" ></rect>
+                              </g>
+                           </g>
+                        </svg>
+                     </p>
+                  </div>
+               </div>
+              <!--  <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1 catRightArrow" ng-click="plp.shiftSelectedCategoryRight()"></span> -->
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2 clear-button-block"  ng-if="plp.selection.length > 0">
+               <button class="clearAll"  ng-click="plp.clearSelection()">Clear All</button>
+            </div>
+         </div>
+      </div>
+      <div class="col-sm-3 col-md-2 right-part " style="float:right">
          <span class="col-lg-12 col-md-12 col-sm-12" uib-dropdown >
             <a href id="sort-dropdown" uib-dropdown-toggle>
             SORT BY
@@ -521,8 +517,8 @@ $.rightofscreen('#lookInMePlp', '.peekPlp', {threshold : 0}).removeClass('LeftPl
          <div class="side-promo col-md-11">
             <div class="row side-ban-1">
                <!-- <img src="{{plp.needHelp}}}"> -->
-               <img src="assets/images/Batch_2_Web_Images/04Bachmans_PLP/x.jpg">
-               <!-- <span ng-include="plp.plp_promo_svgDesign"></span> -->
+               <!-- <img src="assets/images/Batch_2_Web_Images/04Bachmans_PLP/x.jpg"> -->
+               <span ng-include="plp.plp_promo_svgDesign"></span>
                <div class="desc-text">
                   <!-- <h3>NEED SOME HELP?</h3>
                   <p>Find Care, Advice & Information <br> from Bachman's Experts</p> -->
@@ -556,52 +552,10 @@ $.rightofscreen('#lookInMePlp', '.peekPlp', {threshold : 0}).removeClass('LeftPl
 	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 product-block">
 
 		
-  <div class="row sorted-products">
-            <div ng-repeat="groupedProducts in plp.productList">
-               <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 product-container" ng-mouseover="hoveringButtons = true; plusLabel= true" ng-mouseleave="hoveringButtons = false; plusLabel= false" style="">
-                  <div class="product-box">
-                     <div id="new-label" class="new-label">
-                        <div class="ribbon-wrapper">
-                           <div class="ribbon-front">
-                              <p>New</p>
-                           </div> 
-                        </div>
-                     </div>
-                    <div ng-repeat="prod in groupedProducts  track by $index">
-                       <div  ng-if="prod.xp.IsDefaultProduct == 'true'" ng-click="plp.detailsPage($event);" data-sequence="{{prod.xp.SequenceNumber}}" data-prodid="{{prod.ID}}"  class="prodImagewrap">
-                           <img  ng-src= "{{prod.imgContent[0].contentUrl}}"/>
-                           <div ng-repeat="pricelist in prod.StandardPriceSchedule.PriceBreaks" class="price-box">
-                              <p class="product-name-plp"><span>{{prod.Name | lowercase}}</span></p>
-                              <p class="Price">{{prod.priceRange}}</p>
-                           </div>
-                       </div>
-                    </div>
-                    <div class="color-circle" ng-if="groupedProducts.length > 1" id="color-circle-pos" >
-                       <p ng-repeat="colorprod in groupedProducts | colors" ng-class="{'active-circle' : $index == plp.selectedColorIndex} ">
-                           <a  href="" data-name="{{colorprod.Name}}" data-size="{{colorprod.xp.SpecsOptions.Size}}" ng-click="plp.selectColor($index, $event, colorprod)" data-prodid="{{colorprod.ID}}" ng-style="{'background-color': colorprod.xp.SpecsOptions.Color}"></a>
-                        </p>
-                   </div>
-                   
-                   <ordercloud-product-quick-view product="groupedProducts" selectedId=""  ng-show="plusLabel"></ordercloud-product-quick-view>
-                   <div class="hover-buttons  col-xs-12 col-sm-12 col-md-12 col-lg-12  " ng-show="hoveringButtons">
-                        <div class="row">
-                           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 green-btn-outer">
-                              <input type="button" class="green-btn btn" value="ADD TO CART" ng-click="plp.addedToCartPopUp()">
-                           </div>
-                           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                              <input type="button" class="grey-btn btn" value="ADD TO WISHLIST">
-                           </div>
-                        </div>
-                    </div>
-                  </div>
-               </div> 
-         </div>
-         </div>
+  
 
    <div class="feature-products">
-      <div class="row feature-product-text">
-       <h3>FEATURED PRODUCTS</h3>
-      </div>
+      
    <div class="row">
       <div class="owl-carousel" id="owl-carousel-feature-products">
          <div ng-repeat="groupedProducts in plp.productList track by $index">
@@ -647,8 +601,51 @@ $.rightofscreen('#lookInMePlp', '.peekPlp', {threshold : 0}).removeClass('LeftPl
             </div>
       </div>  
    </div>
-         
+       <div class="row feature-product-text">
+       <h3>FEATURED PRODUCTS</h3>
+      </div>  
    </div>
+   <div class="row sorted-products">
+            <div ng-repeat="groupedProducts in plp.productList">
+               <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 product-container" ng-mouseover="hoveringButtons = true; plusLabel= true" ng-mouseleave="hoveringButtons = false; plusLabel= false" style="">
+                  <div class="product-box">
+                     <div id="new-label" class="new-label">
+                        <div class="ribbon-wrapper">
+                           <div class="ribbon-front">
+                              <p>New</p>
+                           </div> 
+                        </div>
+                     </div>
+                    <div ng-repeat="prod in groupedProducts  track by $index">
+                       <div  ng-if="prod.xp.IsDefaultProduct == 'true'" ng-click="plp.detailsPage($event);" data-sequence="{{prod.xp.SequenceNumber}}" data-prodid="{{prod.ID}}"  class="prodImagewrap">
+                           <img  ng-src= "{{prod.imgContent[0].contentUrl}}"/>
+                           <div ng-repeat="pricelist in prod.StandardPriceSchedule.PriceBreaks" class="price-box">
+                              <p class="product-name-plp"><span>{{prod.Name | lowercase}}</span></p>
+                              <p class="Price">{{prod.priceRange}}</p>
+                           </div>
+                       </div>
+                    </div>
+                    <div class="color-circle" ng-if="groupedProducts.length > 1" id="color-circle-pos" >
+                       <p ng-repeat="colorprod in groupedProducts | colors" ng-class="{'active-circle' : $index == plp.selectedColorIndex} ">
+                           <a  href="" data-name="{{colorprod.Name}}" data-size="{{colorprod.xp.SpecsOptions.Size}}" ng-click="plp.selectColor($index, $event, colorprod)" data-prodid="{{colorprod.ID}}" ng-style="{'background-color': colorprod.xp.SpecsOptions.Color}"></a>
+                        </p>
+                   </div>
+                   
+                   <ordercloud-product-quick-view product="groupedProducts" selectedId=""  ng-show="plusLabel"></ordercloud-product-quick-view>
+                   <div class="hover-buttons  col-xs-12 col-sm-12 col-md-12 col-lg-12  " ng-show="hoveringButtons">
+                        <div class="row">
+                           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 green-btn-outer">
+                              <input type="button" class="green-btn btn" value="ADD TO CART" ng-click="plp.addedToCartPopUp()">
+                           </div>
+                           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                              <input type="button" class="grey-btn btn" value="ADD TO WISHLIST">
+                           </div>
+                        </div>
+                    </div>
+                  </div>
+               </div> 
+         </div>
+         </div>
 	      <div class="row pagination-block">
              <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
                <pagination total-items="plp.totalItems" ng-model="plp.currentPage" ng-change="plp.pageChanged()" class="pagination-sm" items-per-page="plp.itemsPerPage" max-size="plp.maxSize" boundary-link-numbers="true"  next-text="Next" previous-text="Previous" ></pagination>

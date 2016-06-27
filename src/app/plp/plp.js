@@ -342,20 +342,21 @@ function PlpController(SharedData, $state, $uibModal,$q, Underscore, $stateParam
     }
     // Function for navigation to PDP
     vm.detailsPage = function($event){
-      var id = $($event.target).parent().attr('data-prodid');
-      var seq= $($event.target).parent().attr('data-sequence');
+      var id = $($event.target).parents('.prodImagewrap').attr('data-prodid');
+      var seq= $($event.target).parents('.prodImagewrap').attr('data-sequence');
+      
       var href= "/pdp/"+ seq + "/prodId="+id;
       $state.go('pdp', { 'sequence':seq , 'prodId':id });
     }
 
 
     vm.selectionLength = vm.selection.length;
-      /*var owl2 = angular.element("#owl-carousel-selected-cat");   
+     var owl2 = angular.element("#owl-carousel-selected-cat");   
       owl2.owlCarousel({
         nav:true,
         autoWidth:true
-      });*/
-      /*vm.facetOwlReinitialise = function(){
+      });
+      vm.facetOwlReinitialise = function(){
         owl2.trigger('destroy.owl.carousel');
         owl2.find('.owl-stage-outer').children().unwrap();
         if(vm.selection.length > vm.selectionLength){
@@ -372,18 +373,8 @@ function PlpController(SharedData, $state, $uibModal,$q, Underscore, $stateParam
           },100);
           
         }
-      }*/
-      vm.facetScroll = function(){
-        setTimeout(function(){
-          /*var contToHideShow = $('#owl-carousel-selected-cat');
-          if(contToHideShow.scrollWidth>contToHideShow.offsetWidth){
-              $('.catLeftArrow, .catRightArrow').css('display','block');
-          }else{
-              $('.catLeftArrow, .catRightArrow').css('display','none');
-            }*/
-        },200)
       }
-  
+ 
       var fixOwl = function(){
         var $stage = $('.owl-stage'),
             stageW = $stage.width(),
@@ -402,39 +393,19 @@ function PlpController(SharedData, $state, $uibModal,$q, Underscore, $stateParam
         // is currently selected
         if(isFromTopBar){
           vm.facetName[facetName] = false;
-          //vm.facetScroll();
-          // vm.facetOwlReinitialise();
+           //vm.facetOwlReinitialise();
         }
         if (idx > -1) {
           vm.selection.splice(idx, 1);
-         // vm.facetOwlReinitialise();
-          //vm.facetScroll();
+         //vm.facetOwlReinitialise();
 
         }
         // is newly selected
         else {
           vm.selection.push(facetName);
-         // vm.facetOwlReinitialise();
-          //vm.facetScroll();
+         //vm.facetOwlReinitialise();
         }
       };
-      (function($) {   
-        $.rightofscreen = function(lookIn, elements, settings) {
-          var fold = $(lookIn).width() + $(lookIn).scrollLeft();
-          return $(elements).filter(function(){
-              return fold <= $(this).offset().left - settings.threshold;
-          });
-        };
-      
-        $.leftofscreen = function(lookIn, elements, settings) {
-          var left = $(lookIn).scrollLeft();
-          return $(elements).filter(function(){
-              return left >= $(this).offset().left + $(this).width() - settings.threshold;
-          });
-       };
-      })(jQuery);
-      $.leftofscreen("#lookInMePlp", ".peekPlp", {threshold : 0}).addClass("LeftPlp");
-      $.rightofscreen("#lookInMePlp", ".peekPlp", {threshold : 0}).addClass("RightPlp");
 
       // END:function for facet selection logic
 
@@ -496,6 +467,7 @@ vm.selectColor = function($index, $event, prod){
    $($event.target).parents('.product-box').find('.prodImagewrap').attr('data-sequence', prod.xp.SequenceNumber);
    $($event.target).parents('.product-box').find('.prodImagewrap').attr('data-prodid', prod.ID);
    SharedData.SelectedProductId = prod.ID;
+   SharedData.SelectedSequence = prod.xp.SequenceNumber;
    $event.stopPropagation();
  
 }
@@ -635,7 +607,6 @@ vm.selectColor = function($index, $event, prod){
         },1000)
 
 
-
   vm.shiftSelectedCategoryRight= function(){
     var currentPos = $('#owl-carousel-selected-cat').scrollLeft();
     $('#owl-carousel-selected-cat').scrollLeft(currentPos + 100);
@@ -651,7 +622,7 @@ vm.selectColor = function($index, $event, prod){
     vm.plpBannerImg = alfcontenturl+res.items[0].contentUrl+"?alf_ticket="+ticket;
     vm.plpBannerTitle = res.items[0].title;
   });
-
+  
   PlpService.GetHybridBanner(ticket).then(function(res){
 
     var hybridBanners = [];
@@ -704,26 +675,20 @@ vm.selectColor = function($index, $event, prod){
      
   };
 
-  if( $('.target').length > 0 ) { // if target element exists in DOM
-    if( $('.target').is_on_screen() ) { // if target element is visible on screen after DOM loaded
-          $('.selected-list ').addClass('fixThisBar');// log info   
-         
-    } else {
-          $('.selected-list ').removeClass('fixThisBar');// log info
-    }
-  }
   $(window).scroll(function(){ // bind window scroll event
-    if( $('.target').length > 0 ) { // if target element exists in DOM
-      if( $('.target').is_on_screen() ) { // if target element is visible on screen after DOM loaded
-        $('.selected-list').addClass('fixThisBar');// log info
-       
-      } else {
-       $('.selected-list').removeClass('fixThisBar'); // log info
-        
+    var navbarTop = $('.sticky .base-header-inner').height();
+    var showAfterHt = $('.plpBannerPlusHybrid').height();
+    if($(this).scrollTop()>showAfterHt){
+      if( $('.target').length > 0 ) { // if target element exists in DOM
+        if( $('.target').is_on_screen() ) { // if target element is visible on screen after DOM loaded
+          $('.fixThisBar').css({'display':'none'}); 
+
+          } else {
+          $('.fixThisBar').css({'display':'block','top':navbarTop}); 
+        }
       }
     }
   });
-
 }
 
 function QuickviewController($scope, $uibModalInstance) {
@@ -768,29 +733,61 @@ function filterBtnController($scope, $uibModalInstance) {
       $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
+    vm.selection=[];
+     
+      /*vm.facetOwlReinitialise = function(){
+        
+      }*/
 
-    // selected cat-mobile
-     /*setTimeout(function(){
-        var owl2 = angular.element("#owl-carousel-selected-cat-mobile");   
-        owl2.owlCarousel({
-            //responsive: true,
+    //Function for clear all facets
+    vm.selectionLength = vm.selection.length;
+    vm.clearSelection = function(){
+       vm.selection = [];
+       vm.facetName = {};
+    }
+
+    
+   /* setTimeout(function(){
+        var owl3 = angular.element("#owl-carousel-selected-cat-mobile"); 
+        owl3.owlCarousel({
             loop:false,
-            nav:true,
-            //autoWidth:true,
-            responsive:{
-                0:{ items:1 },
-                320:{
-                    items:2,
-                },
-                730 :{ 
-                    items:3,
-                },
-                1024:{ 
-                    items:4
-                }
-            }
+            nav:true
         });
-        },300)*/
+    },300)*/
+    /*vm.initilizeMblFilter = function(){
+      owl3.trigger('destroy.owl.carousel');
+        owl3.find('.owl-stage-outer').children().unwrap();
+        if(vm.selection.length > vm.selectionLength){
+          setTimeout(function(){
+            owl3.owlCarousel({
+              loop:false,
+              nav:true,
+              items:2
+            }); 
+          },100);
+          
+        }
+    }*/
+     vm.togglFaceteSelection = function togglFaceteSelection(facetName, isFromTopBar) {
+        var idx = vm.selection.indexOf(facetName);
+        // is currently selected
+        if(isFromTopBar){
+          vm.facetName[facetName] = false;
+          //vm.initilizeMblFilter();
+        }
+        if (idx > -1) {
+          vm.selection.splice(idx, 1);
+          //vm.initilizeMblFilter();
+
+        }
+        // is newly selected
+        else {
+          vm.selection.push(facetName);
+          //vm.initilizeMblFilter();
+        }
+      };
+    // selected cat-mobile
+
 }
 
 function ColorFilter(){
@@ -1052,7 +1049,7 @@ function addedToCartController($scope, $uibModalInstance,$q, alfcontenturl,Order
             //responsive: true,
             loop:true,
             nav:true,
-            //autoWidth:true,
+            margin:30,
             responsive:{
                 0:{ items:1 },
                 320:{

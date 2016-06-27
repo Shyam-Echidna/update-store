@@ -218,6 +218,7 @@ function LoginController( OrderCloud,$state, $stateParams, $exceptionHandler, Lo
        //vm.newUser=Users;
        //vm.newUser={};
         //console.log(vm.newUser);
+
         var user = {
 
                   Username: vm.newUser.Email,
@@ -246,6 +247,8 @@ function LoginController( OrderCloud,$state, $stateParams, $exceptionHandler, Lo
         function(data){
             console.log(data);
         })
+        
+         $('#info-bar-acc, .sticky #info-bar-acc').addClass('expandAccBlockSignedIn');
 
     };
         
