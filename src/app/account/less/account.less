@@ -1,0 +1,457 @@
+/*Bachman - Accordion Chevron Starts */
+.bachman-chevron {
+	position: absolute;
+	right: 30px;
+	color: #AE83CF;
+	&:before {
+		border-style: solid;
+		border-width: 2px 2px 0 0;
+		content: '';
+		display: inline-block;
+		height: 14px;
+		left: 5px;
+		position: relative;
+		top: 5px;
+		transform: rotate(-45deg);
+		vertical-align: top;
+		width: 14px;
+	}
+	&.right:before {
+		top: 0;
+		left: 0;
+		transform: rotate(45deg);
+	}
+	&.bottom:before {
+		top: -2px;
+		transform: rotate(135deg);
+	}
+	&.left:before {
+		top: 0;
+		left: 5px;
+		transform: rotate(-135deg);
+	}
+}
+/*Bachman - Accordion Chevron Ends */
+
+/* Box-shadow Inset Remover */
+.bs-inset-remove {
+   -moz-box-shadow:    inset 0 0 0 0;
+   -webkit-box-shadow: inset 0 0 0 0;
+   box-shadow:         inset 0 0 0 0;
+}
+/* Box-shadow Inset Remover */
+
+.account-landing-container{
+	padding:0 5px 45px;
+	border-bottom: 1px solid #d6d6d6;
+    /*padding-bottom: 45px;*/
+	p.my-account-main-heading {
+		font: 1.875em @neutraface-demi;
+		color:@base-bg-purple-dark;
+		/*padding: 4px 0 14px;*/
+		padding: 10px 0;
+	}
+	.my-account-menu {
+		float: left;
+		width: 21%;
+		padding: 0 4px 60px 4px;
+		border: 1px solid @base-bg-purple-light;
+		background-color:#fefaff;
+		.my-account-menu-ul {
+			.my-account-menu-li {
+				p {
+					&:hover {
+						span {
+							color: @font-purple-dark;
+							svg {
+								fill: @base-bg-purple-dark;
+							}
+							&.nohover-icon {
+								svg {
+									fill: #000;
+								}
+							}
+							&.nohover-title {
+								color: #000;
+							}
+						}
+						.ppa-logo {
+							.ppa-logo-svg {
+								display: none;
+							}
+							.ppa-logo-svg-hover {
+								display: block;
+								svg {
+									path {
+										fill: @base-bg-purple-dark;
+									}
+								}
+							}
+						}
+					}
+				}
+				padding: 0px 0 0px 25px;
+				border-bottom: 1px solid #d6d5d6;
+				height: 40px;
+    			line-height: 40px;
+				&:nth-child(1), &:nth-child(2){
+				    height: auto;
+    				line-height: normal;
+    				padding: 8px 0 8px 25px;
+    				&.active{
+						background-color:inherit;
+						.my-account-menu-li-title{
+							color: #000;
+						}
+					}
+				}
+				.my-account-menu-li-icon {
+					svg{
+					    width: 16px;
+    					height: 16px;
+    					display: inline-block;
+   						vertical-align: middle;
+    					path{
+    						stroke: #000;
+    						stroke-width: 2;
+    					}
+					}
+					.user-acc-svg {
+						width: 18px;
+						height: 16px;
+						path {
+							stroke-width: 3;
+							fill: #fff;
+						}
+					}
+					.orders-svg {
+						path {
+							stroke-width: 0.5;
+						}
+					}
+					.credit-card-svg {
+						width: 20px;
+    					height: 16px;
+						path {
+							stroke-width: 0;
+						}
+					}
+					.acc-purple-perk-svg {
+						.pth0 {
+							fill: #FFFFFF;
+						}
+						.pth1 {
+							fill: #9C83C9;
+						}
+						.pth2 {
+							opacity: 0.56;
+							clip-path: url(#SVGID_2_);
+						}
+						.pth3 {
+							fill: none;
+							stroke: #231F20;
+							stroke-width: 4;
+							stroke-miterlimit: 10;
+						}
+						.pth4 {
+							fill: #231F20;
+						}
+						.pth5 {
+							fill: none;
+							stroke: #FFFFFF;
+							stroke-width: 0.5;
+						}
+						.pth6 {
+							fill: none;
+							stroke: #FFFFFF;
+							stroke-width: 0.25;
+							stroke-linecap: round;
+							stroke-linejoin: round;
+						}
+					}
+					.wishlist-svg {
+						width: 20px;
+    					height: 18px;
+						path {
+							stroke-width: 0.5;
+						}
+					}
+					.email-svg {
+					    width: 20px;
+    					height: 16px;
+						path {
+							stroke-width: 0.5;	
+						}
+					}
+					&.ppa-logo {
+						float: left;
+						.acc-purple-perk-svg {
+							width: 30px;
+						    height: 25px;
+						    position: relative;
+						    left: -5px;
+						}
+						& + .my-account-menu-li-title {
+						    padding-left: 5px;
+						}
+						.ppa-logo-svg, .ppa-logo-svg-hover {
+							position: relative;
+							left: -3px;
+							svg {
+								width: 26px;
+						    	height: 26px;
+							}
+						}
+						.ppa-logo-svg-hover {
+							display: none;
+						}
+					}
+				}
+				.my-account-menu-li-title {
+					font: 1em @proxima-light;
+					font-weight: bold;
+					padding-left: 7px;
+					color: #000;
+					display: inline-block;
+   					vertical-align: middle;
+   					padding-bottom: 0;
+   					&:hover {
+						color: @base-bg-purple-dark;
+					}
+					&.nohover-title {
+						&:hover {
+							color: #000;
+						}
+					}
+				}
+				.my-account-menu-links {
+					padding-left: 27px;
+					font: 0.875em/2.2em @proxima-light;
+					font-weight: bold;
+					color: #424242;
+					&.active{
+						background-color:#a576ca;
+						color:#fff;
+						&:hover {
+							color:#fff;
+						}
+					}
+					&:hover {
+						color: @base-bg-purple-light;
+					}
+				}
+				&.active{
+					background-color: @base-bg-purple-light;
+					.my-account-menu-li-title{
+						color: #fff;
+						&:hover {
+							color: #fff;
+						}
+					}
+					.my-account-menu-li-icon {
+						svg {
+							path, rect {
+    							stroke: #fff;
+    							fill: #fff;
+    						}
+						}
+						.acc-purple-perk-svg {
+							background: #fff;
+						}
+					}
+					.ppa-logo {
+						.ppa-logo-svg {
+							display: none;
+						}
+						.ppa-logo-svg-hover {
+							display: block;
+							path {
+								stroke: #fff;
+    							fill: #fff;
+							}
+						}
+						&:hover {
+							.ppa-logo-svg-hover {
+								path {
+									stroke: #fff;
+									fill: #fff;
+								}
+							}
+						}
+					}
+					p {
+						&:hover {
+							.ppa-logo {
+								.ppa-logo-svg-hover {
+									svg {
+										path {
+											stroke: #fff;
+											fill: #fff;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.my-account-menu-content {
+		float: left;
+		width: 79%;
+		padding:0 5px;
+		.my-account-menu-content-inner{
+			border-top:1px solid #d6d6d6;
+			.container-fluid{
+				padding:0 10px;
+				h3{
+					font: 1.125em @proxima-bold;
+					padding: 15px 0;
+					.m0;
+				}
+			}
+		}
+		.my-account-content-title {
+			color: #000;
+			font: 1.125em @proxima-bold;
+			/*font-weight: bold;*/
+			letter-spacing: normal;
+			/*padding-left: 5px;*/
+			padding-left: 0;
+    		margin: 15px 0 20px;
+    		position: relative;
+	        .mob-menu-clickable {
+	            position: absolute;
+	            background: transparent;
+	            top: 0;
+	            left: 0;
+	            height: 40px;
+	            width: 100%;
+	            display: none;
+	        }
+	        .acc-mob-dropdown {
+	            display: block;
+	            padding: 10px 0 0 20px;
+	            .acc-mob-links{
+	                font: 0.75em @proxima-light;
+	                font-weight: bold;
+	                display: block;
+	                padding: 10px 0;
+	                color: #000;
+	                &:hover, &:active {
+	                    color: @font-purple-light;
+	                }
+	            }
+	        }
+		}
+	}
+}
+
+@media screen and (min-width:320px) and (max-width:810px) {
+	.account-landing-container{
+		padding:0 5px 30px;
+		padding-top: 0 !important;
+		p.my-account-main-heading {
+			font: 1em @neutraface-demi;
+			padding: 20px 0 10px;
+		}
+		.my-account-menu-content {
+			width: 100%;
+			padding: 0;
+			.my-account-menu-content-inner {
+				border-top: none;
+				.container-fluid{
+					padding:0;
+				}
+			}
+			.my-account-content-title {
+				font: 0.875em @proxima-bold;
+				width: 95%;
+	    		margin: 10px auto 15px;
+	    		color: #AE83CF;
+				border: 1px solid #AE83CF;
+				-moz-box-shadow:    0px 0px 4px #AE83CF;
+				-webkit-box-shadow: 0px 0px 4px #AE83CF;
+				box-shadow:         0px 0px 4px #AE83CF;
+				position: relative;
+				padding: 10px;
+				cursor: pointer;
+				.mob-menu-clickable, .acc-mob-dropdown {
+	                display: block;
+	            }
+			}
+		}
+	}
+}
+
+@media screen and (min-width:900px) and (max-width:962px) {
+	.account-landing-container {
+		.my-account-menu-content {
+			width: 100%;
+			.my-account-menu-content-inner {
+				border-top: none;
+				.container-fluid{
+					padding: 0;
+				}
+			}
+			.my-account-content-title {
+				font: 0.89em @proxima-bold;
+				width: 95%;
+	    		margin: 10px auto 15px;
+	    		color: #AE83CF;
+				border: 2px solid #AE83CF;
+				position: relative;
+				padding: 10px;
+				cursor: pointer;
+				.mob-menu-clickable, .acc-mob-dropdown {
+	                display: block;
+	            }
+	            .acc-mob-dropdown {
+	                .acc-mob-links {
+	                    font-size: 0.815em;
+	                }
+	            }
+			}
+		}
+	}
+}
+
+@media screen and (min-width:900px) and (max-width:962px) and (orientation:landscape) {
+	.account-landing-container {
+		.my-account-menu {
+			width: 21%;
+			display: block !important;
+			.my-account-menu-ul {
+				.my-account-menu-li {
+					padding: 0px 0 0px 15px;
+					&:nth-child(1), &:nth-child(2) {
+    					padding: 8px 0 8px 10px;
+    				}
+				}
+			}
+		}
+		.my-account-menu-content {
+			width: 79%;
+			.my-account-menu-content-inner {
+				border-top: 1px solid #d6d6d6;
+				.container-fluid{
+					padding: 0 10px;
+				}
+			}
+			.my-account-content-title {
+				color: #000;
+				font: 1.125em @proxima-bold;
+				padding-left: 5px;
+	    		margin: 10px 0 12px;
+	    		border: none;
+	    		.bachman-chevron {
+	    			display: none;
+	    		}
+	    		.mob-menu-clickable, .acc-mob-dropdown {
+	                display: none;
+	            }
+			}
+		}
+	}
+}

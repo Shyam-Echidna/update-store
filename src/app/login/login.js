@@ -125,7 +125,9 @@ function LoginController( OrderCloud,$state, $stateParams, $exceptionHandler, Lo
                 })
             })
             .catch(function(ex) {
-                $exceptionHandler(ex);
+               // $exceptionHandler(ex);
+               vm.errormsg = "Email or Password is incorrect!!";
+               vm.invaliduser = true;
             })
             $('#info-bar-acc, .sticky #info-bar-acc').addClass('expandAccBlockLoggedIn');
     };
@@ -216,6 +218,7 @@ function LoginController( OrderCloud,$state, $stateParams, $exceptionHandler, Lo
        //vm.newUser=Users;
        //vm.newUser={};
         //console.log(vm.newUser);
+
         var user = {
 
                   Username: vm.newUser.Email,
@@ -244,6 +247,8 @@ function LoginController( OrderCloud,$state, $stateParams, $exceptionHandler, Lo
         function(data){
             console.log(data);
         })
+        
+         $('#info-bar-acc, .sticky #info-bar-acc').addClass('expandAccBlockSignedIn');
 
     };
         

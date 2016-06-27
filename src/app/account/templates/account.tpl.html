@@ -77,7 +77,19 @@
 <div class="container-fluid my-account-my-profile" ng-init="showdefautEdit=true">
 	<div class="my-account-menu-content-aside">
 		<p class="my-account-content-title">My Profile
-	        <span class="bachman-chevron hidden-md hidden-lg chevron bottom"></span>
+	        <span class="bachman-chevron hidden-md hidden-lg chevron" ng-class="{bottom: !mobilemenus}"></span>
+	        <span class="mob-menu-clickable" ng-click="mobilemenus=!mobilemenus"></span>
+	        <span class="acc-mob-dropdown" ng-show="mobilemenus">
+	            <!-- <span class="acc-mob-links" ui-sref="account.profile">My Profile</span> -->
+	            <span class="acc-mob-links" ui-sref=".addresses">Address Book</span>
+	            <span class="acc-mob-links" ui-sref="account.orders">Order History</span>
+	            <span class="acc-mob-links" ui-sref=".trackorders">Track Orders</span>
+	            <span class="acc-mob-links" ui-sref="account.event">My Events</span>
+	            <span class="acc-mob-links" ui-sref=".CreditCard">Credit Cards</span>
+	            <span class="acc-mob-links" ui-sref="account.perpleperksAccount">Perple Perks</span>
+	            <span class="acc-mob-links" ui-sref="account.wishlistAccount">My Wishlist</span>
+	            <span class="acc-mob-links" ui-sref=".emailsubscription">Email Preferences</span>
+	        </span>
 	    </p>
 		<div class="my-profile-container row">
 			<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 my-profile-logininfo-container fl">
@@ -150,18 +162,24 @@
 				<h2>Contact Information</h2>
 				<div>
 					<h3>Name</h3>
-					<br><h4>{{profile.default_add.FirstName}}
-				    {{profile.default_add.LastName}}</h4>
+					<h4 class="tt-caps">
+						{{profile.default_add.FirstName}}
+				    	{{profile.default_add.LastName}}
+					</h4>
 					
 					<h3>Address</h3>
-					<br><h4>{{profile.default_add.Street1}}
-				    {{profile.default_add.Street1}}
-				    {{profile.default_add.City}}
-				    {{profile.default_add.State}}
-				    {{profile.default_add.Zip}}</h4>
+					<h4>
+						<span class="disp-block tt-caps">{{profile.default_add.Street1}} </span>
+					    <span class="disp-block tt-caps">{{profile.default_add.Street1}} </span>
+					    <span class="tt-caps">
+					    	{{profile.default_add.City}}
+					    	{{profile.default_add.State}}
+					    	{{profile.default_add.Zip}}
+					    </span>
+					</h4>
 					<h3>Phone Number</h3>	
-					<br><h4>{{profile.default_add.Phone}}</h4>
-					<h5 ng-click="profile.editAdressDefault(profile.default_add)">Edit</h5>
+					<h4 class="ph-value">{{profile.default_add.Phone}}</h4>
+					<h5 class="prof-edit-link" ng-click="profile.editAdressDefault(profile.default_add)">Edit</h5>
 				</div>
 				<!-- For Edit personal info page starts -->
 				<div class="accPro-Edit-Wrap col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-hide="showdefautEdit">
@@ -233,7 +251,22 @@
 						<button class="blueBtn savebtn">save</button>
 						<button class="greyBtn cancelbtn">cancel</button>
 					</div> -->
-
+					<div class="accPro-Edit-Content col-xs-12 col-sm-12 col-md-10 col-lg-10">
+						<div class="col-xs-12 form-group shipping-checkbox">
+	                        <div class="Checkbox">
+	                            <input type="checkbox" id="ship-addr-chkb" ng-model="addr.IsShipping" />
+	                            <div class="Checkbox-visible"></div>
+	                        </div>
+	                        <label class="ship-addr-label" for="ship-addr-chkb">Shipping Address</label>
+	                    </div>
+	                    <div class="col-xs-12 form-group billing-checkbox">
+	                        <div class="Checkbox">
+	                            <input type="checkbox" id="bill-addr-chkb" ng-model="addr.IsBilling" />
+	                            <div class="Checkbox-visible"></div>
+	                        </div>
+	                        <label class="bill-addr-label" for="bill-addr-chkb">Billing Address</label>
+	                    </div>
+                    </div>
 					<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 form-group acc-Pro-Edit-Btns">
                         <div class="col-xs-6 savebtn">
                             <button type="button" class="btn purple-btn col-xs-6">Save</button>

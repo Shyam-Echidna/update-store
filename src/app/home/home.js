@@ -549,20 +549,19 @@ function HomeFact($http, $q, $exceptionHandler, alfrescourl, OrderCloud){
 	}
   function _getFeaturedProducts(){
   	//var filters = {xp:{Featured : true}};
-  /*	var filter ={
-        "xp.Featured":true
-    };
-     var defferred = $q.defer(); 
-     OrderCloud.Me.ListProducts(null, 1, 100, null, null, filter, null).then(function(res){
-     	console.log("462==",res);
-     	defferred.resolve(res.Items);
-     })
+  // 	var filter ={
+  //       "xp.Featured":true
+  //   };
+  //    var defferred = $q.defer(); 
+  //    OrderCloud.Me.ListProducts(null, 1, 100, null, null, filter, null).then(function(res){
+  //    	console.log("462==",res);
+  //    	defferred.resolve(res.Items);
+  //    })
 		
-		return defferred.promise;*/
-
+		// return defferred.promise;
 		 var defferred = $q.defer(); 
 
-		$http({
+  $http({
                 method: 'GET',
                 dataType:"json",
                 url:"https://api.ordercloud.io/v1/me/products?xp.Featured=true",
@@ -572,12 +571,12 @@ function HomeFact($http, $q, $exceptionHandler, alfrescourl, OrderCloud){
                     'Authorization': 'Bearer ' + OrderCloud.Auth.ReadToken()
                 }
 
-	            }).success(function (data, status, headers, config) { 
-	                
-	                defferred.resolve(data.Items);
-	            }).error(function (data, status, headers, config) {
-	            });
-	            return defferred.promise;
+             }).success(function (data, status, headers, config) { 
+                 
+                 defferred.resolve(data.Items);
+             }).error(function (data, status, headers, config) {
+             });
+             return defferred.promise;
 }
 	function _getPromotions(ticket) {
 		var defferred = $q.defer(); 

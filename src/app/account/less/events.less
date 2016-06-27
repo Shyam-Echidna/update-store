@@ -1,0 +1,191 @@
+/* My Account - My Events Style Starts */
+.my-account-events-container {
+	.my-account-content-title {
+		font: 1.125em @proxima-bold;
+		padding-left: 15px;
+	}
+	.my-acc-events-cont {
+		padding: 20px;
+    	border: 1px solid #ddd;
+		.title {
+			font: 1em @proxima-bold;
+			margin-bottom: 15px;
+			clear: both;
+			span {
+				font: 0.875em @proxima-light;
+				color: #666666;
+			}
+			.view-all-link {
+				color: #424242;
+				float: right;
+				text-decoration: underline;
+				font: 0.75em @proxima-bold;
+				margin-right: 15px;
+			}
+			&.bordertop {
+				border-top: 1px solid #ddd;
+    			padding-top: 20px;
+			}
+		}
+		.upcoming-event-cont, .past-even-cont {
+			background-color: #faf4ff;
+			margin-bottom: 20px;
+			padding: 12px;
+			.event-info {
+				padding: 0 0 0 12px;
+				.event-title {
+					font: 1em @proxima-bold;
+					color: #484848;
+				    max-width: 60%;
+				}
+				.timings {
+					.event-date, .event-time {
+						margin: 15px 0 5px 0;
+						.title {
+							font: 0.75em @proxima-regular;
+							color: #828282;
+							margin-bottom: 5px;
+						}
+						.value {
+							font: 0.875em @proxima-regular;
+						}
+					}
+				}
+				.venue {
+					.title {
+						font: 0.8125em @proxima-regular;
+						color: #704197;
+					    margin-bottom: 12px;
+					    .location-svg {
+					    	svg {
+					    		width: 20px;
+							    height: 25px;
+							    position: relative;
+							    top: 5px;
+							    fill: @base-bg-purple-dark;
+					    	}
+					    }
+					}
+					.value {
+						font: 0.875em @proxima-regular;
+						margin-bottom: 12px;
+					}
+					.room {
+						font: 0.875em @proxima-regular;
+					}
+					.store {
+						font: 0.875em @proxima-regular;
+					}
+				}
+			}
+		}
+		.past-even-cont {
+			background-color: #fafafa;
+			width: 49%;
+			.event-info {
+				.venue {
+					.title {
+						.location-svg {
+							svg {
+								width: 15px;
+    							height: 20px;
+							}
+						}
+					}
+				}
+			}
+			&:nth-child(odd) {
+				margin-left: 2%;
+			}
+		}
+	}
+}
+@media screen and (min-width:320px) and (max-width:810px) {
+	.my-account-events-container {
+		.my-account-content-title {
+			margin: 15px auto 15px !important;
+		}
+		.my-acc-events-cont {
+		    padding: initial;
+    		border: none;
+    		.title {
+    			padding-top: 10px;
+    			border-top: 1px solid #ddd;
+    			font-size: 0.875em;
+    		}
+    		.upcoming-event-cont, .past-even-cont {
+    			width: 100%;
+    			padding: 8px;
+    			&:nth-child(odd) {
+    				margin-left: 0;
+    			}
+    			.event-info {
+    				padding: 0 0 0 8px;
+    				.event-title {
+    					max-width: initial;
+    					font-size: 0.875em;
+    				}
+    				.timings {
+						.event-date, .event-time {
+							margin: 10px 0 5px 0;
+							.title {
+							    margin-bottom: 0px;
+							    border: none;
+							    font-size: 0.6875em;
+							}
+							.value {
+								font-size: 0.75em;
+							}
+						}
+					}
+					.venue {
+						.title, .value {
+							margin-bottom: 5px;
+							border: none;
+						}
+						.title, .value, .room, .store {
+							font-size: 0.625em;
+						}
+					}
+    			}
+    		}
+    	}
+	}
+}
+/* My Account - My Events Style Ends */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation:landscape) {
+	.my-account-events-container {
+		.my-acc-events-cont {
+			.upcoming-event-cont, .past-even-cont {
+				.prod-img {
+					width: 40%;
+				}
+				.event-info {
+					width: 60%;
+					.timings, .venue {
+						width: 50%;
+					}
+					.timings {
+						.event-date, .event-time {
+						    margin: 10px 0 5px 0;
+						    .title {
+						    	margin-bottom: 3px;
+						    }
+						}
+					}
+					.venue {
+						.title {
+						    margin-bottom: 5px;
+						}
+						.value {
+							margin-bottom: 6px;
+						}
+					}
+					.event-title {
+					    max-width: 90%;
+					}
+				}
+			}
+		}
+	}
+}

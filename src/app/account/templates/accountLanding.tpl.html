@@ -1,0 +1,142 @@
+<div class="container-fluid account-landing-container" cont-top-padding ng-style="{'padding-top': pageTopPadding + 'px'}">
+	<p class="my-account-main-heading text-center" >My Account</p>
+	<div class="my-account-menu hidden-xs hidden-sm">
+		<ul class="my-account-menu-ul">
+			<li class="my-account-menu-li">
+				<p>
+					<span class="my-account-menu-li-icon nohover-icon">
+						<svg class="user-acc-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+						viewBox="0 0 55 55" style="enable-background:new 0 0 55 55;" xml:space="preserve">
+							<g>
+								<g>
+									<path d="M27.4,2.7c7,0,12.8,7.1,12.8,15.8s-5.7,15.8-12.8,15.8s-12.8-7.1-12.8-15.8c0-4.2,1.3-8.2,3.7-11.2
+										C20.8,4.3,24,2.7,27.4,2.7 M27.4,1.2c-3.9,0-7.5,1.9-10.2,5.2c-2.6,3.3-4,7.6-4,12.1c0,9.6,6.4,17.3,14.3,17.3
+										c7.9,0,14.3-7.8,14.3-17.3C41.7,9,35.3,1.2,27.4,1.2L27.4,1.2z"/>
+								</g>
+								<path d="M29.6,52.4H1.9C1.5,36.9,12.2,35.5,16,35.5c0.2,0,0.3,0,0.3,0"/>
+								<path d="M25,52.4h27.8c0.4-15.5-10.4-16.9-14.2-16.9v0"/>
+							</g>
+						</svg>
+					</span>
+					<span class="my-account-menu-li-title nohover-title">Account Information</span>
+				</p>
+				<ul>
+					<li class="my-account-menu-links" ui-sref-active="active" ui-sref="account.profile">My Profile</li>
+					<li class="my-account-menu-links" ui-sref-active="active"  ui-sref=".addresses">Address Book</li>
+				</ul>
+			</li>
+			<li class="my-account-menu-li">
+				<p>
+					<span class="my-account-menu-li-icon nohover-icon">
+						<svg class="orders-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+							 viewBox="0 0 14 17.5" style="enable-background:new 0 0 14 17.5;" xml:space="preserve">
+						<g>
+							<path d="M10.1,0H0v17.5h14V3.3 M13.4,16.8H0.6V0.5h9.6v3l3.3,0V16.8z M13.4,2.8l-2.7-2.3"/>
+							<g>
+								<rect x="2.9" y="5.8" width="8.3" height="0.6"/>
+							</g>
+							<g>
+								<polyline points="2.9,8.6 2.9,8 11.3,8 11.3,8.6 		"/>
+							</g>
+							<g>
+								<polyline points="11.3,10.3 11.3,10.8 2.9,10.8 2.9,10.3 		"/>
+							</g>
+							<g>
+								<rect x="2.9" y="12.5" width="8.3" height="0.6"/>
+							</g>
+						</g>
+						</svg>
+					</span>
+					<span class="my-account-menu-li-title nohover-title">Orders</span>
+				</p>
+				<ul>
+					<li class="my-account-menu-links"  ui-sref-active="active" ui-sref="account.orders">Order History</li>
+					<li class="my-account-menu-links" ui-sref-active="active" ui-sref=".trackorders">Track Orders</li>
+					<li class="my-account-menu-links" ui-sref-active="active" ui-sref="account.event">My Events</li>
+				</ul>
+			</li>
+			<li class="my-account-menu-li" ui-sref-active="active" ui-sref=".CreditCard">
+				<p>
+					<span class="my-account-menu-li-icon">
+						<svg class="credit-card-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+							 viewBox="0 0 21 15.2" style="enable-background:new 0 0 21 15.2;" xml:space="preserve">
+							<g>
+								<path d="M377.1,245.9H372v8.8h7v-7.1 M378.7,254.4h-6.4v-8.2h4.8v1.5l1.6,0V254.4z M378.7,247.4l-1.3-1.2"/>
+								<g>
+									<rect x="373.5" y="248.9" width="4.2" height="0.3"/>
+								</g>
+								<g>
+									<polyline points="373.5,250.3 373.5,250 377.6,250 377.6,250.3 		"/>
+								</g>
+								<g>
+									<polyline points="377.6,251.1 377.6,251.4 373.5,251.4 373.5,251.1 		"/>
+								</g>
+								<g>
+									<rect x="373.5" y="252.2" width="4.2" height="0.3"/>
+								</g>
+							</g>
+							<g>
+								<path d="M18.8,0.3H2.2c-1,0-1.7,0.8-1.7,1.7v11c0,1,0.8,1.7,1.7,1.7h16.6c1,0,1.7-0.8,1.7-1.7v-11C20.5,1.1,19.8,0.3,18.8,0.3z
+									 M19.6,13.1c0,0.4-0.4,0.8-0.8,0.8H2.2c-0.4,0-0.8-0.4-0.8-0.8V5h18.2V13.1z M19.6,3.1H1.4v-1c0-0.4,0.4-0.8,0.8-0.8h16.6
+									c0.4,0,0.8,0.4,0.8,0.8V3.1z"/>
+								<rect x="3.3" y="7.8" width="7.7" height="0.6"/>
+								<rect x="3.3" y="9.8" width="5.7" height="0.6"/>
+								<path d="M15.3,11.4c1.3,0,2.3-1,2.3-2.3c0-1.3-1-2.3-2.3-2.3c-1.3,0-2.3,1-2.3,2.3C12.9,10.4,14,11.4,15.3,11.4z M15.3,7.3
+									c1,0,1.8,0.8,1.8,1.8c0,1-0.8,1.8-1.8,1.8c-1,0-1.8-0.8-1.8-1.8C13.5,8.1,14.3,7.3,15.3,7.3z"/>
+							</g>
+						</svg>
+					</span>
+					<span class="my-account-menu-li-title">Credit Cards</span>
+				</p>
+			</li>
+			<li class="my-account-menu-li" ui-sref-active="active" ui-sref="account.perpleperksAccount">
+				<p>
+					<span class="my-account-menu-li-icon ppa-logo">
+						<span class="ppa-logo-svg" ng-include="base.quicklinkPP"></span>
+ 						<span class="ppa-logo-svg-hover" ng-include="base.quicklinkPPHover"></span>
+					</span>
+					<span class="my-account-menu-li-title">Purple Perks</span>
+				</p>
+			</li>
+			<li class="my-account-menu-li" ui-sref-active="active" ui-sref="account.wishlistAccount">
+				<p>
+					<span class="my-account-menu-li-icon">
+						<svg class="wishlist-svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+							 viewBox="-739.5 480.7 45 40.9" style="enable-background:new -739.5 480.7 45 40.9;" xml:space="preserve">
+						<path d="M-699.3,485.4c-4.9-4.8-12.6-4.9-17.7-0.4c-5-4.5-12.8-4.4-17.7,0.4c-5,5-5,13,0,18c0.2,0.2,16.2,16,16.2,16
+							c1.6,1.6,1.3,1.7,2.9,0.1c0,0,14.9-14.7,16.3-16.1C-694.3,498.4-694.3,490.4-699.3,485.4z M-701.2,501.5l-15.4,15.2
+							c-0.5,0.5-0.5,0.2-1-0.3l-15.1-14.9c-4-3.9-4-10.3,0-14.2c3.8-3.8,9.9-3.9,14-0.3l1.8,1.6l1.8-1.6c4-3.6,10.1-3.5,14,0.3
+							C-697.3,491.2-697.3,497.6-701.2,501.5z"/>
+						<path d="M-708,488.4C-708,488.4-708,488.4-708,488.4c-0.4,0-0.7,0.3-0.7,0.7s0.3,0.7,0.7,0.7h0c2.4,0,4.4,2,4.4,4.4v0
+							c0,0.4,0.3,0.7,0.7,0.7s0.7-0.3,0.7-0.7C-702.3,491-704.8,488.4-708,488.4z"/>
+						</svg>
+					</span>
+					<span class="my-account-menu-li-title">My Wishlist</span>
+				</p>
+			</li>
+			<li class="my-account-menu-li" ui-sref-active="active" ui-sref=".emailsubscription">
+				<p>
+					<span class="my-account-menu-li-icon">
+						<svg class="email-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+							 viewBox="-638.3 499.7 20.9 14.4" style="enable-background:new -638.3 499.7 20.9 14.4;" xml:space="preserve">
+						<g>
+							<path d="M-634.8,513.2c-1.3,0-2.3-1-2.3-2.3v-8c0-1.3,1-2.3,2.3-2.3h13.8c1.2,0,2.3,1,2.3,2.3v8c0,1.3-1,2.3-2.3,2.3H-634.8z
+								 M-635.9,512.1L-635.9,512.1c0.4,0.3,0.7,0.4,1.1,0.4h0.1v0h13.7c0.4,0,0.8-0.2,1.1-0.4l0.1-0.1l-5.8-5.6l-1.6,1.2
+								c-0.2,0.2-0.5,0.3-0.7,0.3c-0.3,0-0.5-0.1-0.7-0.3l-1.6-1.2L-635.9,512.1z M-636.2,502.1c-0.1,0.3-0.2,0.5-0.2,0.8v8l0,0.2
+								c0,0.2,0,0.3,0.1,0.5l0.1,0.1l5.6-5.5l-5.5-4.3L-636.2,502.1z M-625.2,506.2l5.6,5.5l0.1-0.1c0.1-0.2,0.1-0.3,0.1-0.5l0-0.2v-8
+								c0-0.3-0.1-0.6-0.2-0.9l-0.1-0.1L-625.2,506.2z M-634.8,501.2c-0.3,0-0.5,0.1-0.8,0.2l-0.1,0.1l7.5,5.8c0.1,0.1,0.2,0.1,0.3,0.1
+								s0.2,0,0.3-0.1l7.5-5.8l-0.1-0.1c-0.2-0.1-0.5-0.2-0.8-0.2H-634.8z"/>
+						</g>
+						</svg>
+					</span>
+					<span class="my-account-menu-li-title" >Email Preferences</span>
+				</p>
+			</li>
+		</ul>	
+	</div>
+	<div class="my-account-menu-content">
+		<div class="my-account-menu-content-inner">
+			<ui-view></ui-view>
+		</div>
+	</div>
+</div> 

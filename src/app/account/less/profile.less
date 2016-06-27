@@ -1,0 +1,450 @@
+.account-landing-container {
+    .my-account-my-profile {
+        .my-profile-container {
+            border: 1px solid #cccccc;
+            padding-bottom: 20px;
+            input,
+            select {
+                background: #F4F4F4;
+                font: 1em @proxima-regular;
+                height: 45px;
+                color: #333333;
+                border-radius: 0px;
+                border: 1px solid #e2e2e2;
+                border-radius: 2px;
+            }
+            select#state {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                text-indent: 1px;
+                text-overflow: '';
+                background-image: url('../assets/images/dropdown-black.svg');
+                background-repeat: no-repeat;
+                background-position: right center;
+                background-size: 35px 12px;
+            }
+            .purple-btn {
+                background-color: #a576ca;
+                border: 1px solid #a576ca;
+                cursor: pointer;
+                letter-spacing: 1px;
+                -webkit-transition: background-color 0.4s ease-out;
+                -moz-transition: background-color 0.4s ease-out;
+                -o-transition: background-color 0.4s ease-out;
+                -ms-transition: background-color 0.4s ease-out;
+                transition: background-color 0.4s ease-out;
+                font: 1em/3em @proxima-bold;
+                text-transform: uppercase;
+                border-radius: 0;
+                color: #fff;
+                height: 45px;
+                vertical-align: middle;
+                line-height: 30px;
+                width: 100%;
+                &:hover {
+                    border: 1px solid #7a43a3;
+                    color: #fff;
+                    background-size: 100% 100%;
+                    background-color: #7a43a3;
+                }
+            }
+            .gray-btn {
+                background-color: #969696;
+                border: #969696;
+                border-radius: 0;
+                color: #fff;
+                font: 1em/3em @proxima-bold;
+                cursor: pointer;
+                letter-spacing: 1px;
+                height: 45px;
+                vertical-align: middle;
+                line-height: 30px;
+                width: 100%;
+                text-transform: uppercase;
+                -webkit-transition: background-color 0.4s ease-out;
+                -moz-transition: background-color 0.4s ease-out;
+                -o-transition: background-color 0.4s ease-out;
+                -ms-transition: background-color 0.4s ease-out;
+                transition: background-color 0.4s ease-out;
+                &:hover {
+                    border: 1px solid #969696;
+                    color: #fff;
+                    background-size: 100% 100%;
+                    background-color: #959595;
+                }
+            }
+            .my-profile-logininfo-container {
+                .my-profile-changepassword {
+                    h4 {
+                        padding-bottom: 5px;
+                        /*margin-bottom: 10px;*/
+                        color: #444444;
+                        letter-spacing: 3px;
+                        font-size: 0.750em;
+                    }
+                }
+                .my-profile-emailinfo {
+                    h5 {
+                        margin-bottom: 18px;
+                        float: left;
+                        &:hover {
+                            color: @font-purple-light;
+                        }
+                    }
+                    h4 {
+                        padding-bottom: 10px;
+                    }
+                    .my-profile-changeemail {
+                        clear: both;
+                        margin-bottom: 20px;
+                    }
+                }
+                .accPro-ChangePwd, .my-profile-changeemail {
+                    padding-left: 25px;
+                    div.current-pwd,
+                    div.new-pwd,
+                    div.confirm-pwd,
+                    .change-email-form {
+                        padding: 0;
+                        label {
+                            font: 0.875em @proxima-light;
+                            font-weight: bold;
+                            color: #464646;
+                            margin-bottom: 10px;
+                        }
+                        input {
+                            height: 30px;
+                            font: 0.875em @proxima-light;
+                            font-weight: bold;
+                            box-shadow: inset 0 0 0 0;
+                        }
+                        .changemail-save, .changemail-cancel {
+                            width: 48%;
+                            margin: 0 2% 0 0;
+                            height: 30px;
+                            font: 0.75em @proxima-light;
+                            font-weight: bold;
+                        }
+                        .changemail-cancel {
+                            margin: 0 0 0 1%;
+                        }
+                    }
+                    div.current-pwd {
+                        border-top: 1px solid #dadada;
+                        padding-top: 10px;
+                    }
+                    .changePwdBtns {
+                        padding: 0;
+                        div.savebtn,
+                        div.cancelbtn {
+                            padding-left: 0;
+                            button.purple-btn,
+                            button.gray-btn {
+                                height: 30px;
+                                font: 0.75em @proxima-light;
+                                font-weight: bold;
+                            }
+                        }
+                        div.savebtn {
+                            padding-right: 3px;
+                        }
+                        div.cancelbtn {
+                            padding-left: 3px;
+                            padding-right: 0;
+                        }
+                    }
+                }
+            }
+            .my-profile-logininfo-container,
+            .my-profile-contactinfo-container {
+                .p0;
+                h2 {
+                    font: 1em/2.5em @proxima-light;
+                    font-weight: bold;
+                    background-color: #a576ca;
+                    color: #fff;
+                    padding-left: 25px;
+                    margin-bottom: 20px;
+                }
+                h3 {
+                    font: 0.875em @proxima-light;
+                    font-weight: bold;
+                    color: #828282;
+                    padding: 0px 0 0px 25px;
+                }
+                h4 {
+                    font: 0.875em @proxima-light;
+                    font-weight: bold;
+                    color: #000000;
+                    padding: 2px 0 15px 25px;
+                    .disp-block {
+                        display: block;
+                    }
+                    &.ph-value {
+                        padding-bottom: 5px;
+                    }
+                }
+                h5 {
+                    font: 0.750em/0.750em @proxima-light;
+                    font-weight: bold;
+                    color: #464646;
+                    border-bottom: 1px solid #979797;
+                    display: inline-block;
+                    margin: 4px 0 10px 25px;
+                    &:hover {
+                        color: @font-purple-light;
+                    }
+                    &.prof-edit-link {
+                        margin-top: 0;
+                    }
+                }
+                .tt-caps {
+                    text-transform: capitalize;
+                }
+            }
+        }
+        .accPro-Edit-Wrap {
+            padding-left: 25px;
+            p.accPro-edit-title {
+                padding: 10px 0;
+                color: #2c2c2c;
+                font: 1em @proxima-bold;
+            }
+            .accPro-Edit-Content {
+                padding:0;
+                div {
+                    padding-left: 0;
+                    label {
+                        font: 1em @proxima-regular;
+                        color: #464646;
+                        margin-bottom: 10px;
+                    }
+                    label.ph_num {
+                        display: block;
+                        clear:both;
+                    }
+                    input.ph-TextField {
+                        width:22%;
+                        margin-right: 10px;
+                        -webkit-appearance: none;
+                        -moz-appearance: textfield;
+                        &::-webkit-inner-spin-button, 
+                        &::-webkit-outer-spin-button {
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                            margin: 0;
+                        }
+                    }
+                }
+                .accPro-Edit-AddrFields {
+                    padding: 0;
+                    margin-bottom: 20px;
+                    label {
+                      display: block;
+                    }
+                }
+            }
+            .shipping-checkbox, .billing-checkbox {
+                padding-left: 0;
+                .cuctom-checkbox;
+                .Checkbox {
+                    &-visible {
+                        width: 17px;
+                        height: 17px;
+                        border: 1px solid #b9b9b9;
+                    }
+                    > input:checked + .Checkbox-visible {
+                        background-position: 15px;
+                    }
+                }
+                label {
+                    margin: 0px 0px 0px 8px;
+                    font: 1em @proxima-light;
+                    font-weight: bold;
+                    color: @label-link-color;
+                    padding: 0px;
+                    vertical-align: middle;
+                    cursor: pointer;
+                }
+            }
+            .acc-Pro-Edit-Btns {
+                padding: 0;
+                margin: 25px 0 20px;
+                .savebtn,.cancelbtn {
+                    padding-left: 0;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width:320px) and (max-width:810px) {
+    .account-landing-container {
+        .my-account-my-profile {
+            .my-account-content-title {
+                margin: 15px auto !important;
+            }
+            .my-profile-container {
+                border: 0;
+                padding: 0;
+                input,
+                select {
+                    height: 35px;
+                    font: 0.75em/3em @proxima-regular;
+                    line-height: 15px;
+                }
+                .purple-btn,
+                .gray-btn {
+                    font: 0.75em/3em @proxima-bold;
+                    line-height: 15px;
+                    height: 35px;
+                }
+                .my-profile-logininfo-container {
+                    .accPro-ChangePwd {
+                        padding-left: 12px;
+                        .changePwdBtns {
+                            margin-bottom: 30px;
+                        }
+                    }
+                }
+                .my-profile-logininfo-container,
+                .my-profile-contactinfo-container {
+                    h2 {
+                        background-color: #666;
+                    }
+                    h5 {
+                        margin-bottom: 25px;
+                        margin-left: 12px;
+                    }
+                    h2,
+                    h3,
+                    h4 {
+                        padding-left: 12px;
+                    }
+                }
+                .my-profile-logininfo-container {
+                    .my-profile-emailinfo {
+                        .my-profile-changeemail {
+                            padding: 0 15px 0 12px;
+                        }
+                    }
+                }
+                .accPro-Edit-Wrap {
+                    padding-left: 12px;
+                    padding-right: 5px;
+                    .accPro-Edit-Content {
+                        div {
+                            padding-right: 8px;
+                            input.ph-TextField {
+                                width: 22%;
+                            }
+                        }
+                    }
+                    .acc-Pro-Edit-Btns {
+                        margin: 15px 0 15px;
+                        div.savebtn,
+                        div.cancelbtn {
+                            padding-right: 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width:320px) and (max-width:810px) and (orientation:landscape) {
+    .account-landing-container {
+        .my-account-my-profile {
+            .my-profile-container {
+                .my-profile-logininfo-container {
+                    .my-profile-changeemail {
+                        .change-email-form {
+                            .changemail-save {
+                                width: 49%;
+                                margin: 0 1% 0 0;
+                            }
+                            .changemail-cancel {
+                                width: 50%;
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .account-landing-container {
+        .my-account-my-profile {
+            .my-profile-container {
+                .my-profile-logininfo-container {
+                    .my-profile-changeemail {
+                        .change-email-form {
+                            .changemail-save {
+                                width: 49%;
+                                margin: 0 1% 0 0;
+                            }
+                            .changemail-cancel {
+                                width: 50%;
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+    .account-landing-container {
+        .my-account-my-profile {
+            .my-profile-container {
+                .my-profile-logininfo-container {
+                    .accPro-ChangePwd {
+                        padding-right: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width:900px) and (max-width:962px) and (orientation:landscape) {
+    .account-landing-container {
+        .my-account-my-profile {
+            .my-profile-container {
+                .my-profile-logininfo-container, .my-profile-contactinfo-container {
+                    width: 50%;
+                }
+                .my-profile-logininfo-container {
+                    .accPro-ChangePwd {
+                        width: 70%;
+                        padding-right: 0;
+                    }
+                    .my-profile-emailinfo {
+                        .my-profile-changeemail {
+                            width: 70%;
+                            padding-right: 0;
+                        }
+                    }
+                    .my-profile-changeemail {
+                        .change-email-form {
+                            .changemail-save {
+                                width: 49%;
+                                margin: 0 1% 0 0;
+                            }
+                            .changemail-cancel {
+                                width: 49%;
+                                margin: 0 0 0 1%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

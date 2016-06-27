@@ -160,11 +160,11 @@ body.modal-open {
                         padding: 10px 0px;
                     }
                 }
-                .list-items {
-                    
-                    height: 44px;
+                .list-items {                 
+                    //height: 44px;
+                    //overflow-y:hidden;
                     .catRightArrow {
-                        display: none;
+                        display: inline-block;
                         background-image: url('../../assets/images/arrow-big-next-active.svg');
                         z-index: 1;
                         background-size: initial;
@@ -173,12 +173,10 @@ body.modal-open {
                         height: 25px;
                         position: relative;
                         top: 9px;
-                        cursor: pointer;
-                     
+                        cursor: pointer;                     
                     } 
-                    .catLeftArrow {
-                   
-                        display: none;
+                    .catLeftArrow {                   
+                        display: inline-block;
                         background-image: url('../../assets/images/arrow-big-next-active.svg');
                         background-size: initial;
                         width: 25px;
@@ -192,14 +190,30 @@ body.modal-open {
                         cursor: pointer;
                     }
                     #owl-carousel-selected-cat {
-                    width:94%;
-                       overflow-x: auto;
-                        white-space: nowrap;
-                        margin: 0 20px;
-                        display:inline-block;
-
+                        //width:94%;
+                        //overflow-x: auto;
+                        //white-space: nowrap;
+                        //margin: 0 20px;
+                        //display:inline-block;
                         .p0;
                         .m0;
+                        &:hover{
+                            .scrollable .scrollable-bar{
+                                opacity: 0.6;
+                            }
+                        }
+                        .scrollable .scrollable-bar{
+                            background-color: transparent;
+                            position:relative;
+                            opacity: 0;
+                            .scrollable-slider{ 
+                                height:6px;
+                                border:none;
+                            }
+                            &.scrollable-bar-y{
+                                display:none;
+                            }
+                        }
                         .owl-stage-outer .owl-stage .owl-item .owl-stage{
                             width:0 !important;
                             &:after{
@@ -232,9 +246,9 @@ body.modal-open {
                                     }
                                 }
                                 &:hover{
-                                    background-color:#8b5bb3;
+                                    background-color:#bea6d2;
                                     color: #fff;
-                                    border: 1px solid #fff; 
+                                    //border: 1px solid #fff; 
                                         svg{
                                             fill:#fff;
                                         }
@@ -615,23 +629,37 @@ body.modal-open {
             .side-ban-1 {
                 position: relative;
                 cursor: pointer;
-                height: 130px;
+                height: auto; 
                 background-color: #7e4fa3;
                 img {
                     width: 100%;
                 }
-                svg path {
-                    fill: #714099; 
-                    stroke: none;
+                span{
+                    width:58%;
+                    height:100%;
+                    display:block;
+                    position:absolute;
+                    overflow: hidden;
+                    svg {
+                        position: absolute;
+                        top: -53px;
+                        left: -15px;
+                        path {
+                            fill: none; 
+                            stroke: #714099;
+                            stroke-width:1px;
+                        }
+                    }
                 }
                 .desc-text {
                     text-align: center;
-                    position: absolute;
-                    top: 25px;
+                    position: relative;
+                    top: 0px;
                     left: 0px;
                     right: 0px;
                     bottom: 0px;
                     margin: auto;
+                    padding:25px 5px;
                     h3 {
                         font: 1.1250em @proxima-bold;
                         color: #fff;
@@ -2435,6 +2463,7 @@ body.modal-open {
     .detail-block {
         padding: 30px 0px 0px 0px;
         background: @half-white;
+        position:relative;
         .close-icon {
             position: absolute;
             top: 15px;
@@ -2506,6 +2535,15 @@ body.modal-open {
             }
         }
         .cart-info {
+        .cartButtons{
+                    top: 50%;
+                    -webkit-transform: translateY(-50%);
+                    -moz-transform: translateY(-50%);
+                    -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);
+                    position: absolute;
+                    right: 0;
+                }
             div {
                 &:last-child{
 
@@ -2560,7 +2598,7 @@ body.modal-open {
                         }
                             }
                             &:first-child{
-                                padding: 0px 7px;
+                                padding: 0px 5px;
                             }
                             &:last-child{
                                 padding: 0px 0px 0px 8px;
@@ -2663,7 +2701,7 @@ body.modal-open {
                 &:nth-child(3) {
                     .last-part {
                         //padding-top: 20px;
-                         padding-top: 6%;
+                         //padding-top: 6%;
                         .view-cart-btn {
                             .purple-button;
                             color: @font-purple-light;
@@ -2695,9 +2733,9 @@ body.modal-open {
         .feature-product-block {
             margin: 25px 0px 0px 0px;
             #owl-carousel-added-cart-frequent-pdt{
-                padding: 0px 30px;
+                padding: 0px 20px;
                 .owl-item{
-                    padding: 0px 15px;
+                    //padding: 0px 15px;
                 }
                 .owl-nav {
                                 display: block;
@@ -2710,7 +2748,7 @@ body.modal-open {
                                     .p0;
                                     color: transparent;
                                     &.owl-prev {
-                                        left:10px;
+                                        left:0px;
                                         background-image: url('../../assets/images/arrow-big-next.svg');
                                         background-size: initial;
                                         width: 20px;
@@ -2725,7 +2763,7 @@ body.modal-open {
                                         }
                                     }
                                     &.owl-next {
-                                        right: 0px;
+                                        right: -1px;
                                         background-image: url('../../assets/images/arrow-big-next.svg');
                                         z-index: 1;
                                         background-size: initial;

@@ -1,0 +1,684 @@
+/* Credit card Style STARTS */
+.credit-Card-Container {
+	padding: 0 20px !important;
+	.custom-select-box {
+		-webkit-appearance: none;
+        -moz-appearance: none;
+        text-indent: 1px;
+        text-overflow: '';
+        background-image: url('../../assets/images/button-down.svg');
+        background-repeat: no-repeat;
+        background-position: right center;
+        background-size: 35px 12px;
+	}
+    .credit-card-headerTitle {
+        p.my-account-content-title {
+            display: inline-block;
+            float: left;
+        }
+        div.add-button {
+            float: right;
+            margin: 15px 0 15px;
+            text-align: right;
+            button {
+                background: #fff;
+                color: #a576ca;
+                font: 0.875em @proxima-regular;
+                font-weight: bold;
+                display: inline-block;
+                padding: 0;
+                .bs-inset-remove;
+            }
+        }
+    }
+    .credit-card-list-cont {
+		.credit-card-list-item {
+			padding: 15px 20px;
+		    background-color: #fff;
+		    border: 1px solid #cccccc;
+		    margin-bottom: 15px;
+			.default-payment {
+				padding-left: 0;
+				.title {
+					font: 0.875em @proxima-light;
+					font-weight: bold;
+					margin-bottom: 5px;
+				}
+				.cuctom-checkbox;
+				.Checkbox {
+					&-visible {
+						width: 18px;
+						height: 18px;
+						border: 1px solid #dedede;
+					}
+					> input:checked + .Checkbox-visible {
+						background-position: 1px;
+					}
+				}
+			}
+			.visa {
+				padding: 0 15px 0 0;
+				.title {
+					font: 0.875em @proxima-regular;
+					margin-bottom: 5px;
+				}
+				.value {
+					font: 1.125em @proxima-bold;
+				}
+			}
+			.cr-card-num {
+				padding-left: 20px;
+				.title {
+					font: 0.875em @proxima-light;
+					font-weight: bold;
+					margin-bottom: 5px;
+				}
+				.addr-line1, .addr-line2 {
+					font: 1.125em @proxima-regular;
+					font-weight: bold;
+				}
+			}
+			.cr-card-name {
+				padding-left: 20px;
+				.title {
+					font: 0.875em @proxima-light;
+					font-weight: bold;
+					margin-bottom: 5px;
+				}
+				.value {
+					font: 1.125em @proxima-regular;
+					font-weight: bold;
+				}
+			}
+			.expiry-date {
+				padding-left: 20px;
+				.title {
+					font: 0.875em @proxima-light;
+					font-weight: bold;
+					margin-bottom: 5px;
+				}
+				.value {
+					font: 1.125em @proxima-regular;
+					font-weight: bold;
+				}
+			}
+			.edit-options {
+				padding: 10px 0;
+				text-align: right;
+				a {
+					font: 0.875em/0.875em @proxima-light;
+					font-weight: bold;
+					color: #2c2c2c;
+    				border-bottom: 1px solid #919191;
+    				margin: 0 5px;
+    				transition: color 0.4s ease-out;
+    				&:hover {
+    					color: @base-bg-purple-light;
+    					border-bottom: 1px solid @base-bg-purple-light;
+    				}
+				}
+				.link-sep {
+					font-size: 0.7em;
+				    color: #2c2c2c;
+				    vertical-align: middle;
+				}
+			}
+			&:last-child {
+				margin-bottom: 0;
+			}
+			&.card-default {
+	    		background-color: #f7f7f7;
+	    	}
+		}
+	}
+    .add-new-credit-card-cont {
+    	.title {
+		    padding-top: 20px;
+		    font: 1.125em @proxima-bold;
+		    margin-bottom: 25px;
+    	}
+    	.add-new-card-div {
+    		.add-new-card-form {
+    			.card-info {
+    				.holder-name, .card-type, .card-number, .exp-date {
+    					padding: 0 15px 0 0;
+	    				label {
+	    					color: #464646;
+	                        font: 1em @proxima-regular;
+	                        margin-bottom: 10px;
+	                        display: block;
+	    				}
+	    				/*input#cardHoldName*/
+	    				input, select {
+	    					color: #666666;
+	                        background: #F4F4F4;
+	                        font: 1em @proxima-regular;
+	                        height: 40px;
+	                        border-radius: 2px;
+	                        .bs-inset-remove;
+	    				}
+	    				select {
+	    					.custom-select-box;
+	    				}
+	    			}
+	    			.exp-date {
+	    				select#month {
+	    					width: 47%;
+    						display: inline-block;
+	    				}
+	    				select#year {
+	    					width: 47%;
+    						display: inline-block;
+    						float: right;
+	    				}
+	    				select {
+	    					.custom-select-box;
+	    				}
+	    			}
+    			}
+    			.address-info {
+    				.billing-addr {
+    					padding: 0 15px 0 0;
+						label {
+							color: #464646;
+	                        font: 1em @proxima-regular;
+	                        margin-bottom: 10px;
+	    				}
+	    				input, select {
+	    					color: #666666;
+	                        background: #F4F4F4;
+	                        font: 1em @proxima-regular;
+	                        height: 40px;
+	                        border-radius: 2px;
+	                        .bs-inset-remove
+	    				}
+	    				select {
+	    					.custom-select-box;
+	    				}
+	    			}
+    			}
+    			.nav-buttons {
+    				margin-top: 25px;
+    				.navig-btns {
+    					padding: 0;
+	    				.savebtn {
+	    					padding: 0 15px 0 0;
+	    					button {
+	    						.purple-button;
+	    						width: 100%;
+	    						height: 45px;
+	    						border-radius: 0;
+	    						padding: 0;
+	    						border: none;
+	    						font: 1em @proxima-regular;
+	    						font-weight: bold;
+	    						text-transform: uppercase;
+	    						&:active {
+	    							border: none;
+	    						}
+	    					}
+	    				}
+	    				.cancelbtn {
+	    					padding: 0 15px 0 0;
+	    					button {
+	    						.transparent-button;
+	    						background-color: #969696;
+	    						width: 100%;
+	    						height: 45px;
+	    						border-radius: 0;
+	    						padding: 0;
+	    						border: none;
+	    						font: 1em @proxima-regular;
+	    						font-weight: bold;
+	    						text-transform: uppercase;
+    						    transition: color 0.4s ease-out;
+	    						&:hover {
+	    							background-color: #969696;
+	    						}
+	    						&:active {
+	    							border: none;
+	    						}
+	    					}
+	    				}
+	    			}
+    			}
+    		}
+    	}
+    }
+}
+@media screen and (min-width:320px) and (max-width:810px) {
+	.credit-Card-Container {
+		padding: 0 !important;
+	    .credit-card-headerTitle {
+	        p.my-account-content-title {
+	            display: block;
+	            float: none;
+	        }
+	        div.add-button {
+	        	display: block !important;
+			    width: 100%;
+			    padding: 15px 0;
+			    border-top: 1px solid #ccc;
+			    margin: 0;
+	        }
+	    }
+	    .credit-card-list-cont {
+	    	.credit-card-list-item {
+	    		padding: 15px 8px;
+	    		.default-payment {
+	    			margin-bottom: 10px;
+	    			.title {
+	    				display: inline-block;
+					    margin-left: 12px;
+					    margin-bottom: 0;
+					    line-height: 22px;
+					    vertical-align: top;
+					    font-size: 0.75em;
+	    			}
+	    			.Checkbox {
+	    				float: left;
+    					clear: both;
+	    			}
+	    		}
+	    		.visa {
+	    			padding-right: 0;
+	    			.visa-icon {
+
+	    			}
+	    		}
+	    		.cr-card-num {
+	    			padding-left: 10px;
+	    			vertical-align: middle;
+    				line-height: 30px;
+    				p {
+    					display: inline-block;
+    				}
+    				.title {
+						font-size: 0.75em;
+						&:after {
+							content: ':';
+							font-size: 0.875em;
+						}
+					}
+					.addr-line1, .value {
+						font-size: 0.8125em;
+					}
+	    		}
+	    		.cr-card-name {
+	    			clear: both;
+				    padding: 0;
+				    margin-top: 15px;
+				    .title {
+						font-size: 0.75em;
+						margin-bottom: 0;
+					}
+					.value {
+						font-size: 0.8125em;
+					}
+	    		}
+	    		.expiry-date {
+	    			padding: 0;
+    				margin-top: 15px;
+    				.title {
+						font-size: 0.75em;
+						margin-bottom: 0;
+					}
+					.value {
+						font-size: 0.8125em;
+					}
+	    		}
+	    		.edit-options {
+    			    position: absolute;
+				    bottom: 15px;
+				    right: 10px;
+				    padding: 0;
+				    a {
+    					margin: 0;
+    					font-size: 0.75em;
+    				}
+	    			.link-sep {
+	    				font-size: 0.6em;
+	    			}
+	    		}
+	    	}
+	    }
+	    .add-new-credit-card-cont {
+	    	.title {
+			    padding-top: 20px;
+			    font: 0.875em @proxima-bold;
+			    margin-bottom: 20px;
+	    	}
+	    	.add-new-card-div {
+	    		.add-new-card-form {
+	    			.card-info {
+	    				.holder-name, .card-type, .card-number, .exp-date {
+	    					padding: 0;
+		    				label {
+		                        font: 0.875em @proxima-regular;
+		                        margin-bottom: 7px;
+		    				}
+		    				input, select {
+		                        font: 0.75em @proxima-regular;
+		                        height: 35px;
+		                        border-radius: 2px;
+		                        .bs-inset-remove;
+		    				}
+		    			}
+		    			.exp-date {
+		    				margin-bottom: 0;
+		    				select#month {
+		    					width: 47%;
+	    						display: inline-block;
+		    				}
+		    				select#year {
+		    					width: 47%;
+	    						display: inline-block;
+	    						float: right;
+		    				}
+		    			}
+	    			}
+	    			.address-info {
+	    				margin-top: 25px;
+	    				padding: 0;
+	    				.billing-addr {
+	    					padding: 0;
+	    					margin-bottom: 0;
+							label {
+		                        font: 0.875em @proxima-regular;
+		                        margin-bottom: 7px;
+		    				}
+		    				input, select {
+		                        font: 0.75em @proxima-regular;
+		                        height: 35px;
+		                        border-radius: 2px;
+		                        .bs-inset-remove;
+		    				}
+		    			}
+	    			}
+	    			.nav-buttons {
+	    				margin-top: 25px;
+	    				.navig-btns {
+	    					padding: 0;
+		    				.savebtn {
+		    					padding: 0 8px 0 0;
+		    					button {
+		    						height: 35px;
+		    						border-radius: 0px;
+		    						font: 0.875em @proxima-bold;
+		    					}
+		    				}
+		    				.cancelbtn {
+		    					padding: 0 0 0 8px;
+		    					button {
+		    						height: 35px;
+		    						border-radius: 0px;
+		    						font: 0.875em @proxima-bold;
+		    					}
+		    				}
+		    			}
+	    			}
+	    		}
+	    	}
+	    }
+	}
+}
+
+@media screen and (min-width:320px) and (max-width:810px) and (orientation:landscape) {
+	.credit-Card-Container {
+		.credit-card-list-cont {
+			.credit-card-list-item {
+				.cr-card-num {
+					line-height: 55px;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width:768px) and (max-width:1110px) and (orientation:portrait) {
+	.credit-Card-Container {
+		.credit-card-list-cont {
+			.credit-card-list-item {
+				padding: 15px 20px;
+				.visa {
+					padding-right: 10px;
+					width: auto;
+				}
+				.cr-card-num {
+					padding-left: 20px;
+					width: auto;
+					.title {
+						line-height: 74px;
+					}
+				}
+				.edit-options {
+					right: 20px;
+				}
+			}
+		}
+		.add-new-credit-card-cont {
+			.add-new-card-div {
+				.add-new-card-form {
+					.card-info {
+						.holder-name, .card-type, .card-number, .exp-date, .address-info {
+							input, select {
+								height: 45px;
+							}
+						}
+						.exp-date {
+							select#month, select#year {
+								width: 49%;
+							}
+						}
+					}
+					.address-info {
+						.billing-addr {
+							select {
+								height: 45px;
+							}
+						}
+					}
+					.nav-buttons {
+						.navig-btns {
+							.savebtn, .cancelbtn {
+								button {
+									height: 45px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width:768px) and (max-width:1110px) and (orientation:landscape) {
+	.credit-Card-Container {
+		.credit-card-list-cont {
+			.credit-card-list-item {
+				padding: 10px;
+				.default-payment, .visa, .cr-card-num, .cr-card-name, .expiry-date {
+					padding: 0 10px 0 0;
+					.addr-line1, .value {
+						font-size: 1em;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width:900px) and (max-width:962px) {
+	.credit-Card-Container {
+	    .credit-card-list-cont {
+	    	.credit-card-list-item {
+	    		.default-payment {
+	    			margin-bottom: 15px;
+	    			.title {
+	    				display: inline-block;
+    					margin: 0 0 0 15px;	
+	    			}
+	    			.Checkbox {
+	    				float: left;
+    					clear: both;
+	    			}
+	    		}
+	    		.cr-card-num {
+	    			width: 80%;
+	    			margin-bottom: 15px;
+	    			.title, .addr-line1 {
+	    				display: inline-block;
+	    			}
+	    		}
+	    	}
+	    }
+	    .add-new-credit-card-cont {
+			.add-new-card-div {
+				.add-new-card-form {
+					.address-info {
+						padding: 0;
+					}
+				}
+			}
+		}
+		.credit-card-headerTitle {
+	        p.my-account-content-title {
+	            display: block;
+	            float: none;
+	        }
+	        div.add-button {
+	        	display: block !important;
+	        	float: none;
+			    padding: 15px 0;
+			    border-top: 1px solid #ccc;
+			    margin: 0;
+	        }
+	    }
+	}
+}
+
+@media screen and (min-width:900px) and (max-width:962px) and (orientation:landscape) {
+	.credit-Card-Container {
+		.credit-card-headerTitle {
+	        p.my-account-content-title {
+	            display: inline-block;
+	            float: left;
+	            width: auto;
+	        }
+	        div.add-button {
+	        	display: block !important;
+	        	float: right;
+			    border-top: none;
+			    margin: 15px 0 20px;
+			    padding: 0;
+	        }
+	    }
+		.credit-card-list-cont {
+			.credit-card-list-item {
+				padding: 10px;
+				.default-payment {
+					padding-left: 0;
+					width: 14%;
+					margin: 0;
+					.title {
+						font-size: 0.815em;
+						margin: 0;
+					}
+				}
+				.visa {
+					padding: 0 10px 0 0;
+					margin-bottom: 0;
+					width: 10%;
+					.title {
+						font-size: 0.815em;
+						margin-bottom: 5px;
+					}
+					.value {
+						font-size: 0.875em;
+					}
+				}
+				.cr-card-num {
+					padding: 0 10px 0 0;
+					margin-bottom: 0;
+					width: 28%;
+					.title {
+						font-size: 0.815em;
+						margin-bottom: 5px;
+					}
+					.addr-line1, .addr-line2 {
+						font-size: 0.875em;
+					}
+				}
+				.cr-card-name {
+					padding: 0 10px 0 0;
+					margin-bottom: 0;
+					width: 20%;
+					.title {
+						font-size: 0.815em;
+						margin-bottom: 5px;
+					}
+					.value {
+						font: 0.875em @proxima-bold;
+					}
+				}
+				.expiry-date {
+					padding: 0 10px 0 0;
+					margin-bottom: 0;
+					width: 15%;
+					.title {
+						font-size: 0.815em;
+						margin-bottom: 5px;
+					}
+					.value {
+						font-size: 0.875em;
+					}
+				}
+				.edit-options {
+					padding: 10px 0;
+					text-align: right;
+					width: 13%;
+					a {
+						font-size: 0.75em;
+						margin: 0;
+					}
+					.link-sep {
+						font-size: 0.7em;
+					    color: #2c2c2c;
+					    vertical-align: middle;
+					}
+				}
+			}
+		}
+		.add-new-credit-card-cont {
+	    	.add-new-card-div {
+	    		.add-new-card-form {
+	    			.card-info {
+	    				width: 50%;
+	    				.holder-name, .card-type, .card-number, .exp-date {
+	    					width: 50%;
+	    					label, input, select {
+	    						font-size: 0.875em;
+	    					}
+		    			}
+	    			}
+	    			.address-info {
+	    				width: 50%;
+	    				.billing-addr {
+	    					width: 50%;
+	    					label, input, select {
+	    						font-size: 0.875em;
+	    						float: left;
+	    					}
+		    			}
+	    			}
+	    			.nav-buttons {
+	    				width: 50%;
+	    				clear: both;
+	    			}
+	    		}
+	    	}
+	    }
+	}
+}
+/* Credit card Style ENDS */

@@ -1,0 +1,306 @@
+<ui-view>
+    <article class="container-fluid my-account-order-history">
+        <p class="my-account-content-title">Order History
+            <span class="bachman-chevron hidden-md hidden-lg chevron" ng-class="{bottom: !mobilemenus}"></span>
+            <span class="mob-menu-clickable" ng-click="mobilemenus=!mobilemenus"></span>
+            <span class="acc-mob-dropdown" ng-show="mobilemenus">
+                <span class="acc-mob-links" ui-sref="account.profile">My Profile</span>
+                <span class="acc-mob-links" ui-sref=".addresses">Address Book</span>
+                <!-- <span class="acc-mob-links" ui-sref="account.orders">Order History</span> -->
+                <span class="acc-mob-links" ui-sref=".trackorders">Track Orders</span>
+                <span class="acc-mob-links" ui-sref="account.event">My Events</span>
+                <span class="acc-mob-links" ui-sref=".CreditCard">Credit Cards</span>
+                <span class="acc-mob-links" ui-sref="account.perpleperksAccount">Perple Perks</span>
+                <span class="acc-mob-links" ui-sref="account.wishlistAccount">My Wishlist</span>
+                <span class="acc-mob-links" ui-sref=".emailsubscription">Email Preferences</span>
+            </span> 
+        </p>
+        <div class="row order-history-list-cont">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 order-history-list-item" ng-repeat="order in profile.showOrders" ng-class="{detailed: orderdetails}">
+                <div class="col-xs-12 order-highlights">
+                    <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 ord-num">
+                        <p class="title">Order Number</p>
+                        <p class="value">{{order.ID}}</p>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 ord-placed">
+                        <p class="title">Order Placed on</p>
+                        <p class="value">{{order.DateCreated | date:'longDate'}}</p>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 ord-recipient">
+                        <p class="title">Recipient</p>
+                        <p class="value">San Paul</p>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 ord-amt">
+                        <p class="title">Total Amount</p>
+                        <p class="value">&#x24;{{order.Subtotal}}</p>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-1 col-lg-1 ord-status">
+                        <p class="title">Status</p>
+                        <p class="value">{{order.Status}}</p>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 ord-track">
+                        <button type="button" class="btn green-btn" ui-sref=".create">Track Shipment</button>
+                        <button type="button" class="btn green-btn mobile-track-btn" ui-sref=".create">Track Order</button>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-1 col-lg-1 ord-expand">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" ng-click="orderdetails=!orderdetails">
+                            <g>
+                                <rect x="5.5" width="1" height="12"></rect>
+                                <rect y="5.5" width="12" height="1"></rect>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div class="col-xs-12 order-history-details" ng-show="orderdetails">
+                    <p class="heading">Order Summary <span>(2 items)</span></p>
+                    <div class="product-details">
+                        <div class="product-header">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 product-count">
+                                    Products
+                                </div>
+                                <div class="col-xs-12 col-sm-2 col-md-3 col-lg-3 delivery-header">
+                                    Delivery Information
+                                </div>
+                                <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1 quantity-header">
+                                    Qty.
+                                </div>
+                                <div class="col-xs-12 col-sm-1 col-md-2 col-lg-2 price-header">
+                                    Price
+                                </div>
+                                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 total-amount-header">
+                                    Total Amount
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 product-info-details">
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 prod-img-cont">
+                                <div class="col-xs-5 prod-img">
+                                    <img src="assets/images/batch4web/orderhistory/order1.png" class="hidden-xs hidden-sm" />
+                                    <img src="assets/images/batch4web/orderhistory/mobile/order1.png" class="visible-xs visible-sm hidden-md hidden-lg" />
+                                </div>
+                                <div class="col-xs-7 prod-desc">
+                                    <p class="custom-name">Premium Roses, Long Stemmed</p>
+                                    <p class="item-number">Item Number: <span>141927</span></p>
+                                    <p class="product-type">Type: <span>Deluxe</span></p>
+                                    <p class="order-mobile-ddate">Delivery Date: <span>March 21. 2016</span></p>
+                                    <p class="order-mobile-dpref">Delivery Preferece: <span>Morning 09:00 AM - 12:00 PM</span></p>
+                                    <p class="order-mobile-price">Price: <span>&#x24;269.99</span></p>
+                                    <p class="order-mobile-qty">Qty: <span>01</span></p>
+                                    <p class="order-mobile-total">Total: <span>&#x24;269.99</span></p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-2 col-md-3 col-lg-3 delivery-info-cont">
+                                <div class="delivery-date-cont">
+                                    <p class="title">Delivery Date</p>
+                                    <p class="value">March 21. 2016</p>
+                                </div>
+                                <div class="delivery-pref-cont">
+                                    <p class="title">Delivery Preferece</p>
+                                    <p class="value">Morning 09:00 AM - 12:00 PM</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1 quant-cont">
+                                <p class="value">01</p>
+                            </div>
+                            <div class="col-xs-12 col-sm-1 col-md-2 col-lg-2 price-cont">
+                                <p class="value">&#x24;269.99</p>
+                            </div>
+                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 total-amt-cont">
+                                <p class="value">&#x24;269.99</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 total-info">
+                            <div class="col-xs-7 card-msg-cont">
+                                <div class="card-msg">
+                                    <div class="card-bg-empty-div">
+                                    </div>
+                                    <div class="col-xs-5 col-md-6 heading">
+                                        Card Message
+                                    </div>
+                                    <div class="col-xs-7 col-md-6 text">
+                                        <p class="line1">Happy Birthday</p>
+                                        <p class="line2">May God Bless You</p>
+                                        <p class="line3">Have A Great Year Ahead</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-5 total-amt-cont">
+                                <div class="subtotal col-xs-12">
+                                    <p class="col-xs-6 title">Subtotal</p>
+                                    <p class="col-xs-6 value">&#x24;269.99</p>
+                                </div>
+                                <div class="tax col-xs-12">
+                                    <p class="col-xs-6 title">Tax</p>
+                                    <p class="col-xs-6 value">&#x24;00.00</p>
+                                </div>
+                                <div class="delivery-charges col-xs-12">
+                                    <p class="col-xs-6 title">Delivery Charges</p>
+                                    <p class="col-xs-6 value">&#x24;10.99</p>
+                                </div>
+                                <div class="total col-xs-12">
+                                    <p class="col-xs-6 title">Total</p>
+                                    <p class="col-xs-6 value">&#x24;269.99</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 ship-bill-cont p0">
+                            <div class="col-xs-5 shipping-info-cont p0">
+                                <div class="col-xs-10 related-info p0">
+                                    <p class="heading p0">Shipping Information</p>
+                                    <div class="col-xs-4 title p0">
+                                        <p>Shipping to:</p>
+                                    </div>
+                                    <div class="col-xs-8 values p0">
+                                        <p class="name">John Snow</p>
+                                        <p class="res-describer">(Residence)</p>
+                                        <p class="addr1">302 Park Avenue</p>
+                                        <p class="addr2">Minneapolis, MN 55401</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-5 billing-info-cont p0">
+                                <div class="col-xs-10 related-info p0">
+                                    <p class="heading p0">Billing Information</p>
+                                    <div class="col-xs-5 title p0">
+                                        <p>Billing Address:</p>
+                                    </div>
+                                    <div class="col-xs-7 values p0">
+                                        <p class="name">John Snow</p>
+                                        <p class="addr1">302 Park Avenue</p>
+                                        <p class="addr2">Minneapolis, MN 55401</p>
+                                        <p class="addr3">55401</p>
+                                    </div>
+                                    <div class="col-xs-5 pay-method p0">
+                                        <p>Payment Method:</p>
+                                    </div>
+                                    <div class="col-xs-7 pay-method-value p0">
+                                        <p class="value">Credit Card</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 hidden-xs hidden-sm p0 print-icon-cont">
+                                <svg class="print-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-707 433.2 113.1 110.3" style="enable-background:new -707 433.2 113.1 110.3;" xml:space="preserve">
+                                    <g>
+                                        <g>
+                                            <path style="stroke-width: 3;" d="M-616.4,475.6h-68.2c-5.4,0-9.7,4.3-9.7,9.7v20.8c0,5.4,4.3,9.7,9.7,9.7h11.9v-3.5h-11.9c-3.5,0-6.2-2.8-6.2-6.2v-20.8
+                                                c0-3.5,2.8-6.2,6.2-6.2h68.2c3.5,0,6.2,2.8,6.2,6.2v20.8c0,3.5-2.8,6.2-6.2,6.2h-11.1v3.5h11.1c5.4,0,9.7-4.3,9.7-9.7v-20.8
+                                                C-606.5,479.9-611,475.6-616.4,475.6z"></path>
+                                        </g>
+                                        <g>
+                                            <path style="stroke-width: 3;" d="M-624,479.1h-52.1v-35.7h52.1V479.1z M-672.7,475.6h45.2v-28.7h-45.2V475.6z"></path>
+                                        </g>
+                                        <g>
+                                            <path style="stroke-width: 3;" d="M-676.1,497.7v35.7h52.1v-35.7H-676.1z M-627.5,529.9h-45.2v-28.7h45.2V529.9z"></path>
+                                        </g>
+                                        <g>
+                                            <g>
+                                                <rect x="-666.3" y="507.1" width="33.1" height="2.6"></rect>
+                                            </g>
+                                            <g>
+                                                <rect x="-666.3" y="514.5" width="33.1" height="2.6"></rect>
+                                            </g>
+                                            <g>
+                                                <rect x="-666.3" y="521.8" width="16.6" height="2.6"></rect>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 order-history-list-item">
+                <div class="col-xs-12 order-highlights">
+                    <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 ord-num">
+                        <p class="title">Order Number</p>
+                        <p class="value">1100414</p>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 ord-placed">
+                        <p class="title">Order Placed on</p>
+                        <p class="value">March 21, 2016</p>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 ord-recipient">
+                        <p class="title">Recipient</p>
+                        <p class="value">San Paul</p>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 ord-amt">
+                        <p class="title">Total Amount</p>
+                        <p class="value">&#x24;269.99</p>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-1 col-lg-1 ord-status">
+                        <p class="title">Status</p>
+                        <p class="value">Delivered</p>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 ord-track">
+                        <button type="button" class="btn green-btn" ui-sref=".create">Track Shipment</button>
+                        <button type="button" class="btn green-btn mobile-track-btn" ui-sref=".create">Track Order</button>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-1 col-lg-1 ord-expand">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+                            <g>
+                                <rect x="5.5" width="1" height="12"></rect>
+                                <rect y="5.5" width="12" height="1"></rect>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <!-- <h3 class="page-header">
+            Orders
+        </h3>
+        <ordercloud-search servicename="Orders" controlleras="orders"></ordercloud-search> -->
+        <!-- <div class="well well-lg text-center" ng-if="!orders.list.Items.length">
+            <b ng-if="!orders.searching()">The selected buyer does not have any orders.</b>
+            <b ng-if="orders.searching()"><i class="fa fa-search"></i> No orders match your search.</b>
+        </div> -->
+        <!-- <section class="table-fixed-header">
+            <div class="table-header-bg"></div>
+            <div class="table-container" ordercloud-infinite-scroll servicename="Orders" controlleras="orders">
+                <div>{{vm.order}}</div>
+                <table>
+                    <table class="table table-hover">
+                    <colgroup>
+                        <col class="action-column"/>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>
+                            <div>Order Number :</div>
+                        </th>
+                        <th>
+                            <div>Order Placed On :</div>
+                        </th>
+                        
+                        <th>
+                            <div>Total Amount :</div>
+                        </th>
+                        <th>
+                            <div>Status:</div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="order in orders.orderdata.Items" ui-sref="orders.detail({orderid: order.ID})"> -->
+                        <!-- <td>
+                            <div class="btn-group btn-block" uib-dropdown dropdown-append-to-body>
+                                <button type="button" class="btn btn-default btn-block" uib-dropdown-toggle><i class="fa fa-cog"></i> <span class="caret"></span></button>
+                                <ul uib-dropdown-menu role="menu">
+                                    <li role="menuitem"><a ui-sref=".edit({orderid: order.ID})">Edit Order</a></li>
+                                </ul>
+                            </div>
+                        </td> -->
+                        <!-- <td>{{order.ID}}</td>
+                        <td>{{order.DateCreated | date}}</td>
+                        <td>{{order.Total | currency}}</td>
+                        <td>{{order.Status}}</td>
+                        <td><button type="button" class="btn btn-default">Track Order</button></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section> -->
+    </article>
+</ui-view>

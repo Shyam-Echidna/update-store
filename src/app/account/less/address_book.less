@@ -1,0 +1,513 @@
+/* Address Book Style starts */
+.address-book-container {
+	.row-address-search {
+	    margin: 15px 0;
+	    border-top: 1px solid #d6d6d6;
+    	padding-top: 20px;
+		.search-box {
+			position: relative;
+			padding: 0;
+			width: 84%;
+			input {
+			    height: 40px;
+			    -moz-border-radius: 3px;
+                -webkit-border-radius: 3px;
+                border-radius: 3px;
+                font: 0.815em @proxima-light;
+                letter-spacing: normal;
+			}
+			.addr-search-icon {
+				position: absolute;
+				top: 10px;
+				right: 10px;
+				height: 20px;
+				width: 20px;
+				svg {
+					.search-icon-line, .search-icon-circle {
+						fill: transparent;
+					    stroke: #686868;
+					    stroke-width: 3;
+					}
+				}
+			}
+		}
+		.add-button {
+		    width: 16%;
+		    padding: 0 0 0 8px;
+			.add-new-addr-btn {
+				background: #fff;
+			    height: 40px;
+			    color: #a576ca;
+			    font: 0.875em @proxima-regular;
+			    font-weight: bold;
+			    &:active {
+			    	background: transparent;
+			    	border: none;
+			    	.bs-inset-remove;
+			    }
+			    &:before {
+			    	content: '+';
+				    font-size: 20px;
+				    position: relative;
+				    left: -8px;
+				    top: 2px;
+			    }
+			}
+		}
+		.add-new-addr-cont, .adress-edit-container {
+			margin: 20px 0 15px;
+			padding: 0 25px;
+			border-top: 1px solid #ddd;
+			border-bottom: 1px solid #ddd;
+			background-color: #fbfbfb;
+			.title {
+				color: #2c2c2c;
+				font: 1em @proxima-regular;
+				font-weight: bold;
+				margin: 20px 0 15px;
+			}
+			.add-new-addr-div {
+				width: 50%;
+				.add-new-addr-form {
+					.nick-name, .first-name, .last-name, .zip-code, .address, .address2, .city, .state, .phone-number {
+						padding-left: 0;
+						label {
+							font: 1em @proxima-light;
+							font-weight: bold;
+							color: #464646;
+							margin-bottom: 10px;
+						}
+						input, select {
+							background: #F4F4F4;
+							font: 1em @proxima-light;
+							font-weight: bold;
+						    height: 45px;
+						    color: #333333;
+						    border-radius: 0px;
+						    border: 1px solid #e2e2e2;
+						}
+					}
+					.state {
+						select {
+							-webkit-appearance: none;
+						    -moz-appearance: none;
+						    text-indent: 1px;
+						    text-overflow: '';
+						    background-image: url('../../assets/images/button-down.svg');
+						    background-repeat: no-repeat;
+						    background-position: right center;
+						    background-size: 35px 12px;
+						}
+					}
+					.phone-number {
+						label {
+							display: block;
+						}
+						input {
+							background: #F4F4F4;
+							width: 18%;
+							margin-right: 10px;
+						}
+					}
+					.shipping-checkbox, .billing-checkbox {
+						padding-left: 0;
+						.cuctom-checkbox;
+				        .Checkbox {
+				            &-visible {
+				                width: 17px;
+				                height: 17px;
+				                border: 1px solid #b9b9b9;
+				            }
+				            > input:checked + .Checkbox-visible {
+				                background-position: 15px;
+				            }
+				        }
+						label {
+				            margin: 0px 0px 0px 8px;
+				            font: 1em @proxima-light;
+				            font-weight: bold;
+				            color: @label-link-color;
+				            padding: 0px;
+				            vertical-align: middle;
+				            cursor: pointer;
+				        }
+					}
+					.navig-btns {
+						padding: 0;
+						margin: 25px 0 20px;
+						.savebtn {
+							padding-left: 0;
+							.purple-btn {
+								.purple-button;
+								font: 1.000em/3em @proxima-regular;
+								font-weight: bold;
+								text-transform: uppercase;
+								border-radius: 0;
+								color: #fff;
+								height: 45px;
+							    vertical-align: middle;
+							    line-height: 30px;
+							    width: 100%;
+							}
+						}
+						.cancelbtn {
+							padding-left: 0;
+							.gray-btn {
+								background-color:#969696;
+								border:#969696;
+								border-radius: 0;
+							    color: #fff;
+							    font: 1.000em/3em @proxima-regular;
+							    font-weight: bold;
+								cursor:pointer;
+								letter-spacing: 1px;
+								height: 45px;
+							    vertical-align: middle;
+							    line-height: 30px;
+							    width: 100%;
+							    text-transform: uppercase;
+								.background-fade;
+								&:hover{
+									border:1px solid #969696;
+									color: #fff;
+									background-size: 100% 100%;
+									background-color:#959595;
+								}
+							}
+						}
+					}
+				}
+			}			
+		}
+		&.for-edit-cont {
+			padding-top: 0;
+			margin-top: 20px;
+			.adress-edit-container {
+				margin: 0;
+				border-top: none;
+			}
+		}
+	}
+	.addr-book-list-cont {
+		.addr-book-list-item {
+			padding: 15px 20px;
+		    background-color: #f7f7f7;
+		    border: 1px solid #cccccc;
+		    margin-bottom: 15px;
+			.default-address {
+				padding-left: 0;
+				width: 15%;
+				.title {
+					font: 0.875em @proxima-light;
+					font-weight: bold;
+					margin-bottom: 5px;
+				}
+				.cuctom-checkbox;
+					.Checkbox {
+						&-visible {
+							width: 18px;
+							height: 18px;
+							border: 1px solid #dedede;
+						}
+						> input:checked + .Checkbox-visible {
+							background-position: 1px;
+						}
+					}
+			}
+			.name {
+				padding-left: 0;
+				width: 17%;
+				.title {
+					font: 0.875em @proxima-light;
+					font-weight: bold;
+					margin-bottom: 5px;
+				}
+				.value {
+					font: 1.125em @proxima-regular;
+					font-weight: bold;
+					word-break: break-word; 
+				}
+			}
+			.address {
+				padding-left: 0;
+				width: 38%;
+				.title {
+					font: 0.875em @proxima-light;
+					font-weight: bold;
+					margin-bottom: 5px;
+				}
+				.addr-line1, .addr-line2 {
+					font: 1.125em @proxima-regular;
+					font-weight: bold;
+					word-break: break-word;
+				}
+			}
+			.phone-number {
+				padding-left: 0;
+				width: 15%;
+				.title {
+					font: 0.875em @proxima-light;
+					font-weight: bold;
+					margin-bottom: 5px;
+				}
+				.value {
+					font: 1.125em @proxima-regular;
+					font-weight: bold;
+					word-break: break-all;
+				}
+			}
+			.edit-delete {
+				padding: 10px 0;
+				width: 15%;
+				text-align: right;
+				a {
+					font: 0.875em @proxima-regular;
+					color: #2c2c2c;
+    				border-bottom: 1px solid #919191;
+    				margin: 0 5px;
+    				&:hover {
+                        color: @font-purple-light;
+                        border-bottom: 1px solid @font-purple-light;
+                    }
+				}
+				.link-sep {
+					font-size: 0.7em;
+				    color: #2c2c2c;
+				    vertical-align: middle;
+				}
+			}
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+@media screen and (min-width:320px) and (max-width:810px) {
+	.address-book-container {
+		.my-account-content-title {
+		    margin: 15px auto 15px !important;
+		}
+	.row-address-search {
+		border-top: 1px solid #f1f1f1;
+    	padding-top: 15px;
+		.search-box {
+			width: 100%;
+		}
+		.add-button {
+		    width: 20%;
+			button {
+			}
+		}
+		.add-new-addr-cont {
+		    padding: 0 10px;
+		    margin: 15px 0;
+		    width: 100%;
+		    .title {
+		    	font-size: 0.8125em;
+		    	margin: 15px 0;
+		    }
+			.add-new-addr-div {
+				width: 100%;
+				.add-new-addr-form {
+					.phone-number {
+						input {
+							width: 22%;
+						}
+					}
+					.nick-name, .first-name, .last-name, .zip-code, .address, .address2, .city, .state, .phone-number {
+						label {
+							font-size: 0.75em;
+							margin-bottom: 5px;
+						}
+						input, select {
+							font-size: 0.75em;
+							height: 35px;
+						}
+					}
+					.state{
+						select {
+							background-size: 30px 10px;
+						}
+					}
+					.col-xs-6.form-group {
+						width: 48%;
+						padding: 0;
+						&:nth-child(odd) {
+							margin-right: 4%;
+						}
+					}
+					.col-xs-12.form-group {
+						width: 100%;
+						padding: 0;
+					}
+					.navig-btns {
+						margin: 15px 0 20px;
+						.savebtn {
+							width: 48%;
+							padding: 0;
+							margin-right: 4%;
+							.purple-btn {
+								height: 35px;
+								line-height: 35px;
+								padding: 0;
+								font-size: 0.875em;
+							}
+						}
+						.cancelbtn {
+							width: 48%;
+							padding: 0;
+							.gray-btn {
+								height: 35px;
+								line-height: 35px;
+								padding: 0;
+								font-size: 0.875em;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.addr-book-list-cont {
+		.addr-book-list-item {
+			margin-bottom: 5px;
+			padding: 10px;
+			.default-address {
+    			width: 30%;
+			    margin-bottom: 15px;
+				.title {
+					margin-bottom: 0;
+					font-size: 0.75em;
+				    position: relative;
+    				left: 30px;
+				}
+				.Checkbox {
+					position: absolute;
+				    top: 0;
+				    left: 0;
+				}
+			}
+			.name {
+				width: 30%;
+			    margin-bottom: 15px;
+			    float: right;
+			    padding: 0;
+				.title {
+					font-size: 0.75em;
+				}
+				.value {
+					font-size: 0.8125em;
+				}
+			}
+			.address {
+				width: 70%;
+    			margin-bottom: 15px;
+				.title {
+					font-size: 0.75em;
+				}
+				.addr-line1, .addr-line2 {
+					font-size: 0.8125em;
+				}
+			}
+			.phone-number {
+				width: 30%;
+    			padding: 0;
+    			margin-bottom: 15px;
+				.title {
+					font-size: 0.75em;
+				}
+				.value {
+					font-size: 0.8125em;
+				}
+			}
+			.edit-delete {
+				width: 30%;
+			    text-align: left;
+			    float: right;
+			    padding: 0;
+				a {
+					margin: 0;
+					font-size: 0.75em;
+				}
+				.link-sep {
+					margin: 0 5px;
+					font-size: 0.7em;
+				}
+			}
+		}
+	}
+	}
+}
+
+@media screen and (min-width:900px) and (max-width:962px) {
+	.address-book-container {
+		.row-address-search {
+			.search-box {
+			    width: 100%;
+			}
+			.add-button {
+				width: 22%;
+			}
+			.add-new-addr-cont {
+				.add-new-addr-div {
+					width: 100%;
+					.add-new-addr-form {
+						.phone-number {
+							input {
+								width: 22%;
+							}
+						}
+					}
+				}
+			}
+		}
+		.addr-book-list-cont {
+			.addr-book-list-item {
+				.address {
+					width: 35%;
+				}
+				.phone-number {
+					width: 18%;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width:767px) and (max-width:1110px) and (orientation:landscape) {
+	.address-book-container {
+		.row-address-search {
+			.search-box {
+			    width: 75%;
+			}
+			.add-button {
+				width: 25%;
+				float: left;
+				display: block !important;
+			}
+			.add-new-addr-cont {
+				width: 50%;
+				.add-new-addr-div {
+					.add-new-addr-form {
+						.phone-number {
+							input {
+								width: 22%;
+							}
+						}
+					}
+				}
+			}
+		}
+		.addr-book-list-cont {
+			.addr-book-list-item {
+				.address {
+					width: 35%;
+				}
+				.phone-number {
+					width: 18%;
+				}
+			}
+		}
+	}
+}

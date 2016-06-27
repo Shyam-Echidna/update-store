@@ -1,17 +1,16 @@
 angular.module( 'orderCloud' )
 
 	.config( AccountConfig )
+	.factory( 'AccountService', AccountService )
 	.controller( 'AccountCtrl', AccountController )
 	.controller( 'profilectrl', ProfileController )
-	.factory( 'AccountService', AccountService )
 	.controller( 'ConfirmPasswordCtrl', ConfirmPasswordController )
 	.controller( 'ChangePasswordCtrl', ChangePasswordController )
-	.controller( 'PerpleperksAccountCtrl', PerpleperksAccountController )
-	.controller( 'CreditCardCtrl', CreditCardController )
-	.controller( 'MyEventsCtrl', MyEventsController )
+	.controller( 'CreditCardCtrl', CreditCardController)
 	.controller( 'TrackOrderCtrl', TrackOrderController )
 	.controller( 'EmailSubscriptionCtrl', EmailSubscriptionController )
 	.controller( 'corsageBuilderCtrl', corsageBuilderController)
+	
 
 ;
 
@@ -47,6 +46,12 @@ function AccountConfig( $stateProvider ) {
 			controller: 'AccountCtrl',
 			controllerAs: 'account'
 		})
+		.state( 'account.getdirection',{
+			url: '/getdirection',
+			templateUrl: 'account/templates/getdirection.tpl.html',
+			controller: 'AccountCtrl',
+			controllerAs: 'account'
+		})
 		.state( 'account.changePassword', {
 			url: '/account/changepassword',
 			//templateUrl: 'account/templates/changePassword.tpl.html',
@@ -56,8 +61,8 @@ function AccountConfig( $stateProvider ) {
 		.state( 'account.perpleperksAccount', {
 			url: '/perpleperksAccount',
 			templateUrl: 'account/templates/perpleperksAccount.tpl.html',
-			controller: 'PerpleperksAccountCtrl',
-			controllerAs: 'PerpleperksAccount'
+			controller: 'AccountCtrl',
+			controllerAs: 'account'
 		})
 		.state( 'account.creditCardAccount', {
 			url: '/creditCardAccount',
@@ -121,12 +126,12 @@ function AccountConfig( $stateProvider ) {
 			controller:'CreditCardCtrl',
 			controllerAs: 'creditCard'
 		})
-		.state( 'account.eventsAccount', {
+/*		.state( 'account.eventsAccount', {
 			url: '/eventsAccount',
-			templateUrl: 'account/templates/myAccountEvents.tpl.html',
+			templateUrl: 'orders/templates/myAccountEvents.tpl.html',
 			controller: 'MyEventsCtrl',
 			controllerAs: 'MyEventsController'
-		})
+		})*/
 		.state( 'account.trackorders', {
 			url: '/trackorders',
 			templateUrl: 'account/templates/trackorder.tpl.html',
@@ -139,13 +144,13 @@ function AccountConfig( $stateProvider ) {
 			controller: 'EmailSubscriptionCtrl',
 			controllerAs: 'EmailSubscription'
 		})
-		.state( 'corsageBuilder', {
+		/*.state( 'corsageBuilder', {
 			parent: 'base',
 			url: '/corsageBuilder',
 			templateUrl:'account/templates/corsageBuilder.tpl.html',
 			controller:'corsageBuilderCtrl',
 			controllerAs: 'corsageBuilder'
-		})
+		})*/
 }
 function AccountService( $q, $uibModal,OrderCloud,Underscore) {
 	var service = {
@@ -232,7 +237,7 @@ function AccountService( $q, $uibModal,OrderCloud,Underscore) {
 
         function getProduct() {
             OrderCloud.Products.Get(lineItem.ProductID)
-                .then(function(product) {
+                .then(function(product){
                     lineItem.Product = product;
                     deferred.resolve(lineItem);
                 });
@@ -321,7 +326,6 @@ function AccountController( $exceptionHandler, $location, $state, $scope, OrderC
 	var vm = this;
 	vm.profile = angular.copy(CurrentUser);
 	var currentProfile = CurrentUser;
-	
 	vm.update = function() {
 		console.log("vm.profile== after",vm.profile);
 		AccountService.Update(currentProfile, vm.profile)
@@ -352,12 +356,24 @@ function AccountController( $exceptionHandler, $location, $state, $scope, OrderC
 		console.log("wish list ====",items);
 		vm.wishList = items;
 	});
-
-	$scope.$on('SOME_TAG', function(response) {
-		// ....
-		console.log("root==",response);
-	})
 	//Wishlist Listing Ends Here
+	//---purpleperks functionality starts here---//
+	var arr=[];
+	var filter={
+		"Name":"Purple Perks"
+	};
+	OrderCloud.SpendingAccounts.List(null, 1,100,null,null,filter).then(function(purple){
+		console.log("perple account is---:",purple);
+		for(var i=0;i<purple.Items.length;i++){
+			var ppp=purple.Items[0].xp;
+			arr.push(ppp);
+		}
+		$q.all(arr).then(function(res){
+			console.log("points are=:",res);
+			vm.Perpelperk=res;
+		})
+	})
+	//---purpleperks functionality ends here---//
 	OrderCloud.Me.ListAddresses().then(function(data){
 		vm.addressData=data.Items;
 		console.log("adress data are--",vm.addressData);
@@ -382,7 +398,7 @@ function AccountController( $exceptionHandler, $location, $state, $scope, OrderC
 		OrderCloud.Me.CreateAddress(obj).then(function(res){
 			console.log("adress new are-",res);
 			$state.go('account.addresses',{}, {reload: true});
-			$location.hash('top');
+			$location.hash('bottom');
 			$anchorScroll();
 		})
 		OrderCloud.Me.ListAddresses().then(function(addressdatares){
@@ -468,7 +484,7 @@ function AccountController( $exceptionHandler, $location, $state, $scope, OrderC
 					"Zip":address.Zip,
 					"Phone":address.Phone,
 					"Country":address.Country,
-					"xp":dataTrue
+					 "xp":dataTrue
 				};
 			   OrderCloud.Me.UpdateAddress(address.ID,new_value).then(function(res){
 			    			console.log("patched address-",res);
@@ -477,7 +493,31 @@ function AccountController( $exceptionHandler, $location, $state, $scope, OrderC
 
 			   	console.log("deafult", vm.addressData);
 	}
+	$scope.loadMap = function(){
+		setTimeout(function(){
+	// starting map showing
+	     var map, lat, lon,
+		directionsDisplay = new google.maps.DirectionsRenderer({
+			draggable: true,
+			suppressMarkers: true
+		}),
+		directionsService = new google.maps.DirectionsService();
+		//navigator.geolocation.getCurrentPosition(function (position) {
+		//lat = position.coords.latitude;
+		//lon = position.coords.longitude;
+		lat = "44.9706756";
+		lon = "-93.3315183";
 
+		var mapOptions = {
+			zoom: 10,
+			center: new google.maps.LatLng(lat, lon),
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		}
+		map = new google.maps.Map(document.getElementById('map'), mapOptions);
+		directionsDisplay.setMap(map);
+		document.getElementById("panel2").style.display = "none";},3000);
+	//ending map showing
+}
 
 }
 
@@ -493,7 +533,7 @@ function ConfirmPasswordController( $uibModalInstance ) {
 	};
 
 }
-function CreditCardController(OrderCloud) {
+function CreditCardController(OrderCloud,$location,$anchorScroll) {
 	var vm = this;
 	vm.createCreditCard=function(cards){
 		var obj={
@@ -506,11 +546,15 @@ function CreditCardController(OrderCloud) {
 	};
 	OrderCloud.Me.CreateCreditCard(obj).then(function(rty){
 	console.log("credit card is created",rty);
+	$location.hash('bottom');
+	$anchorScroll();
 	})
 }
 	OrderCloud.Me.ListCreditCards().then(function(res){
 		console.log("credits cards are-:",res);
 		vm.carddata=res;
+		$location.hash('bottom');
+		$anchorScroll();
 	})
 	OrderCloud.Me.DeleteCreditCard().then(function(cdel){
 		console.log("credit card is deleted--",cdel);
@@ -535,33 +579,12 @@ function ChangePasswordController( $state, $exceptionHandler, toastr, AccountSer
 			});
 	};
 }
-function PerpleperksAccountController( $exceptionHandler, toastr, $q, OrderCloud) {
-	var vm = this;
-	var arr=[];
-	var filter={
-		"Name":"Purple Perks"
-	};
-	OrderCloud.SpendingAccounts.List(null, 1,100,null,null,filter).then(function(purple){
-		console.log("perple account is---:",purple);
-		for(var i=0;i<purple.Items.length;i++){
-			var ppp=purple.Items[0].xp;
-			arr.push(ppp);
-		}
-		$q.all(arr).then(function(res){
-			console.log("points are=:",res);
-			vm.Perpelperk=res;
-		})
-	})
-}
 function DemoController( $exceptionHandler, toastr, CurrentUser, AccountService, Addresses, $q ) {
 	var vm = this;
 }
 /*function CreditCardAccountController( $exceptionHandler, toastr, CurrentUser, AccountService, Addresses, $q ) {
 	var vm = this;
 }*/
-function MyEventsController( $exceptionHandler, toastr, CurrentUser, AccountService, Addresses, $q ) {
-	var vm = this;
-}
 function EmailSubscriptionController( $exceptionHandler, toastr, AccountService, $q ) {
 	var vm = this;
 }
@@ -589,9 +612,9 @@ function ProfileController($exceptionHandler,OrderCloud, AccountService, Current
 	})
 	
 })
-    vm.editAdressDefault=function(default_add){
+ vm.editAdressDefault=function(default_add){
 			vm.editAddr=default_add;
-			$scope.showdefautEdit=false;
+			//$scope.showdefautEdit=false;
 			vm.stateData=vm.editAddr.State;
 			vm.contact={};
 			var phn = vm.editAddr.Phone;
@@ -702,18 +725,62 @@ OrderCloud.Me.ListOutgoingOrders(null, 1, 100, null, null, filter, null, null).t
    ajaxarr.push(promise);
    });
    $q.all(ajaxarr).then(function(items){
-   console.log("shyam===",items);
    vm.eventsDetails=items;
    console.log("events are=====",vm.eventsDetails);
 });
-   
 })
-//Events Functionnallty Ends here
-/*function AddressesController($scope, Addresses, CurrentUser, Me, $q, $state, $http, $anchorScroll,$location) {
+}
+
+/*function MapController($scope){
 	var vm=this;
-	
-}*/
-function corsageBuilderController($scope){
+	var map, lat, lon,
+		directionsDisplay = new google.maps.DirectionsRenderer({
+			draggable: true,
+			suppressMarkers: true
+		}),
+		directionsService = new google.maps.DirectionsService();
+	//navigator.geolocation.getCurrentPosition(function (position) {
+		/*lat = position.coords.latitude;
+		lon = position.coords.longitude;*/
+	/*	lat = "44.9706756";
+		lon = "-93.3315183";
+
+		var mapOptions = {
+			zoom: 10,
+			center: new google.maps.LatLng(lat, lon),
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		}
+		map = new google.maps.Map(document.getElementById('map'), mapOptions);
+		directionsDisplay.setMap(map);
+		 $scope.markers = [];
+    
+    var infoWindow = new google.maps.InfoWindow();
+    
+    var createMarker = function (info){
+        
+        var marker = new google.maps.Marker({
+            map: $scope.map,
+            position: new google.maps.LatLng(info.lat, info.long),
+            title: info.city
+        });
+        marker.content = '<div class="infoWindowContent">' + info.desc + '</div>';
+        
+        google.maps.event.addListener(marker, 'click', function(){
+            infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
+            infoWindow.open($scope.map, marker);
+        });
+        
+        $scope.markers.push(marker);
+        
+    }
+    $scope.openInfoWindow = function (e, selectedMarker) {
+		e.preventDefault();
+		google.maps.event.trigger(selectedMarker, 'click');
+	}
+
+	}*/
+//Events Functionnallty Ends here
+/*function corsageBuilderController($scope){
  	var vm = this;
 	setTimeout(function(){
     var owl2 = angular.element("#owl-carousel-type");   
@@ -1060,5 +1127,4 @@ function corsageBuilderController($scope){
         }
     });
     },1000)          
-}
-}
+}*/

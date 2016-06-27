@@ -11,8 +11,9 @@ angular.module( 'orderCloud' )
 function AlgoliaConfig($stateProvider) {
     $stateProvider.state('algoliaresults', {
         parent: 'base',
+        abstract: true,
         url: '/search-results?searchterm&filters&productpage&infopage&tab&productssortby&infosortby&min&max',
-        templateUrl: 'algolia/templates/algoliaSearchResults.tpl.html',
+        templateUrl: 'algolia/templates/algoliaSearchResults.tpl.html',      
         controller: 'AlgoliaSearchResultsCtrl',
         controllerAs: 'algoliaSearchResults',
         resolve: {
@@ -209,7 +210,7 @@ function AlgoliaConfig($stateProvider) {
                 }
 
             },
-            InformationSearchResult: function(AlgoliaSvc, $stateParams) {
+        /*    InformationSearchResult: function(AlgoliaSvc, $stateParams) {
                 var infoIndex;
                 if ($stateParams.infosortby) {
                     infoIndex = AlgoliaSvc.GetIndex($stateParams.infosortby);
@@ -223,7 +224,7 @@ function AlgoliaConfig($stateProvider) {
                     .then(function(data) {
                         return data;
                     })
-            },
+            },*/
             FacetList: function(ProductSearchResult, $stateParams) {
                 if ($stateParams.filters) {
                     var tempArray = $stateParams.filters.split(",");
@@ -260,7 +261,7 @@ function AlgoliaConfig($stateProvider) {
                 if ($stateParams.filters) {
                     var arraySplit = $stateParams.filters.split(",");
                     arraySplit.forEach(function(e) {
-                        result.push(e.split(":")[1])
+                        result.push({"facetname":e.split(":")[0],"value":e.split(":")[1]})
                     })
                 }
                 return result;
@@ -282,6 +283,8 @@ function AlgoliaConfig($stateProvider) {
 
         }
     })
+
+
 }
 
 
@@ -300,13 +303,12 @@ function AlgoliaSearchDirective() {
 }
 
 function AlgoliaSearchController(AlgoliaSvc, $q, $scope, $state, Underscore) {
-
     var vm = this;
     vm.searchWidth = $scope.searchWidth;
     var productIndex = AlgoliaSvc.GetIndex('products');
     var infoIndex = AlgoliaSvc.GetIndex('Information');
 
-    function getBothIndexes(value) {
+   /* function getBothIndexes(value) {
         var deferred = $q.defer();
         var output = [];
         AlgoliaSvc.Search(productIndex, value, null, {hitsPerPage: 9})
@@ -327,11 +329,33 @@ function AlgoliaSearchController(AlgoliaSvc, $q, $scope, $state, Underscore) {
                     })
             });
         return deferred.promise;
+    }*/
+      function getBothIndexes(value) {
+        var deferred = $q.defer();
+        var output = [];
+        AlgoliaSvc.Search(productIndex, value, null, {hitsPerPage: 9})
+            .then(function(data) {
+                data.hits.forEach(function(e) {
+                    e.index = 'products';
+                });
+                output = data.hits;
+               /* AlgoliaSvc.Search(infoIndex, value, null, {hitsPerPage: 3})
+                    .then(function(data2) {
+                        data2.hits.forEach(function(e) {
+                            e.index = 'information';
+                        });
+                        
+                        output = output.concat(data2.hits);
+                        vm.loading = false;
+                        deferred.resolve(output);
+                    })*/
+                    deferred.resolve(output);
+            });
+        return deferred.promise;
     }
 
     $scope.isOpen = function()  {
         return !$scope.submittedQuery && vm.searchTerm.length > 2;
-
     };
 
     vm.popupSearch = function(value) {
@@ -340,15 +364,6 @@ function AlgoliaSearchController(AlgoliaSvc, $q, $scope, $state, Underscore) {
         console.log($scope.popupOpen);
         return getBothIndexes(value);
     };
-    
-    /*setTimeout(function(){
-        var owlSearch = angular.element("#owl-carousel-search"); 
-        owlSearch.owlCarousel({
-            items:3,
-            nav:true,
-            margin:20
-        });
-    },200);*/
 
     $scope.submittedQuery = false;
     vm.goToAlgoliaResultsPage = function() {
@@ -383,13 +398,12 @@ function AlgoliaSearchController(AlgoliaSvc, $q, $scope, $state, Underscore) {
 
 }
 
-function AlgoliaSearchResultsController(AlgoliaSvc, ProductSearchResult, InformationSearchResult, Selections, FiltersObject, DisjunctiveFacets, FacetList, $stateParams, $state, $scope, alfcontenturl,OrderCloud,$sce, Underscore) {
-
+function AlgoliaSearchResultsController(AlgoliaSvc, ProductSearchResult, /*InformationSearchResult,*/ Selections, FiltersObject, DisjunctiveFacets, FacetList, $stateParams, $state, $scope) {
     var vm = this;
     vm.FiltersObject = FiltersObject;
     vm.Selections = Selections;
     vm.ProductResults = ProductSearchResult;
-    vm.InfoResults = InformationSearchResult;
+   // vm.InfoResults = InformationSearchResult;
     vm.CustomFacetList = FacetList;
     vm.disjunctives = DisjunctiveFacets;
     
@@ -432,9 +446,9 @@ function AlgoliaSearchResultsController(AlgoliaSvc, ProductSearchResult, Informa
             infopage: vm.currentInfoPage || 1,
             tab: vm.activeTab,
             infosortby: vm.infoSortTerm,
-            productssortby: vm.productSortTerm,
+            productssortby: vm.productSortTerm/*,
             min: $stateParams.min || null,
-            max: $stateParams.max || null
+            max: $stateParams.max || null*/
         },
             {reload: true});
     };
@@ -505,28 +519,12 @@ function AlgoliaSearchResultsController(AlgoliaSvc, ProductSearchResult, Informa
             },
             {reload: true})
     };
-
-    var ticket = localStorage.getItem("alf_ticket");
-    AlgoliaSvc.GetHelpAndPromo(ticket).then(function(res){
-        vm.needHelp = alfcontenturl+res.items[4].contentUrl+"?alf_ticket="+ticket;
-        vm.needHelpTitle = res.items[0].title;
-        vm.needHelpDescription = res.items[0].description;  
-
-        vm.leftPromo = alfcontenturl+res.items[1].contentUrl+"?alf_ticket="+ticket;
-        vm.leftPromoTitle = res.items[1].title;
-        vm.leftPromoDescription = res.items[1].description;    
-        vm.leftPromoButton = res.items[1].author;  
-
-        var giftCard = alfcontenturl + res.items[2].contentUrl + "?alf_ticket=" + ticket;
-        vm.giftCard = $sce.trustAsResourceUrl(giftCard);
-        vm.giftCardTitle = res.items[2].title;
-        vm.giftCardDescription = res.items[2].description;    
-    }); 
 }
 
-function AlgoliaService(algolia, $q, OrderCloud, Underscore, $timeout, $http, alfcontenturl, alfrescourl) {
+function AlgoliaService(algolia, $q) {
 
-    var _client = algolia.Client("DC2GHSK48B", '3ffbd2c0a888682fbfb7a39e5f4e22f5');
+   // var _client = algolia.Client("DC2GHSK48B", '3ffbd2c0a888682fbfb7a39e5f4e22f5');
+   var _client = algolia.Client("SZ66YIOTH7", '24500587dd3f18a7d684b66677ca47e6');
     var lastBaseSearchValue = '';
     var lastBaseSearchResult = {};
 
@@ -557,27 +555,9 @@ function AlgoliaService(algolia, $q, OrderCloud, Underscore, $timeout, $http, al
         return deferred.promise;
     }
 
-    function _getHelpAndPromo(ticket) {
-      var defferred = $q.defer(); 
-      $http({
-        method: 'GET',
-        dataType:"json",
-        url:  alfrescourl+"ProductListing/HelpAndPromos?alf_ticket="+ticket,
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }).success(function (data, status, headers, config) {              
-        defferred.resolve(data);
-      }).error(function (data, status, headers, config) {
-        defferred.reject(data);
-      });
-      return defferred.promise;
-    }
-
     var service = {
         GetIndex: _getIndex,
-        Search: _search,
-        GetHelpAndPromo:_getHelpAndPromo
+        Search: _search
     };
     return service;
 }
@@ -592,6 +572,7 @@ function IndexType() {
         });
         return output;
     }
+
 }
 
 function CustomOrderBy() {

@@ -1,0 +1,480 @@
+/* My Account - Wishlist Style Starts */
+.my-account-wislist-container {
+    padding: 0 20px !important;
+    margin-bottom: -25px;
+	.heading {
+		font: 1.125em @proxima-bold;
+		margin: 20px 0;
+		span {
+			color: #666666;
+			font: 0.875em @proxima-light !important;
+		}
+		.share-list-link {
+			color: @font-purple-dark;
+			font: 0.78em @proxima-bold;
+			float: right;
+			border-bottom: 1px solid #c5add9;
+		}
+	}
+	.wishlist-cont {
+		border: 1px solid #ddd;
+		border-top: none;
+		.wishlist-header {
+			height: 45px;
+			background: #f5f5f5;
+			.product-count, .quantity-header, .price-header, .total-amount-header {
+				font: 0.875em @proxima-light;
+				font-weight: bold;
+				line-height: 45px;
+				color: #424242;
+				padding: 0 0 0 10px;
+			}
+			.product-count {
+				width: 40%;
+			}
+			.quantity-header {
+				width: 8%;
+			}
+			.price-header, .total-amount-header {
+				width: 15%;
+			}
+			.quantity-header, .price-header, .total-amount-header {
+				text-align: center;
+			}
+		}
+		.wishlist-item {
+			padding: 20px 0 25px 0;
+			/*border-bottom: 1px solid #ddd;*/
+			.prod-img-cont {
+				width: 40%;
+    			padding: 0 0 0 10px;
+				.prod-img {
+
+				}
+				.prod-desc {
+					padding-left: 10px;
+					.custom-name, .item-number, .product-type {
+						color: #828282;
+						font: 0.875em @proxima-regular;
+						margin-bottom: 7px;
+					}
+					.custom-name {
+						color: #484848;
+						font: 1em @proxima-regular;
+						font-weight: bold;
+						word-break: break-word;
+						margin-bottom: 12px;
+					}
+					.item-number {
+						word-break: break-all;
+					}
+					.product-type {
+						word-break: break-word;
+					}
+					.color-desc {
+						width: 15px;
+					    height: 15px;
+					    background: #c5b887;
+					    display: inline-block;
+					    border-radius: 30px;
+					    vertical-align: middle;
+					}
+				}
+			}
+			.quant-cont {
+				width: 8%;
+    			padding: 10px 0 0 10px;
+    			text-align: center;
+    			word-break: break-all;
+				.value {
+					font: 1em @proxima-regular;
+				}
+			}
+			.price-cont {
+			    width: 15%;
+				padding: 10px 0 0 10px;
+    			text-align: center;
+    			word-break: break-all;
+				.value {
+					color: #666666;
+					font: 1em @proxima-regular;
+				}
+			}
+			.total-amt-cont {
+				width: 15%;
+				padding: 10px 0 0 10px;
+    			text-align: center;
+    			word-break: break-all;
+				.value {
+					color: #464646;
+					font: 1em @proxima-regular;
+					font-weight: bold;
+				}
+			}
+			.addToCart-cont {
+				width: 15%;
+				padding: 5px 0 0 0;
+				margin-left: 0;
+				button {
+					background-color: #afd833;
+					font: 0.875em @proxima-bold;
+					text-transform: uppercase;
+					letter-spacing: normal;
+					color: #fff;
+				    border-radius: 0;
+				    height: 35px;
+				    padding: 0 30px;
+				    width: 100%;
+				    .background-fade;
+				    &:hover {
+				    	background-color: @green-hover;
+				    }
+				    &.out-of-stock {
+						background: #f3f3f3;
+						color: #d7d7d7;
+						cursor: default;
+						&:hover {
+							background: #f3f3f3;
+							color: #d7d7d7;
+						}
+					}
+				}
+			}
+			.list-close-btn {
+				width: 5%;
+				float: right;
+				text-align: center;
+    			padding-top: 15px;
+    			margin-right: 10px;
+				svg {
+					width: 13px;
+					height: 13px;
+				}
+			}
+			/*&:last-child {
+				border-bottom: none;
+			}*/
+			&:after {
+				content: '';
+				position: absolute;
+				width: 98%;
+				left: 2%;
+				bottom: 0;
+				border-bottom: 1px solid #ddd;
+			}
+			&:last-child:after {
+				border-bottom: none;
+			}
+		}
+	}
+	.addAllToCart-cont {
+		float: right;
+	    padding: 0;
+	    margin: 25px 30px 25px 0;
+		button {
+			.white-button;
+			font: 0.875em @proxima-regular;
+			font-weight: bold;
+			letter-spacing: normal;
+			text-transform: uppercase;
+			border-radius: 0;
+		    height: 42px;
+	        padding: 0 20px;
+	        width: 100%;
+		}
+	}
+}
+@media screen and (min-width:320px) and (max-width:810px) {
+	.my-account-menu-content-inner {
+		border-top: none;
+	}
+	.my-account-wislist-container {
+		padding: 0 !important;
+		.my-account-content-title {
+			margin: 15px auto 15px !important;
+		}
+		.heading {
+			padding: 12px 0;
+			border-top: 1px solid #d6d6d6;
+			border-bottom: 1px solid #d6d6d6;
+			margin-bottom: 0;
+			font-size: 0.875em;
+			span {
+				font-size: 0.75em;
+			}
+			.share-list-link {
+				font-size: 0.75em;
+			}
+		}
+		.wishlist-cont {
+			border: none;
+			.wishlist-item {
+				padding: 12px 0 20px 0;
+				.prod-img-cont {
+					padding: 0;
+					width: 100%;
+					.prod-desc {
+						padding: 0 5px 0 10px;
+						.custom-name {
+							font-size: 0.75em;
+						    padding-right: 15px;
+					        max-width: 75%;
+						}
+						.item-number {
+							font-size: 0.75em;
+						}
+						.product-type {
+							font-size: 0.75em;
+						}
+						.price-mob {
+							color: #828282;
+							font: 0.75em @proxima-regular;
+						    margin-top: 30px;
+						}
+						.qty-mob {
+							float: left;
+							color: #828282;
+							font: 0.75em @proxima-regular;
+						}
+						.total-mob {
+							float: right;
+							color: #828282;
+							font: 0.75em @proxima-regular;
+						}
+						span {
+							color: #464646;
+						}
+						.color-desc {
+							width: 12px;
+							height: 12px;
+						}
+					}
+				}
+				.addToCart-cont {
+					width: 66.67%;
+					padding: 5px 5px 0 5px;
+					margin-left: 33.33%;
+					button {
+						width: 100%;
+						padding: 0 10px;
+						font-size: 0.875em;
+					}
+				}
+				.list-close-btn {
+					position: absolute;
+					top: 10px;
+				    right: 0;
+				    padding: 0;
+				    svg {
+				    	width: 10px;
+    					height: 10px;
+				    }
+				}
+				/*&:last-child {
+				    border-bottom: 1px solid #ddd;
+				}*/
+				&:after {
+					width: 100%;
+				    left: 0;
+				}
+				&:last-child:after {
+				    width: 100%;
+				    left: 0;
+				    border-bottom: 1px solid #ddd;
+				}
+			}
+		}
+		.addAllToCart-cont {
+			margin: 25px 0 35px 0;
+    		float: left;
+    		clear: both;
+    		button {
+    			width: 100%;
+    		}
+		}
+	}
+}
+
+@media screen and (min-width:768px) and (max-width:1110px) {
+	.my-account-wislist-container {
+		padding: 0 10px !important;
+		.wishlist-cont {
+			.wishlist-item {
+				.prod-img-cont {
+					.prod-img {
+						width: auto;
+					}
+				}
+				.list-close-btn {
+					svg {
+						width: 15px;
+    					height: 15px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width:768px) and (max-width:1110px) and (orientation: landscape) {
+	.my-account-wislist-container {
+		padding: 0 10px !important;
+		.wishlist-cont {
+			.wishlist-item {
+				padding: 15px 0;
+				.prod-img-cont {
+					.prod-img {
+						width: 33.3%;
+					}
+					.prod-desc {
+						padding: 0 0 0 5px;
+					}
+				}
+				.addToCart-cont {
+					button {
+						padding: 0;
+					}
+				}
+				.list-close-btn {
+					padding-right: 0;
+				}
+			}
+			.addAllToCart-cont {
+				width: 25%;
+				button {
+				    width: 100%;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width:900px) and (max-width:962px) {
+	.my-account-wislist-container {
+		.heading {
+			border-top: 1px solid #d6d6d6;
+		    border-bottom: 1px solid #d6d6d6;
+		    padding: 12px 0;
+		    margin-bottom: 0;
+		}
+		.wishlist-cont {
+			border: none;
+			.wishlist-item {
+				.prod-img-cont {
+					width: 100%;
+					padding: 0;
+					.prod-desc {
+						padding: 0 20px;
+						.custom-name {
+							margin-bottom: 12px;
+						}
+						.item-number, .product-type {
+							margin-bottom: 8px;
+							font: 0.75em @proxima-regular;
+						}
+						.price-mob {
+							margin: 20px 0 10px;
+							font: 0.75em @proxima-regular;
+							color: #828282;
+						}
+						.qty-mob, .total-mob {
+							font: 0.75em @proxima-regular;
+							color: #828282;
+						}
+						.qty-mob {
+							float: left;
+						}
+						.total-mob {
+							float: right;
+						}
+						span {
+							color: #464646;
+						}
+					}
+				}
+				.addToCart-cont {
+					width: 66.6%;
+   					margin-left: 33.3%;
+				}
+				.list-close-btn {
+					position: absolute;
+					top: 20px;
+				    right: 0;
+				    padding: 0;
+				    svg {
+				    	width: 15px;
+    					height: 15px;
+				    }
+				}
+				&:after {
+					width: 100%;
+    				left: 0%;
+				}
+			}
+		}
+		.addAllToCart-cont {
+			float: left;
+			clear: both;
+		}
+	}
+}
+
+@media screen and (min-width:900px) and (max-width:962px) and (orientation:landscape) {
+	.my-account-wislist-container {
+		.my-account-content-title {
+			display: none;
+		}
+		.heading {
+			margin: 20px 0;
+			padding: 0;
+			border: none;
+		}
+		.wishlist-cont {
+			border: 1px solid #ddd;
+    		border-top: none;
+    		.wishlist-header {
+    			display: block !important;
+    		}
+			.wishlist-item {
+				.prod-img-cont {
+					width: 40%;
+					padding-left: 5px;
+					.prod-img {
+						.web-img {
+							display: block !important;
+						}
+						.mob-img {
+							display: none !important;
+						}
+					}
+					.prod-desc {
+						padding: 0 0 0 10px;
+						.price-mob, .qty-mob, .total-mob {
+							display: none;
+						}
+					}
+				}
+				.quant-cont, .price-cont, .total-amt-cont {
+					display: block !important;
+				}
+				.addToCart-cont {
+					width: 15%;
+   					margin-left: 0;
+				}
+				.list-close-btn {
+					position: static;
+				    padding: 15px 15px 0 15px;
+				}
+				&:after {
+					width: 98%;
+    				left: 2%;
+				}
+			}
+		}
+		.addAllToCart-cont {
+			float: right;
+			width: 25%;
+		}
+	}
+}
+/* My Account - Wishlist Style Ends */

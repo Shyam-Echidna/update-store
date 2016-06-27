@@ -1,0 +1,190 @@
+<div class="container-fluid track-order-container">
+    <p class="my-account-content-title">Track Order
+        <span class="bachman-chevron hidden-md hidden-lg chevron" ng-class="{bottom: !mobilemenus}"></span>
+        <span class="mob-menu-clickable" ng-click="mobilemenus=!mobilemenus"></span>
+        <span class="acc-mob-dropdown" ng-show="mobilemenus">
+            <span class="acc-mob-links" ui-sref="account.profile">My Profile</span>
+            <span class="acc-mob-links" ui-sref=".addresses">Address Book</span>
+            <span class="acc-mob-links" ui-sref="account.orders">Order History</span>
+            <!-- <span class="acc-mob-links" ui-sref=".trackorders">Track Orders</span> -->
+            <span class="acc-mob-links" ui-sref="account.event">My Events</span>
+            <span class="acc-mob-links" ui-sref=".CreditCard">Credit Cards</span>
+            <span class="acc-mob-links" ui-sref="account.perpleperksAccount">Perple Perks</span>
+            <span class="acc-mob-links" ui-sref="account.wishlistAccount">My Wishlist</span>
+            <span class="acc-mob-links" ui-sref=".emailsubscription">Email Preferences</span>
+        </span>  
+    </p>
+    <div class="order-cont" ng-repeat="orders in profile.showOrders">
+        <div class="row order-status">
+            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 order-num">
+                <p>Order Number: <span>{{orders.ID}}</span></p>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-9 col-lg-9 status">
+                <p>Status: <span>{{orders.Status}}</span></p>
+            </div>
+        </div>
+        <div class="row order-details">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 price-details">
+                <div class="col-xs-4 col-sm-4 col-md-12 col-lg-12 order-date p0">
+                    <p class="title">Order Placed on</p>
+                    <p class="value">{{orders.DateCreated | date:'longDate'}}</p>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-12 col-lg-12 order-amt p0">
+                    <p class="title">Total Amount</p>
+                    <p class="value">&#x24;{{orders.Subtotal}}</p>
+                </div>
+                <div class="col-xs-12 view-order p0">
+                    <button type="button" class="btn green-btn" ui-sref=".create">View Order Details</button>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 order-confirmation">
+                <p><span class="confirm-order">Confirm Order</span><span class="delivery">Delivery</span></p>
+                <div class="order-measurement">
+                    <p class="order-bar"> </p>
+                </div>
+                <div class="delivery-info">
+                    <div class="delivery-dates">
+                        <p class="order-date">March 1, 2016</p>
+                        <p class="order-time">7:30 PM</p>
+                    </div>
+                    <div class="delivery-dates1">
+                        <p class="delivery-date">March 3, 2016</p>
+                        <p class="delivery-time">6:30 PM</p>
+                        <p class="delivery-exp">Expected Delivery</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row order-history-details">
+           
+            <div class="product-details">
+                <div class="product-header">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 product-count">
+                            Products
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 delivery-header">
+                            Delivery Information
+                        </div>
+                        <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1 quantity-header">
+                            Qty.
+                        </div>
+                        <div class="col-xs-12 col-sm-1 col-md-2 col-lg-2 price-header">
+                            Price
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2 total-amount-header">
+                            Total Amount
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 product-info-details">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 prod-img-cont">
+                        <div class="col-xs-5 prod-img">
+                            <img src="assets/images/batch4web/orderhistory/order1.png" class="hidden-xs hidden-sm" />
+                            <img src="assets/images/batch4web/orderhistory/mobile/order1.png" class="visible-xs visible-sm hidden-md hidden-lg" />
+                        </div>
+                        <div class="col-xs-7 prod-desc">
+                            <p class="custom-name">Premium Roses, Long Stemmed</p>
+                            <p class="item-number">Item Number: <span>141927</span></p>
+                            <p class="product-type">Type: <span>Deluxe</span></p>
+                            <p class="order-mobile-ddate">Delivery Date: <span>March 21. 2016</span></p>
+                            <p class="order-mobile-dpref">Delivery Preferece: <span>Morning 09:00 AM - 12:00 PM</span></p>
+                            <p class="order-mobile-price">Price: <span>&#x24;269.99</span></p>
+                            <p class="order-mobile-qty">Qty: <span>01</span></p>
+                            <p class="order-mobile-total">Total: <span>&#x24;269.99</span></p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-2 col-md-3 col-lg-3 delivery-info-cont">
+                        <div class="delivery-date-cont">
+                            <p class="title">Delivery Date</p>
+                            <p class="value">March 21. 2016</p>
+                        </div>
+                        <div class="delivery-pref-cont">
+                            <p class="title">Delivery Preferece</p>
+                            <p class="value">Morning 09:00 AM - 12:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1 quant-cont">
+                        <p class="value">01</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-1 col-md-2 col-lg-2 price-cont">
+                        <p class="value">&#x24;269.99</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 total-amt-cont">
+                        <p class="value">&#x24;269.99</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 total-info">
+                    <div class="col-xs-7 card-msg-cont">
+                        <div class="card-msg">
+                            <div class="card-bg-empty-div">
+                            </div>
+                            <div class="col-xs-5 col-md-6 heading">
+                                Card Message
+                            </div>
+                            <div class="col-xs-7 col-md-6 text">
+                                <p class="line1">Happy Birthday</p>
+                                <p class="line2">May God Bless You</p>
+                                <p class="line3">Have A Great Year Ahead</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-5 total-amt-cont">
+                        <div class="subtotal col-xs-12">
+                            <p class="col-xs-6 title">Subtotal</p>
+                            <p class="col-xs-6 value">&#x24;269.99</p>
+                        </div>
+                        <div class="tax col-xs-12">
+                            <p class="col-xs-6 title">Tax</p>
+                            <p class="col-xs-6 value">&#x24;00.00</p>
+                        </div>
+                        <div class="delivery-charges col-xs-12">
+                            <p class="col-xs-6 title">Delivery Charges</p>
+                            <p class="col-xs-6 value">&#x24;10.99</p>
+                        </div>
+                        <div class="total col-xs-12">
+                            <p class="col-xs-6 title">Total</p>
+                            <p class="col-xs-6 value">&#x24;269.99</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 ship-bill-cont p0">
+                    <div class="col-xs-5 shipping-info-cont p0">
+                        <div class="col-xs-10 related-info p0">
+                            <p class="heading p0">Shipping Information</p>
+                            <div class="col-xs-4 title p0">
+                                <p>Shipping to:</p>
+                            </div>
+                            <div class="col-xs-8 values p0">
+                                <p class="name">John Snow</p>
+                                <p class="res-describer">(Residence)</p>
+                                <p class="addr1">302 Park Avenue</p>
+                                <p class="addr2">Minneapolis, MN 55401</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-5 billing-info-cont p0">
+                        <div class="col-xs-10 related-info p0">
+                            <p class="heading p0">Billing Information</p>
+                            <div class="col-xs-5 title p0">
+                                <p>Billing Address:</p>
+                            </div>
+                            <div class="col-xs-7 values p0">
+                                <p class="name">John Snow</p>
+                                <p class="addr1">302 Park Avenue</p>
+                                <p class="addr2">Minneapolis, MN 55401</p>
+                                <p class="addr3">55401</p>
+                            </div>
+                            <div class="col-xs-5 pay-method p0">
+                                <p>Payment Method:</p>
+                            </div>
+                            <div class="col-xs-7 pay-method-value p0">
+                                <p class="value">Credit Card</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
